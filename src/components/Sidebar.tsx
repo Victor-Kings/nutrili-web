@@ -1,4 +1,4 @@
-import { Avatar, Box, Stack, Text, Link, Flex, Icon, textDecoration } from "@chakra-ui/react";
+import { Avatar, Box, Stack, Text, Link, Flex, Icon, textDecoration, Circle, Image } from "@chakra-ui/react";
 import {AiFillHome} from 'react-icons/ai'
 import {BsFillPersonFill, BsFillPeopleFill} from 'react-icons/bs'
 import {IoSettingsSharp} from 'react-icons/io5'
@@ -7,38 +7,41 @@ export function Sidebar() {
 
     return (
         <>
-            <Box as="aside" w="367px" mr={4} bgColor="blue.300" h="100vh">
-                <Flex flex="1" justifyContent="center" pt="51px">
-                    <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" width="113px" height="113px" border="6px solid white" />
+            <Box as="aside" w="316px" mr={4} bgColor="blue.300" h="100vh">
+                <Flex flex="1" justifyContent="center"  pt="32px">
+                    <Image src="/icons/logo.png" width="117px" height="117px"  bg="blue.300" color="white" border="2px solid white" borderRadius="50%"/>
+                </Flex>
+                <Flex flex="1" justifyContent="center" pt="51px" p="34px">
+                    <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" width="57px" height="57px" border="3px solid white" />
+                    <Flex flex="1" w="100%" direction="column" alignItems="initial" pl="10%" justifyContent="center">
+                            <Text fontWeight='semibold' color="white" fontSize="18px" >Joaozinho Pereira</Text>
+                            <Link>
+                                <Text fontWeight="semibold" fontSize="14px" color="blue.10">SAIR</Text>
+                            </Link>
+                    </Flex>
                 </Flex>
                 <Stack spacing="12" align="flex-start" flex="1">
                     <Box w="100%">
-                        <Flex flex="1" w="100%" justifyContent="center" pt="10px" direction="column">
-                            <Text fontWeight='normal' color="white" fontSize="20px" alignSelf="center">JOAOZINHO PEREIRA</Text>
-                            <Link alignSelf="center">
-                                <Text mt="2" fontWeight="medium" fontSize="1.2rem">Sair</Text>
+                        <Stack spacing='8' align="stretch">
+                            <Link display='flex' flex="1" align="center" alignItems="center" _hover={{ textDecoration: "none" }}>
+                                <Icon as={AiFillHome} fontSize={28} justifyContent="flex-start" ml="15%" />
+                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.125rem">Home</Text>
                             </Link>
-                        </Flex>
-                        <Stack spacing='8' mt='4rem' align="stretch">
-                            <Link display='flex' flex="1" align="center" _hover={{ textDecoration: "none" }}>
-                                <Icon as={AiFillHome} fontSize={30} justifyContent="flex-start" ml="15%" />
-                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.4rem">Home</Text>
+                            <Link display='flex' flex="1" align="center"  alignItems="center" _hover={{ textDecoration: "none" }}>
+                                <Icon as={BsFillPersonFill} fontSize={28} justifyContent="flex-start" ml="15%" />
+                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.125rem">Perfil</Text>
                             </Link>
-                            <Link display='flex' flex="1" align="center" _hover={{ textDecoration: "none" }}>
-                                <Icon as={BsFillPersonFill} fontSize={30} justifyContent="flex-start" ml="15%" />
-                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.4rem">Perfil</Text>
+                            <Link display='flex' flex="1" align="center"  alignItems="center" _hover={{ textDecoration: "none" }}>
+                                <Icon as={AiFillHome} fontSize={28} justifyContent="flex-start" ml="15%" />
+                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.125rem">Notificação</Text>
                             </Link>
-                            <Link display='flex' flex="1" align="center" _hover={{ textDecoration: "none" }}>
-                                <Icon as={AiFillHome} fontSize={30} justifyContent="flex-start" ml="15%" />
-                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.4rem">Notificação</Text>
+                            <Link display='flex' flex="1" align="center"  alignItems="center" _hover={{ textDecoration: "none" }}>
+                                <Icon as={BsFillPeopleFill} fontSize={28} justifyContent="flex-start" ml="15%" />
+                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.125rem">Clientes</Text>
                             </Link>
-                            <Link display='flex' flex="1" align="center" _hover={{ textDecoration: "none" }}>
-                                <Icon as={BsFillPeopleFill} fontSize={30} justifyContent="flex-start" ml="15%" />
-                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.4rem">Clientes</Text>
-                            </Link>
-                            <Link display='flex' flex="1" align="center" _hover={{ textDecoration: "none" }}>
-                                <Icon as={IoSettingsSharp} fontSize={30} justifyContent="flex-start" ml="15%" />
-                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.4rem">Configuração</Text>
+                            <Link display='flex' flex="1" align="center"  alignItems="center" _hover={{ textDecoration: "none" }}>
+                                <Icon as={IoSettingsSharp} fontSize={28} justifyContent="flex-start" ml="15%" />
+                                <Text fontWeight="medium" ml="5%" textDecoration="none" fontSize="1.125rem">Configuração</Text>
                             </Link>
                         </Stack>
                     </Box>
