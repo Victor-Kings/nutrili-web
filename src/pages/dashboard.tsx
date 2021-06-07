@@ -148,7 +148,7 @@ export default function Dashboard() {
   return (
     <Flex direction="row" h="100vh" >
       <Sidebar />
-      <Flex flex="1" h="100vh" flexDirection="column" mr={4} mb={4} bg ="green">
+      <Flex flex="1" h="100vh" flexDirection="column" mr={4} mb={4}>
         <SimpleGrid columns={2} spacingY="10px" pt={4} spacingX={4}>
           <SimpleGrid
             columns={2}
@@ -180,15 +180,13 @@ export default function Dashboard() {
           pb={6}
           
         >
-          <Box borderRadius={8}  backgroundColor="white" maxHeight="72%">
+          <Box borderRadius={8}  backgroundColor="white" h="100%">
             <Flex
               minHeight="60px"
               maxHeight="83px"
               height="15%"
               alignItems="center"
               pl="4%"
-              //position="sticky"
-              //top = "0"
             >
               <Text color="gray.200" fontSize="26px">
                 Aprovações Pendentes
@@ -197,7 +195,7 @@ export default function Dashboard() {
             <Flex
             pb={4}
             flex="1"
-   
+            h="65vh"
             overflowY="scroll"
             css={{
               "&::-webkit-scrollbar": {
@@ -213,10 +211,7 @@ export default function Dashboard() {
             }}
            
             >
-                <SimpleAccordion/>
-              {/* <ListNewClients clients={newClients} /> */}
-              
-              
+             <SimpleAccordion  clients={newClients}/>     
             </Flex>
           </Box>
 
