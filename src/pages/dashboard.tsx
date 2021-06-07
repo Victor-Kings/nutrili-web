@@ -28,7 +28,7 @@ export default function Dashboard() {
       _id: "60bd5abe07a5d6dde663c081",
       name: "Cox Monroe",
       idade: 10,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2021-06-06T12:57:37+03:00",
       cpf: "10376874381",
       endereco: "Melrose Street, 705, Kiskimere, District Of Columbia",
       medicao: {
@@ -45,7 +45,7 @@ export default function Dashboard() {
       _id: "60bd5abefc84f9e7a30a2042",
       name: "Evans Stephenson",
       idade: 7,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2020-06-06T07:57:37+03:00",
       cpf: "97653984866",
       endereco: "Williams Court, 448, Fowlerville, Hawaii",
       medicao: {
@@ -62,7 +62,7 @@ export default function Dashboard() {
       _id: "60bd5abed90506afdb6214b1",
       name: "Suarez Erickson",
       idade: 6,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2021-06-05T02:57:37+03:00",
       cpf: "34208120640",
       endereco: "Canal Avenue, 197, Springdale, Maryland",
       medicao: {
@@ -79,7 +79,7 @@ export default function Dashboard() {
       _id: "60bd5abee42b7bfdcd33a0b2",
       name: "Velasquez Garcia",
       idade: 0,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2020-06-06T04:50:37+03:00",
       cpf: "80719511567",
       endereco: "Gatling Place, 676, Grahamtown, Montana",
       medicao: {
@@ -96,7 +96,7 @@ export default function Dashboard() {
       _id: "60bd5abe0a2ff3deab0e7295",
       name: "Moses Hunter",
       idade: 2,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2020-06-06T10:00:37+03:00",
       cpf: "33232889494",
       endereco: "Crooke Avenue, 680, Edneyville, Nevada",
       medicao: {
@@ -113,7 +113,7 @@ export default function Dashboard() {
       _id: "60bd5abe54809f13c733410f",
       name: "Lindsay Glass",
       idade: 4,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2021-04-06T02:57:37+03:00",
       cpf: "20831385413",
       endereco: "Keen Court, 240, Blackgum, Minnesota",
       medicao: {
@@ -130,7 +130,7 @@ export default function Dashboard() {
       _id: "60bd5abe5522aa43a43b06d0",
       name: "Renee Cummings",
       idade: 7,
-      data: "Sun Jun 06 2021 20:31:10 GMT-0300 (Horário Padrão de Brasília)",
+      data: "2021-06-06T03:57:37+03:00",
       cpf: "25113641039",
       endereco: "Brooklyn Road, 287, Jackpot, Pennsylvania",
       medicao: {

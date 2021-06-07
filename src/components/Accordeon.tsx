@@ -13,6 +13,7 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
+import moment from "moment"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,12 +46,24 @@ interface IProps {
   clients: IClients[];
 }
 
-export default function SimpleAccordion(props: IProps) {
-  const classes = useStyles();
 
+function diffTimeTeste(tempo: string):string {
+
+  const date= new Date(tempo);
+
+  const dateFormated = date.toISOString().slice(0,4) + date.toISOString().slice(5,7) + date.toISOString().slice(8,10);
+  const diff = moment(dateFormated, "YYYYMD").fromNow();
+    
+  return diff
+}
+export default function SimpleAccordion(props: IProps) {
+  moment.locale('pt-br');
+  const classes = useStyles();
   return (
     <div className={classes.root} style={{overflowX: "hidden"}}>
-      {props.clients.map((values) => (
+      {props.clients.map((values) => 
+        (
+      
         <Accordion  key={values._id} >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.iconArrow}/>}
@@ -69,7 +82,7 @@ export default function SimpleAccordion(props: IProps) {
                 {values.name} - {values.idade} anos
               </Text>
               <Text color="gray.50" flex="1" textAlign="end" pr="2%">
-                {values.data}
+                {diffTimeTeste(values.data)}
               </Text>
             </Flex>
           </AccordionSummary>
@@ -112,7 +125,10 @@ export default function SimpleAccordion(props: IProps) {
             </SimpleGrid>
           </AccordionDetails>
         </Accordion>
-      ))}
+      )
+      
+      
+      )}
     </div>
   );
 }
