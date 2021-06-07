@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { IClients } from "../interfaces/clientes.interface";
 
+
 interface IProps {
   clients: IClients[];
 }

@@ -20,6 +20,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Button } from "@chakra-ui/react";
 import { IClients } from "../interfaces/clientes.interface";
 
+import SimpleAccordion from '../components/Accordeon'
+
 export default function Dashboard() {
   const newClients: IClients[] = [
     {
@@ -171,7 +173,6 @@ export default function Dashboard() {
         <SimpleGrid
           columns={2}
           width="100%"
-          h="80vh"
           spacingX={4}
           spacingY={4}
           justifyContent="space-evenly"
@@ -179,7 +180,7 @@ export default function Dashboard() {
           pb={6}
           
         >
-          <Box borderRadius={8} h="98%" backgroundColor="white" maxHeight="72%">
+          <Box borderRadius={8}  backgroundColor="white" maxHeight="72%">
             <Flex
               minHeight="60px"
               maxHeight="83px"
@@ -196,7 +197,7 @@ export default function Dashboard() {
             <Flex
             pb={4}
             flex="1"
-            h="100vh"
+   
             overflowY="scroll"
             css={{
               "&::-webkit-scrollbar": {
@@ -210,9 +211,12 @@ export default function Dashboard() {
                 background: "#B6B6B6",
               },
             }}
-            maxHeight="100%"
+           
             >
-              <ListNewClients clients={newClients} />
+                <SimpleAccordion/>
+              {/* <ListNewClients clients={newClients} /> */}
+              
+              
             </Flex>
           </Box>
 
