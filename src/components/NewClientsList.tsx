@@ -13,7 +13,7 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import moment from "moment"
+import moment from "moment";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
     },
-    iconArrow:{
-      color:"#ADADAD"
+    iconArrow: {
+      color: "#ADADAD",
     },
   })
 );
@@ -46,27 +46,26 @@ interface IProps {
   clients: IClients[];
 }
 
+function diffTimeTeste(tempo: string): string {
+  const date = new Date(tempo);
 
-function diffTimeTeste(tempo: string):string {
+  const dateFormated =
+    date.toISOString().slice(0, 4) +
+    date.toISOString().slice(5, 7) +
+    date.toISOString().slice(8, 10);
+  const diff = moment(dateFormated, "YYYYMMDD").fromNow();
 
-  const date= new Date(tempo);
-
-  const dateFormated = date.toISOString().slice(0,4) + date.toISOString().slice(5,7) + date.toISOString().slice(8,10);
-  const diff = moment(dateFormated, "YYYYMD").fromNow();
-    
-  return diff
+  return diff;
 }
 export default function SimpleAccordion(props: IProps) {
-  moment.locale('pt-br');
+  moment.locale("pt-br");
   const classes = useStyles();
   return (
-    <div className={classes.root} style={{overflowX: "hidden"}}>
-      {props.clients.map((values) => 
-        (
-      
-        <Accordion  key={values._id} >
+    <div className={classes.root} style={{ overflowX: "hidden" }}>
+      {props.clients.map((values) => (
+        <Accordion key={values._id}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon className={classes.iconArrow}/>}
+            expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -86,7 +85,7 @@ export default function SimpleAccordion(props: IProps) {
               </Text>
             </Flex>
           </AccordionSummary>
-          <AccordionDetails  style={{ display:"block"}} >
+          <AccordionDetails style={{ display: "block" }}>
             <SimpleGrid color="gray.200">
               <Flex flexDirection="column">
                 <Text>Informações: </Text>
@@ -108,11 +107,15 @@ export default function SimpleAccordion(props: IProps) {
                 </Flex>
               </Flex>
 
-              <Grid pt="4%" templateColumns="repeat(6,1fr)" gap="5px" color="white">
+              <Grid
+                pt="4%"
+                templateColumns="repeat(6,1fr)"
+                gap="5px"
+                color="white"
+              >
                 <GridItem colStart={3} colEnd={3} h="10">
-                  <Flex Flex="1" justifyContent="flex-end"  >
+                  <Flex Flex="1" justifyContent="flex-end">
                     <Button backgroundColor="blue.200">ACEITAR</Button>
-
                   </Flex>
                 </GridItem>
                 <GridItem colStart={4} colEnd={4} h="10">
@@ -120,15 +123,11 @@ export default function SimpleAccordion(props: IProps) {
                     <Button backgroundColor="#D93F3F">NEGAR</Button>
                   </Flex>
                 </GridItem>
-
               </Grid>
             </SimpleGrid>
           </AccordionDetails>
         </Accordion>
-      )
-      
-      
-      )}
+      ))}
     </div>
   );
 }

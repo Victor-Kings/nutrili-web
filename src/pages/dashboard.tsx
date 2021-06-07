@@ -1,26 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Grid,
-  GridItem,
-  SimpleGrid,
-  Icon,
-  Image,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import { Flex, Text } from "@chakra-ui/react";
 import { Sidebar } from "../components/Sidebar";
-import { Contador } from "../components/Contador";
-import { ListNewClients } from "../components/ListNewClients";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { Button } from "@chakra-ui/react";
+import { Counter } from "../components/Counter";
 import { IClients } from "../interfaces/clientes.interface";
 
-import SimpleAccordion from '../components/Accordeon'
+import SimpleAccordion from "../components/NewClientsList";
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -146,7 +130,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <Flex direction="row" h="100vh" >
+    <Flex direction="row" h="100vh">
       <Sidebar />
       <Flex flex="1" h="100vh" flexDirection="column" mr={4} mb={4}>
         <SimpleGrid columns={2} spacingY="10px" pt={4} spacingX={4}>
@@ -158,12 +142,12 @@ export default function Dashboard() {
             minChildWidth="200px"
             spacing={4}
           >
-            <Contador
+            <Counter
               contentText="PACIENTE"
               imageName="/icons/iconPeoples.svg"
               valueData={5}
             />
-            <Contador
+            <Counter
               contentText="APROVAÇÕES PENDENTES"
               imageName="/icons/iconPeoples.svg"
               valueData={5}
@@ -178,16 +162,15 @@ export default function Dashboard() {
           justifyContent="space-evenly"
           mt={4}
           pb={6}
-          
         >
-          <Box borderRadius={8}  backgroundColor="white" h="100%">
+          <Box borderRadius={8} backgroundColor="white" h="100%">
             <Flex
               minHeight="60px"
               maxHeight="83px"
               height="15%"
               alignItems="center"
               pl="4%"
-              borderBottom= "1px"
+              borderBottom="1px"
               borderColor="gray.100"
             >
               <Text color="gray.200" fontSize="26px">
@@ -195,29 +178,28 @@ export default function Dashboard() {
               </Text>
             </Flex>
             <Flex
-            pb={4}
-            flex="1"
-            h="65vh"
-            overflowY="scroll"
-            css={{
-              "&::-webkit-scrollbar": {
-                width: "4px",
-              },
-              "&::-webkit-scrollbar-track": {
-                width: "6px",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                borderRadius: "24px",
-                background: "#B6B6B6",
-              },
-            }}
-           
+              pb={4}
+              flex="1"
+              h="65vh"
+              overflowY="scroll"
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  width: "6px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  borderRadius: "24px",
+                  background: "#B6B6B6",
+                },
+              }}
             >
-             <SimpleAccordion  clients={newClients}/>     
+              <SimpleAccordion clients={newClients} />
             </Flex>
           </Box>
 
-          <Box borderRadius={8} backgroundColor="red" >
+          <Box borderRadius={8} backgroundColor="red">
             999
           </Box>
         </SimpleGrid>
