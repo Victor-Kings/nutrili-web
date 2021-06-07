@@ -187,6 +187,8 @@ export default function Dashboard() {
               height="15%"
               alignItems="center"
               pl="4%"
+              borderBottom= "1px"
+              borderColor="gray.100"
             >
               <Text color="gray.200" fontSize="26px">
                 Aprovações Pendentes

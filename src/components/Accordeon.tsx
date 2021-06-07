@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
     },
+    iconArrow:{
+      color:"#ADADAD"
+    },
   })
 );
 
@@ -46,11 +49,11 @@ export default function SimpleAccordion(props: IProps) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root} style={{ overflowX: "hidden" }}>
+    <div className={classes.root} style={{overflowX: "hidden"}}>
       {props.clients.map((values) => (
-        <Accordion  key={values._id}>
+        <Accordion  key={values._id} >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon className={classes.iconArrow}/>}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -70,8 +73,8 @@ export default function SimpleAccordion(props: IProps) {
               </Text>
             </Flex>
           </AccordionSummary>
-          <AccordionDetails>
-            <SimpleGrid>
+          <AccordionDetails  style={{ display:"block"}} >
+            <SimpleGrid color="gray.200">
               <Flex flexDirection="column">
                 <Text>Informações: </Text>
                 <Text>CPF: {values.cpf} </Text>
@@ -92,16 +95,16 @@ export default function SimpleAccordion(props: IProps) {
                 </Flex>
               </Flex>
 
-              <Grid pt="4%" templateColumns="repeat(6,1fr)" gap="5px">
+              <Grid pt="4%" templateColumns="repeat(6,1fr)" gap="5px" color="white">
                 <GridItem colStart={3} colEnd={3} h="10">
-                  <Flex Flex="1" justifyContent="flex-end">
-                    <Button>ACEITAR</Button>
+                  <Flex Flex="1" justifyContent="flex-end"  >
+                    <Button backgroundColor="blue.200">ACEITAR</Button>
 
                   </Flex>
                 </GridItem>
                 <GridItem colStart={4} colEnd={4} h="10">
                   <Flex Flex="1" justifyContent="flex-start">
-                    <Button>NEGAR</Button>
+                    <Button backgroundColor="#D93F3F">NEGAR</Button>
                   </Flex>
                 </GridItem>
 
