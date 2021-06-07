@@ -26,7 +26,8 @@ export const theme = extendTheme({
         global: {
             body:{
                 bg: 'blue.50',
-                color:'white'
+                color:'white',
+                overflow: 'hidden'
             }
         }
     }
