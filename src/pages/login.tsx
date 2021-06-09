@@ -5,7 +5,9 @@ import { Icon } from "@iconify/react";
 export default function Login() {
   return (
     <Flex justifyContent="flex-end">
-      <Flex>AA</Flex>
+      <Flex w="66%">
+        <Image src="/icons/nutricionista.png" />
+      </Flex>
       <Flex
         w="34%"
         minW="300px"
@@ -15,7 +17,7 @@ export default function Login() {
         alignItems="start"
       >
         <Flex alignItems="center" flexDir="column">
-          <Flex justifyContent="center" pt="32px">
+          <Flex justifyContent="center" pt="40%">
             <Image
               src="/icons/logo.png"
               width="140px"
@@ -32,7 +34,7 @@ export default function Login() {
             textAlign="center"
             fontSize="18px"
             fontFamily="heading"
-            pt="10%"
+            pt="20%"
           >
             Faça Seu Login
           </Text>
