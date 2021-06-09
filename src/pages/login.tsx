@@ -5,11 +5,11 @@ import { Icon } from "@iconify/react";
 export default function Login() {
   return (
     <Flex justifyContent="flex-end">
-      <Flex w="66%">
+      <Flex w={["0%", "0%", "66%"]}>
         <Image src="/icons/nutricionista.png" />
       </Flex>
       <Flex
-        w="34%"
+        w={["100%", "100%", "34%"]}
         minW="300px"
         bgColor="blue.200"
         h="100vh"
@@ -17,11 +17,13 @@ export default function Login() {
         alignItems="start"
       >
         <Flex alignItems="center" flexDir="column">
-          <Flex justifyContent="center" pt="40%">
+          <Flex justifyContent="center" pt={["15%", "40%"]}>
             <Image
               src="/icons/logo.png"
-              width="140px"
-              height="140px"
+              width={[120, 140, 140]}
+              height={[120, 140, 140]}
+              maxW="140px"
+              maxH="140px"
               bg="blue.300"
               color="white"
               border="2px solid white"
@@ -32,7 +34,7 @@ export default function Login() {
             fontWeight="semibold"
             color="white"
             textAlign="center"
-            fontSize="18px"
+            fontSize={[14, 16, 18]}
             fontFamily="heading"
             pt="20%"
           >
