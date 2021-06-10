@@ -5,6 +5,7 @@ import { Counter } from "../components/Counter";
 import { IClients } from "../interfaces/clientes.interface";
 
 import SimpleAccordion from "../components/NewClientsList";
+import Listen from '../components/Listen/Listen'
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -199,8 +200,11 @@ export default function Dashboard() {
             </Flex>
           </Box>
 
-          <Box borderRadius={8} backgroundColor="red">
-            999
+          <Box borderRadius={8} backgroundColor="white">
+            <div>
+            <Listen></Listen>
+            </div>
+           
           </Box>
         </SimpleGrid>
       </Flex>

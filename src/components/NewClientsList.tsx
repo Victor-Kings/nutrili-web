@@ -61,7 +61,7 @@ export default function SimpleAccordion(props: IProps) {
   moment.locale("pt-br");
   const classes = useStyles();
   return (
-    <div className={classes.root} style={{ overflowX: "hidden" }}>
+    <div className={classes.root} style={{ overflowX: "hidden", width:"100%" }}>
       {props.clients.map((values) => (
         <Accordion key={values._id}>
           <AccordionSummary
