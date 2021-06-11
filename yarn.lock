@@ -1748,6 +1748,21 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
+"@iconify/icons-ant-design@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-ant-design/-/icons-ant-design-1.1.0.tgz#013574b09d8dd167490e6fd6dd0b2805d7170854"
+  integrity sha512-sE4NKXMfN9arTFmfvt4zARoS+hjhd8P0z5osjWYxVkQPCri1RYpF+NRa9MsDh3ScqAcSU9wfUeQ3X4Gf8GrcNQ==
+
+"@iconify/icons-grommet-icons@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-grommet-icons/-/icons-grommet-icons-1.1.2.tgz#860345774729c1627e44fe969ea2a8167d4b5a2c"
+  integrity sha512-kY9RyVOTuKi8jH5JViLwn8iTXNYuud+2V4YWdbr8l1V0WhsPRz2lbVIwP97IIAk3hEx76FQzAt4YNzemGjUA8Q==
+
+"@iconify/react@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-1.1.4.tgz#c778eddbaf196e55705d0bedff00d039dc1de8d3"
+  integrity sha512-oxq8IMOq8q3nKGiDHbQPC8FcFuBsKve68JWBo140d5LRnj0bv5TB/FE/y01ZSvEZ7PlI2HIrnb2qivPN8kTDgw==
+
 "@material-ui/core@^4.11.4":
   version "4.11.4"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.4.tgz#4fb9fe5dec5dcf780b687e3a40cff78b2b9640a4"
