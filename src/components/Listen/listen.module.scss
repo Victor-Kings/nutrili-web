@@ -1,0 +1,166 @@
+.content {
+    max-width: 100%;
+    height: calc(100%-20px);
+    margin-left: 20px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    flex: 1;
+    h1 {
+        font-size: 26px;
+        color: #656565;
+    }
+    p {
+        font-size: 14px;
+        margin-top: 8px;
+        color: #4197E5;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        span {
+            display: flex;
+            color: #4197E5;
+            align-items: center;
+        }
+        span+span::before {
+            content: '';
+            width: 1px;
+            height: 12px;
+            background: white;
+            margin: 0 8px;
+        }
+    }
+}
+
+.nextAppointment {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    >strong {
+        color: #656565;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    div {
+        background: #4197E5;
+        display: flex;
+        align-items: center;
+        padding: 16px 24px;
+        border-radius: 10px;
+        max-width: 80%;
+        margin-top: 10px;
+        height: 70px;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            height: 75%;
+            width: 8px;
+            left: 0;
+            top: 12.5%;
+            background: #0053A0;
+            border-radius: 0 9px 9px 0;
+        }
+        strong {
+            margin-left: 24px;
+            color: #FFF;
+            font-weight: normal;
+        }
+        span {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            color: #FFF;
+            svg {
+                color: #FFF;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.section {
+    margin-top: 15px;
+    >strong {
+        color: #ADADAD;
+        font-size: 14px;
+        line-height: 26px;
+        border-bottom: 1px solid #4197E5;
+        display: block;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+    >p {
+        color: #ADADAD;
+    }
+}
+
+.appointment {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &+div {
+        margin-top: 16px;
+    }
+    span {
+        display: flex;
+        align-items: center;
+        font-size: 12;
+        color: #ADADAD;
+        width: 70px;
+        svg {
+            color: #4197E5;
+            margin-right: 8px;
+        }
+    }
+    div {
+        background: #4197E5;
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        margin-left: 20px;
+        border-radius: 10px;
+        position: relative;
+        height: 55px;
+        width: 85%;
+        &::before {
+            content: '';
+            position: absolute;
+            height: 75%;
+            width: 8px;
+            left: 0;
+            top: 12.5%;
+            background: #0053A0;
+            border-radius: 0 9px 9px 0;
+        }
+        strong {
+            margin-left: 16px;
+            font-size: 14px;
+            font-family: 'Open Sans';
+            color: #FFF;
+            font-weight: 500;
+        }
+    }
+}
+
+.scrollFlex {
+    padding-top: 10px;
+    overflow-X: "hidden";
+    width: 100%;
+    overflow-y: scroll;
+    height: 70%;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 24px;
+        background: #B6B6B6;
+    }
+}

@@ -1,16 +1,10 @@
 import { FiClock } from "react-icons/fi";
-import {
-  Content,
-  Schedule,
-  NextAppointment,
-  Section,
-  Appointment,
-} from "./styles";
+import styles from "./listen.module.scss";
 
 export default function Listing() {
   return (
-    <Content>
-      <Schedule>
+    <div className={styles.content}>
+      <div className={styles.schedule}>
         <h1>Agenda Diária</h1>
         <p>
           <span>Hoje | </span>
@@ -18,66 +12,82 @@ export default function Listing() {
           <span>Segunda-feira</span>
         </p>
 
-        <NextAppointment>
+        <div className={styles.nextAppointment}>
           <strong>Próximo item da agenda</strong>
           <div>
-            <img src="/avatar_url" alt="Nome do usuário" />
-
             <strong>Victor Reis</strong>
             <span>
               <FiClock />
               08:00
             </span>
           </div>
-        </NextAppointment>
-
-        <Section>
-          <strong>Manhã</strong>
-
-          <Appointment>
-            <span>
-              <FiClock />
-              08:00
-            </span>
-
-            <div>
-              <img src="/avatar_url" alt="Nome do usuário" />
-
-              <strong>Nome do usuário</strong>
+        </div>
+        <div className={styles.scrollFlex}>
+          <section className={styles.section}>
+            <strong>Manhã</strong>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
             </div>
-          </Appointment>
 
-          <Appointment>
-            <span>
-              <FiClock />
-              08:00
-            </span>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
 
-            <div>
-              <img src="/avatar_url" alt="Nome do usuário" />
-
-              <strong>Nome do usuário</strong>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
             </div>
-          </Appointment>
-        </Section>
+          </section>
 
-        <Section>
-          <strong>Tarde</strong>
-
-          <Appointment>
-            <span>
-              <FiClock />
-              08:00
-            </span>
-
-            <div>
-              <img src="/avatar_url" alt="Nome do usuário" />
-
-              <strong>Nome do usuário</strong>
+          <section className={styles.section}>
+            <strong>Tarde</strong>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
             </div>
-          </Appointment>
-        </Section>
-      </Schedule>
-    </Content>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
+            </div>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
+            </div>
+            <div className={styles.appointment}>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <strong>Nome do usuário</strong>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }

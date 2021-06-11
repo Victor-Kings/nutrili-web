@@ -3,9 +3,21 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Sidebar } from "../components/Sidebar";
 import { Counter } from "../components/Counter";
 import { IClients } from "../interfaces/clientes.interface";
-
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+import { extendTheme } from "@chakra-ui/react"
 import SimpleAccordion from "../components/NewClientsList";
-import Listen from '../components/Listen/Listen'
+import Listen from '../components/Listen/Listen';
+import styles from '../styles/dashboard.module.scss'
+
+const breakpoints = createBreakpoints({
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "xl2":"90em",
+})
+
+const theme = extendTheme({ breakpoints })
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -133,7 +145,7 @@ export default function Dashboard() {
   return (
     <Flex direction="row" h="100vh">
       <Sidebar />
-      <Flex flex="1" h="100vh" flexDirection="column" mr={4} mb={4}>
+      <Flex flex="1" flexDirection="column" mr={4}>
         <SimpleGrid columns={2} spacingY="10px" pt={4} spacingX={4}>
           <SimpleGrid
             columns={2}
@@ -162,9 +174,8 @@ export default function Dashboard() {
           spacingY={4}
           justifyContent="space-evenly"
           mt={4}
-          pb={6}
         >
-          <Box borderRadius={8} backgroundColor="white" h="100%">
+          <Box borderRadius={8} backgroundColor="white" h={{base:"100vh",sm:"60vh",xl:"78vh"}}>
             <Flex
               minHeight="60px"
               maxHeight="83px"
@@ -179,29 +190,16 @@ export default function Dashboard() {
               </Text>
             </Flex>
             <Flex
-              pb={4}
-              flex="1"
-              h="65vh"
-              overflowY="scroll"
-              css={{
-                "&::-webkit-scrollbar": {
-                  width: "4px",
-                },
-                "&::-webkit-scrollbar-track": {
-                  width: "6px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  borderRadius: "24px",
-                  background: "#B6B6B6",
-                },
-              }}
+              className = {styles.scrollFlex}
+              h={{base:"75vh",sm:"60vh",xl:"65vh"}}
+  
             >
               <SimpleAccordion clients={newClients} />
             </Flex>
           </Box>
 
-          <Box borderRadius={8} backgroundColor="white">
-            <div>
+          <Box borderRadius={8} backgroundColor="white" h={{base:"100vh",sm:"60vh",xl:"78vh"}}>
+            <div className={styles.divListen}>
             <Listen></Listen>
             </div>
            
