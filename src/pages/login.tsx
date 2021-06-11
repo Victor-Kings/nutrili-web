@@ -47,7 +47,7 @@ export default function Login() {
               focusBorderColor="blue.110"
               bgColor="blue.110"
               variant="filled"
-              _hover="blue.110"
+              _hover={{color: "blue.110"}}
               size="lg"
             />
             <Input
@@ -58,7 +58,7 @@ export default function Login() {
               focusBorderColor="blue.110"
               bgColor="blue.110"
               variant="filled"
-              _hover="blue.110"
+              _hover={{color:"blue.110"}}
               size="lg"
             />
           </Stack>
