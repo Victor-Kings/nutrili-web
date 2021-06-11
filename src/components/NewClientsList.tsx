@@ -4,6 +4,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import styles from "../styles/NewClientsList.module.scss";
 import {
   Avatar,
   SimpleGrid,
@@ -17,19 +18,6 @@ import moment from "moment";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: "100%",
-      "&::-webkit-scrollbar": {
-        width: "4px",
-      },
-      "&::-webkit-scrollbar-track": {
-        width: "6px",
-      },
-      "&::-webkit-scrollbar-thumb": {
-        borderRadius: "24px",
-        background: "#B6B6B6",
-      },
-    },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
@@ -61,7 +49,7 @@ export default function SimpleAccordion(props: IProps) {
   moment.locale("pt-br");
   const classes = useStyles();
   return (
-    <div className={classes.root} style={{ overflowX: "hidden" }}>
+    <div className={styles.scrollFlex} >
       {props.clients.map((values) => (
         <Accordion key={values._id}>
           <AccordionSummary
