@@ -2,6 +2,8 @@ import { Flex, Text, Input, Button, Stack, Image } from "@chakra-ui/react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import googleIcon from "@iconify/icons-grommet-icons/google";
 import { Icon } from "@iconify/react";
+import Link from 'next/link';
+
 export default function Login() {
   return (
     <Flex justifyContent="flex-end">
@@ -64,6 +66,7 @@ export default function Login() {
               size="lg"
             />
           </Stack>
+          <Link href="/dashboard">
           <Button
             type="submit"
             mt="6"
@@ -74,6 +77,7 @@ export default function Login() {
           >
             Entrar
           </Button>
+          </Link>
           <Text
             fontWeight="medium"
             color="white"
@@ -106,6 +110,7 @@ export default function Login() {
             >
               Entrar
             </Button>
+            
             <Button
               leftIcon={<FacebookIcon style={{ fontSize: "33px" }} />}
               type="submit"
@@ -115,7 +120,7 @@ export default function Login() {
               width="calc(45% + 8px)"
             >
               Entrar
-            </Button>
+            </Button>            
           </Flex>
         </Flex>
       </Flex>
