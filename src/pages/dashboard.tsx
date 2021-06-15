@@ -14,7 +14,7 @@ import { IClients } from "../interfaces/clientes.interface";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 import { extendTheme } from "@chakra-ui/react";
 import SimpleAccordion from "../components/NewClientsList";
-import Listen from "../components/Listen/Listen";
+import Schedule from "../components/Schedule/Schedule";
 import styles from "../styles/dashboard.module.scss";
 import { ImMenu } from "react-icons/im";
 import { useSidebarDrawer } from "../contexts/SidebarDrawerContext";
@@ -167,6 +167,7 @@ export default function Dashboard() {
       {isWideVersion && (
         <Flex p="4">
           <IconButton
+            _focus={{ outlineOffset: "none", boxShadow: "none" }}
             aria-label="Abrir navigation"
             icon={<Icon as={ImMenu} color="blue.300" />}
             fontSize="26"
@@ -241,18 +242,18 @@ export default function Dashboard() {
             columns={2}
             width={{ base: "20vw", tiny: "20vw", xl: "100vw" }}
             spacingX={4}
-            spacingY={{ base: 4, sm: 4,xl: 0 }}
+            spacingY={{ base: 4, sm: 4, xl: 0 }}
             justifyContent="space-evenly"
             mt={4}
-            minChildWidth={{base: "290px", sm:"400px", lg:"500px"}}
-            ml={{base:"10px"}}
-            mr={{base:"10px"}}
-            pb={{base:"100px", xl:"0px"}}
+            minChildWidth={{ base: "290px", sm: "400px", lg: "500px" }}
+            ml={{ base: "10px" }}
+            mr={{ base: "10px" }}
+            pb={{ base: "100px", xl: "0px" }}
           >
             <Box
               borderRadius={8}
               backgroundColor="white"
-              h={{ base: "100vh", sm: "80vh",md: "67vh", xl: "78vh" }}
+              h={{ base: "100vh", sm: "80vh", md: "67vh", xl: "78vh" }}
             >
               <Flex
                 minHeight="60px"
@@ -287,10 +288,10 @@ export default function Dashboard() {
             <Box
               borderRadius={8}
               backgroundColor="white"
-              mt={{ base:"20px",  xl: "0px" }}
-              h={{ base: "100vh", sm: "80vh",md: "67vh", xl: "78vh" }}
+              mt={{ base: "20px", xl: "0px" }}
+              h={{ base: "100vh", sm: "80vh", md: "67vh", xl: "78vh" }}
             >
-              <Listen />
+              <Schedule />
             </Box>
           </SimpleGrid>
           {/* </Flex> */}

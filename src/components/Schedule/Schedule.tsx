@@ -1,16 +1,54 @@
 import { FiClock } from "react-icons/fi";
-import styles from "./listen.module.scss";
+import ReactModal from "react-modal";
+
+import { BsPlusCircle } from "react-icons/bs";
+import styles from "./Schedule.module.scss";
+import { useState } from "react";
 
 export default function Listing() {
+  const [showModal, SetShowModal] = useState(false);
   return (
     <div className={styles.content}>
+      <ReactModal
+        isOpen={showModal}
+        contentLabel="onRequestClose Example"
+        onRequestClose={() => {
+          SetShowModal(false);
+        }}
+        shouldCloseOnOverlayClick={false}
+        overlayClassName={styles.modal_overlay}
+        className={styles.modal_content}
+      >
+        <div>
+          <p>Modal text!</p>
+          <button
+            onClick={() => {
+              SetShowModal(false);
+            }}
+          >
+            Close Modal
+          </button>
+        </div>
+      </ReactModal>
       <div className={styles.schedule}>
-        <h1>Agenda Diária</h1>
-        <p>
-          <span>Hoje | </span>
-          <span>Dia 06 |</span>
-          <span>Segunda-feira</span>
-        </p>
+        <div className={styles.header}>
+          <div>
+            <h1>Agenda Diária</h1>
+            <p>
+              <span>Hoje | </span>
+              <span>Dia 06 |</span>
+              <span>Segunda-feira</span>
+            </p>
+          </div>
+          <button
+            className={styles.addButton}
+            onClick={() => {
+              SetShowModal(true);
+            }}
+          >
+            <BsPlusCircle />
+          </button>
+        </div>
 
         <div className={styles.nextAppointment}>
           <strong>Próximo item da agenda</strong>
