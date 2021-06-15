@@ -11,7 +11,7 @@ export function Sidebar() {
     const {isOpen, onClose} = useSidebarDrawer()
     const isDrawerSidebar = useBreakpointValue({
         base: true,
-        lg: false,
+        xl: false,
     })
 
     if (isDrawerSidebar){

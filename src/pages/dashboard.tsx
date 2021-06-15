@@ -1,25 +1,34 @@
-import { Box, SimpleGrid, useBreakpointValue, Avatar, Link, Icon, IconButton } from "@chakra-ui/react";
+import {
+  Box,
+  SimpleGrid,
+  useBreakpointValue,
+  Avatar,
+  Link,
+  Icon,
+  IconButton,
+} from "@chakra-ui/react";
 import { Flex, Text } from "@chakra-ui/react";
 import { Sidebar } from "../components/Sidebar";
 import { Counter } from "../components/Counter";
 import { IClients } from "../interfaces/clientes.interface";
-import { createBreakpoints } from "@chakra-ui/theme-tools"
-import { extendTheme } from "@chakra-ui/react"
+import { createBreakpoints } from "@chakra-ui/theme-tools";
+import { extendTheme } from "@chakra-ui/react";
 import SimpleAccordion from "../components/NewClientsList";
-import Listen from '../components/Listen/Listen';
-import styles from '../styles/dashboard.module.scss'
-import {ImMenu} from 'react-icons/im'
+import Listen from "../components/Listen/Listen";
+import styles from "../styles/dashboard.module.scss";
+import { ImMenu } from "react-icons/im";
 import { useSidebarDrawer } from "../contexts/SidebarDrawerContext";
 
 const breakpoints = createBreakpoints({
+  tiny: "20em",
   sm: "30em",
   md: "48em",
   lg: "62em",
   xl: "80em",
-  "xl2": "90em",
-})
+  xl2: "90em",
+});
 
-const theme = extendTheme({ breakpoints })
+const theme = extendTheme({ breakpoints });
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -144,34 +153,66 @@ export default function Dashboard() {
     },
   ];
 
-  const {onOpen} = useSidebarDrawer()
+  const { onOpen } = useSidebarDrawer();
+
   const isWideVersion = useBreakpointValue({
     base: true,
-    lg: false,
-  })
-  console.log(isWideVersion)
+    xl: false,
+  });
+
+  const avatarSize = useBreakpointValue({ base: "md", sm: "md" });
+
   return (
     <>
       {isWideVersion && (
         <Flex p="4">
-          <IconButton aria-label="Abrir navigation" icon={<Icon as={ImMenu} color="blue.300" />} fontSize="26" variant="unstyled" onClick={onOpen} pr="2" />
+          <IconButton
+            aria-label="Abrir navigation"
+            icon={<Icon as={ImMenu} color="blue.300" />}
+            fontSize="26"
+            variant="unstyled"
+            onClick={onOpen}
+            pr="2"
+          />
           <Flex width="100%" justifyContent="flex-end">
-            <Flex flex="1" w="100%" direction="column" alignItems="flex-end" pl="10%" justifyContent="center" pr="4">
-              <Text fontWeight='semibold' color="blue.300" fontSize="18px" >Joaozinho Pereira</Text>
+            <Flex
+              flex="1"
+              w="100%"
+              direction="column"
+              alignItems="flex-end"
+              pl="10%"
+              justifyContent="center"
+              pr="4"
+            >
+              <Text fontWeight="semibold" color="blue.300" fontSize="18px">
+                Joaozinho Pereira
+              </Text>
               <Link>
-                <Text fontWeight="semibold" fontSize="14px" color="blue.10">SAIR</Text>
+                <Text fontWeight="semibold" fontSize="14px" color="blue.10">
+                  SAIR
+                </Text>
               </Link>
             </Flex>
-            <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" width="57px" height="57px" border="3px solid white" />
+            <Avatar
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+              size={avatarSize}
+              border="3px solid white"
+            />
           </Flex>
         </Flex>
-      )
-
-      }
+      )}
       <Flex direction="row" h="100vh">
-
         <Sidebar />
-        <Flex flex="1" flexDirection="column" mr={4} overflowY="scroll" margin="0" ml={1} marginRight={1} >
+        <Flex
+          flex="1"
+          flexDirection="column"
+          mr={4}
+          overflowY="scroll"
+          margin="0"
+          ml={1}
+          marginRight={1}
+        >
           <SimpleGrid columns={2} spacingY="10px" pt={4} spacingX={4}>
             <SimpleGrid
               columns={2}
@@ -180,6 +221,8 @@ export default function Dashboard() {
               alignItems="center"
               minChildWidth="300px"
               spacing={4}
+              pl={{ base: 2, sm: 2, xl: 0 }}
+              pr={{ base: 2, sm: 2, xl: 0 }}
             >
               <Counter
                 contentText="PACIENTE"
@@ -189,20 +232,28 @@ export default function Dashboard() {
               <Counter
                 contentText="APROVAÇÕES PENDENTES"
                 imageName="/icons/iconPeoples.svg"
-                valueData={6}
+                valueData={newClients.length}
               />
             </SimpleGrid>
           </SimpleGrid>
+          {/* <Flex width="90vw" height="100vw"> */}
           <SimpleGrid
             columns={2}
-            width="100%"
+            width={{ base: "20vw", tiny: "20vw", xl: "100vw" }}
             spacingX={4}
-            spacingY={4}
+            spacingY={{ base: 4, sm: 4,xl: 0 }}
             justifyContent="space-evenly"
             mt={4}
-            minChildWidth="300px"
+            minChildWidth={{base: "290px", sm:"400px", lg:"500px"}}
+            ml={{base:"10px"}}
+            mr={{base:"10px"}}
+            pb={{base:"100px", xl:"0px"}}
           >
-            <Box borderRadius={8} backgroundColor="white" h={{ base: "100vh", sm: "60vh", xl: "78vh" }}>
+            <Box
+              borderRadius={8}
+              backgroundColor="white"
+              h={{ base: "100vh", sm: "80vh",md: "67vh", xl: "78vh" }}
+            >
               <Flex
                 minHeight="60px"
                 maxHeight="83px"
@@ -212,25 +263,37 @@ export default function Dashboard() {
                 borderBottom="1px"
                 borderColor="gray.100"
               >
-                <Text color="gray.200" fontSize="26px">
+                <Text
+                  color="gray.200"
+                  fontSize={{
+                    base: "26px",
+                    tiny: "18px",
+                    sm: "22px",
+                    xl: "24px",
+                  }}
+                >
                   Aprovações Pendentes
-              </Text>
+                </Text>
               </Flex>
               <Flex
+                backgroundColor="white"
                 className={styles.scrollFlex}
-                h={{ base: "75vh", sm: "60vh", xl: "65vh" }}
+                h={{ base: "90%", xl: "67vh" }}
               >
                 <SimpleAccordion clients={newClients} />
               </Flex>
             </Box>
 
-            <Box borderRadius={8} backgroundColor="white" h={{ base: "100vh", sm: "60vh", xl: "78vh" }}>
-              <div className={styles.divListen}>
-                <Listen></Listen>
-              </div>
-
+            <Box
+              borderRadius={8}
+              backgroundColor="white"
+              mt={{ base:"20px",  xl: "0px" }}
+              h={{ base: "100vh", sm: "80vh",md: "67vh", xl: "78vh" }}
+            >
+              <Listen />
             </Box>
           </SimpleGrid>
+          {/* </Flex> */}
         </Flex>
       </Flex>
     </>

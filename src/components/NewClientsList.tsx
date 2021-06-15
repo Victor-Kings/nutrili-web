@@ -1,5 +1,6 @@
 import React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { createBreakpoints } from "@chakra-ui/theme-tools";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -13,8 +14,18 @@ import {
   Button,
   Text,
   Flex,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import moment from "moment";
+
+const breakpoints = createBreakpoints({
+  tiny: "20em",
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  xl2: "90em",
+});
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,10 +57,12 @@ function diffTimeTeste(tempo: string): string {
   return diff;
 }
 export default function SimpleAccordion(props: IProps) {
+  const avatarSize = useBreakpointValue({ base: "md", sm: "md" });
+
   moment.locale("pt-br");
   const classes = useStyles();
   return (
-    <div className={styles.scrollFlex} >
+    <div className={styles.scrollFlex}>
       {props.clients.map((values) => (
         <Accordion key={values._id}>
           <AccordionSummary
@@ -61,16 +74,25 @@ export default function SimpleAccordion(props: IProps) {
               <Avatar
                 name="Dan Abrahmov"
                 src="https://bit.ly/dan-abramov"
-                width="57px"
-                height="57px"
                 border="3px solid#EBF5FF"
+                size={avatarSize}
               />
-              <Text color="gray.200" pl="5%">
-                {values.name} - {values.idade} anos
-              </Text>
-              <Text color="gray.50" flex="1" textAlign="end" pr="2%">
-                {diffTimeTeste(values.data)}
-              </Text>
+              <Flex width="55%">
+                <Text color="gray.200" pl="5%" fontSize={{ base: "14px" }}>
+                  {values.name} - {values.idade} anos
+                </Text>
+              </Flex>
+              <Flex flex="1" justifyContent="center" alignItems="flex-end">
+                <Text
+                  color="gray.50"
+                  flex="1"
+                  textAlign="end"
+                  pr="2%"
+                  fontSize={{ base: "12px" }}
+                >
+                  {diffTimeTeste(values.data)}
+                </Text>
+              </Flex>
             </Flex>
           </AccordionSummary>
           <AccordionDetails style={{ display: "block" }}>
