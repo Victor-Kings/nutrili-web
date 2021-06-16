@@ -1,35 +1,19 @@
-import { FiClock } from "react-icons/fi";
-import ReactModal from "react-modal";
-
-import { BsPlusCircle } from "react-icons/bs";
-import styles from "./Schedule.module.scss";
-import { useState } from "react";
+import { FiClock } from 'react-icons/fi'
+import { BsPlusCircle } from 'react-icons/bs'
+import styles from './Schedule.module.scss'
+import ModalSchedule from './ModalSchedule'
+import { useState } from 'react'
 
 export default function Listing() {
-  const [showModal, SetShowModal] = useState(false);
+  const [showModal, SetShowModal] = useState(false)
+
+  const closeModal = () => {
+    console.log('AOAPSPASO')
+    SetShowModal(false)
+  }
   return (
     <div className={styles.content}>
-      <ReactModal
-        isOpen={showModal}
-        contentLabel="onRequestClose Example"
-        onRequestClose={() => {
-          SetShowModal(false);
-        }}
-        shouldCloseOnOverlayClick={false}
-        overlayClassName={styles.modal_overlay}
-        className={styles.modal_content}
-      >
-        <div>
-          <p>Modal text!</p>
-          <button
-            onClick={() => {
-              SetShowModal(false);
-            }}
-          >
-            Close Modal
-          </button>
-        </div>
-      </ReactModal>
+      <ModalSchedule showModal={showModal} closeModal={closeModal} />
       <div className={styles.schedule}>
         <div className={styles.header}>
           <div>
@@ -43,7 +27,7 @@ export default function Listing() {
           <button
             className={styles.addButton}
             onClick={() => {
-              SetShowModal(true);
+              SetShowModal(true)
             }}
           >
             <BsPlusCircle />
@@ -127,5 +111,5 @@ export default function Listing() {
         </div>
       </div>
     </div>
-  );
+  )
 }

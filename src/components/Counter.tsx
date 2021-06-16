@@ -1,10 +1,10 @@
-import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { Box, Text, Flex, Image } from '@chakra-ui/react'
 //contentText: string, imageName: string , valueData: number
 
 interface ICounterProps {
-  contentText: string;
-  imageName: string;
-  valueData: number;
+  contentText: string
+  imageName: string
+  valueData: number
 }
 
 export function Counter(props: ICounterProps) {
@@ -54,7 +54,7 @@ export function Counter(props: ICounterProps) {
         </Text>
       </Flex>
     </Box>
-  );
+  )
 }
 
 {
