@@ -11,10 +11,7 @@ export default function Modal({ showModal, closeModal, content }) {
       overlayClassName={styles.modal_overlay}
       className={styles.modal_content}
     >
-      <div>
-        {content}
-        <button onClick={closeModal}>Close Modal</button>
-      </div>
+      {content}
     </ReactModal>
   )
 }

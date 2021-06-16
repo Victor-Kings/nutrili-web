@@ -1,11 +1,11 @@
 import { FiClock } from 'react-icons/fi'
 import { BsPlusCircle } from 'react-icons/bs'
 import styles from './Schedule.module.scss'
-import ModalSchedule from '../Modal/Modal'
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
+import ContentModal from './ContentModal'
 
-export default function Listing() {
+export default function Schedule() {
   const [showModal, SetShowModal] = useState(false)
 
   const closeModal = () => {
@@ -16,7 +16,7 @@ export default function Listing() {
       <Modal
         showModal={showModal}
         closeModal={closeModal}
-        content={<p>ASDAD</p>}
+        content={<ContentModal closeModal={closeModal} />}
       />
       <div className={styles.schedule}>
         <div className={styles.header}>

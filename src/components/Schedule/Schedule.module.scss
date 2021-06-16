@@ -29,6 +29,62 @@
         }
     }
 }
+
+.saveButton{
+    background-color:#4197e5;
+}
+.closeButton{
+    color:#4197e5;
+}
+
+.containerContentModal{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+ 
+}
+.headerContentModal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    div:first-child{
+        border:solid 1px;
+        border-right: black
+    }
+    div{
+        display: flex;
+        align-items: center;
+    }
+}
+.bodyContentModal{
+    display: flex;
+    flex-direction: column;
+    
+    div{
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 2%;
+        padding-top: 2%;
+        div{
+            color: #4197e5;
+            flex-direction: column;
+            div{
+                input{
+                    background-color: #4197e5;
+                    color:white;
+                }
+                input:first-child{
+                    background-color: #0053a0;
+                    width: 59%;
+                    margin-right: 0.5em;
+                }
+                flex-direction: row;
+            }
+        }
+    }
+
+}
 .schedule {
     display: flex;
     flex-direction: column;
