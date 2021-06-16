@@ -1,19 +1,23 @@
 import { FiClock } from 'react-icons/fi'
 import { BsPlusCircle } from 'react-icons/bs'
 import styles from './Schedule.module.scss'
-import ModalSchedule from './ModalSchedule'
+import ModalSchedule from '../Modal/Modal'
 import { useState } from 'react'
+import Modal from '../Modal/Modal'
 
 export default function Listing() {
   const [showModal, SetShowModal] = useState(false)
 
   const closeModal = () => {
-    console.log('AOAPSPASO')
     SetShowModal(false)
   }
   return (
     <div className={styles.content}>
-      <ModalSchedule showModal={showModal} closeModal={closeModal} />
+      <Modal
+        showModal={showModal}
+        closeModal={closeModal}
+        content={<p>ASDAD</p>}
+      />
       <div className={styles.schedule}>
         <div className={styles.header}>
           <div>

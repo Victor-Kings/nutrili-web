@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal'
-import styles from './Schedule.module.scss'
-import { useState } from 'react'
-export default function ModalSchedule({ showModal, closeModal }) {
+import styles from './Modal.module.scss'
+
+export default function Modal({ showModal, closeModal, content }) {
   return (
     <ReactModal
       isOpen={showModal}
@@ -12,7 +12,7 @@ export default function ModalSchedule({ showModal, closeModal }) {
       className={styles.modal_content}
     >
       <div>
-        <p>Modal text!</p>
+        {content}
         <button onClick={closeModal}>Close Modal</button>
       </div>
     </ReactModal>
