@@ -73,9 +73,11 @@
                 input{
                     background-color: #4197e5;
                     color:white;
+                    border-radius: 0.5em;
+                    padding: 4px;
                 }
                 input:first-child{
-                    background-color: #0053a0;
+                    background-color: #4197e5;
                     width: 59%;
                     margin-right: 0.5em;
                 }
@@ -83,8 +85,8 @@
             }
         }
     }
-
 }
+
 .schedule {
     display: flex;
     flex-direction: column;

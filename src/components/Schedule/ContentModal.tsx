@@ -6,6 +6,7 @@ import {
   Textarea,
   Input,
   Checkbox,
+  Button,
   Grid
 } from '@chakra-ui/react'
 import styles from './Schedule.module.scss'
@@ -40,9 +41,9 @@ export default function ContentModal({ closeModal }) {
               icon={Trash}
             />
           </div>
-          <button className={styles.saveButton} onClick={closeModal}>
+          <Button className={styles.saveButton} onClick={closeModal}>
             Salvar
-          </button>
+          </Button>
         </div>
       </div>
       <div className={styles.bodyContentModal}>
