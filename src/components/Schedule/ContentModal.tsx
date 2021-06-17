@@ -91,6 +91,7 @@ export default function ContentModal({ closeModal }) {
           size="sm"
           width="60%"
           maxH="40px"
+          borderRadius="md"
         />
         <div>
           <div>
