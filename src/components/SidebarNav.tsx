@@ -45,7 +45,7 @@ export function SidebarNav() {
           <Text fontWeight="semibold" color="white" fontSize="18px">
             Joaozinho Pereira
           </Text>
-          <Link>
+          <Link href="/login">
             <Text fontWeight="semibold" fontSize="14px" color="blue.10">
               SAIR
             </Text>

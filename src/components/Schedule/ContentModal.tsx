@@ -27,52 +27,65 @@ export default function ContentModal({ closeModal }) {
           </button>
         </div>
         <div>
-          <div
+          <button
+            className={styles.buttonStyle}
             style={{
               borderRight: '4px',
-              borderRightColor: 'black',
+              borderRightColor: '#656565',
               paddingRight: '2px'
             }}
+            onClick={closeModal}
           >
             <Icon
               style={{
-                color: 'red'
+                color: '#656565',
+                marginRight: '30px'
               }}
+              width="30px"
               icon={Trash}
             />
+          </button>
+          <div className={styles.saveButton}>
+            <Button
+              backgroundColor="blue.110"
+              colorScheme="blue"
+              variant="solid"
+              onClick={closeModal}
+            >
+              Salvar
+            </Button>
           </div>
-          <Button className={styles.saveButton} onClick={closeModal}>
-            Salvar
-          </Button>
         </div>
       </div>
       <div className={styles.bodyContentModal}>
         <Text
           fontWeight="semibold"
-          color="blue.200"
+          color="gray.200"
           textAlign="initial"
           fontSize={[14, 16, 18]}
           fontFamily="heading"
           paddingTop="4%"
         >
-          Titulo
+          Título
         </Text>
         <Input
+          className={styles.tamInputs}
           placeholder="reunião com o cliente"
-          _placeholder={{ color: 'blue.10' }}
+          _placeholder={{ color: 'blue.105' }}
           name="titulo"
           type="titulo"
           focusBorderColor="blue.110"
-          bgColor="blue.110"
+          bgColor="blue.2"
           variant="filled"
-          _hover={{ color: 'blue.110' }}
+          _hover={{ color: 'blue.10', textColor: 'blue.110' }}
+          color="blue.110"
+          borderColor="blue.110"
           size="md"
-          width="60%"
           marginBottom="4%"
         />
         <Text
           fontWeight="semibold"
-          color="blue.200"
+          color="gray.200"
           textAlign="initial"
           fontSize={[14, 16, 18]}
           fontFamily="heading"
@@ -80,22 +93,24 @@ export default function ContentModal({ closeModal }) {
           Resumo
         </Text>
         <Textarea
-          _placeholder={{ color: 'blue.10' }}
+          className={styles.tamInputs}
+          _placeholder={{ color: 'blue.105' }}
           name="resumo"
           type="resumo"
           focusBorderColor="blue.110"
-          bgColor="blue.110"
+          bgColor="blue.2"
           variant="filled"
-          _hover={{ color: 'blue.110' }}
+          color="blue.110"
+          _hover={{ color: 'blue.10', textColor: 'blue.110' }}
+          borderColor="blue.110"
           placeholder="..."
           size="sm"
-          width="60%"
           maxH="40px"
           borderRadius="md"
         />
         <div>
           <div>
-            <label htmlFor="startDate">Inicio</label>
+            <label htmlFor="startDate">Início</label>
             <div>
               <input id="startDate" type="date" />
               <input
@@ -118,6 +133,7 @@ export default function ContentModal({ closeModal }) {
                 name="endHour"
                 min="09:00"
                 max="18:00"
+                value="#fff"
                 required
               />
             </div>

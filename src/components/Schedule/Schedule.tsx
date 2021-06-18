@@ -41,7 +41,7 @@ export default function Schedule() {
         <div className={styles.nextAppointment}>
           <strong>Próximo item da agenda</strong>
           <div>
-            <strong>Victor Reis</strong>
+            <strong>Reunião 2</strong>
             <span>
               <FiClock />
               08:00
@@ -57,7 +57,7 @@ export default function Schedule() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Primeira Reunião</strong>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ export default function Schedule() {
               </span>
 
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Segunda Reunião</strong>
               </div>
             </div>
           </section>
@@ -81,7 +81,7 @@ export default function Schedule() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Terceira Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -90,7 +90,7 @@ export default function Schedule() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Quarta Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -99,7 +99,7 @@ export default function Schedule() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Quinta Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -108,7 +108,7 @@ export default function Schedule() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Sexta Reunião</strong>
               </div>
             </div>
           </section>
