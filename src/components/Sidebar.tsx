@@ -6,21 +6,21 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerHeader,
-  DrawerBody,
-} from "@chakra-ui/react";
-import { Avatar, Stack, Text, Link, Flex, Icon, Image } from "@chakra-ui/react";
-import { AiFillHome } from "react-icons/ai";
-import { BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs";
-import { IoSettingsSharp } from "react-icons/io5";
-import { useSidebarDrawer } from "../contexts/SidebarDrawerContext";
-import { SidebarNav } from "./SidebarNav";
+  DrawerBody
+} from '@chakra-ui/react'
+import { Avatar, Stack, Text, Link, Flex, Icon, Image } from '@chakra-ui/react'
+import { AiFillHome } from 'react-icons/ai'
+import { BsFillPersonFill, BsFillPeopleFill } from 'react-icons/bs'
+import { IoSettingsSharp } from 'react-icons/io5'
+import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
+import { SidebarNav } from './SidebarNav'
 
 export function Sidebar() {
-  const { isOpen, onClose } = useSidebarDrawer();
+  const { isOpen, onClose } = useSidebarDrawer()
   const isDrawerSidebar = useBreakpointValue({
     base: true,
-    xl: false,
-  });
+    xl: false
+  })
 
   if (isDrawerSidebar) {
     return (
@@ -33,7 +33,7 @@ export function Sidebar() {
         <DrawerOverlay>
           <DrawerContent bg="blue.300" display="flex">
             <DrawerCloseButton
-              _focus={{ outlineOffset: "none", boxShadow: "none" }}
+              _focus={{ outlineOffset: 'none', boxShadow: 'none' }}
               mt="4"
             />
             <DrawerBody>
@@ -42,7 +42,7 @@ export function Sidebar() {
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
-    );
+    )
   }
   return (
     <>
@@ -50,5 +50,5 @@ export function Sidebar() {
         <SidebarNav></SidebarNav>
       </Box>
     </>
-  );
+  )
 }

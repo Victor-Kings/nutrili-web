@@ -1,35 +1,23 @@
-import { FiClock } from "react-icons/fi";
-import ReactModal from "react-modal";
+import { FiClock } from 'react-icons/fi'
+import { BsPlusCircle } from 'react-icons/bs'
+import styles from './Schedule.module.scss'
+import { useState } from 'react'
+import Modal from '../Modal/Modal'
+import ContentModal from './ContentModal'
 
-import { BsPlusCircle } from "react-icons/bs";
-import styles from "./Schedule.module.scss";
-import { useState } from "react";
+export default function Schedule() {
+  const [showModal, SetShowModal] = useState(false)
 
-export default function Listing() {
-  const [showModal, SetShowModal] = useState(false);
+  const closeModal = () => {
+    SetShowModal(false)
+  }
   return (
     <div className={styles.content}>
-      <ReactModal
-        isOpen={showModal}
-        contentLabel="onRequestClose Example"
-        onRequestClose={() => {
-          SetShowModal(false);
-        }}
-        shouldCloseOnOverlayClick={false}
-        overlayClassName={styles.modal_overlay}
-        className={styles.modal_content}
-      >
-        <div>
-          <p>Modal text!</p>
-          <button
-            onClick={() => {
-              SetShowModal(false);
-            }}
-          >
-            Close Modal
-          </button>
-        </div>
-      </ReactModal>
+      <Modal
+        showModal={showModal}
+        closeModal={closeModal}
+        content={<ContentModal closeModal={closeModal} />}
+      />
       <div className={styles.schedule}>
         <div className={styles.header}>
           <div>
@@ -43,7 +31,7 @@ export default function Listing() {
           <button
             className={styles.addButton}
             onClick={() => {
-              SetShowModal(true);
+              SetShowModal(true)
             }}
           >
             <BsPlusCircle />
@@ -53,7 +41,7 @@ export default function Listing() {
         <div className={styles.nextAppointment}>
           <strong>Próximo item da agenda</strong>
           <div>
-            <strong>Victor Reis</strong>
+            <strong>Reunião 2</strong>
             <span>
               <FiClock />
               08:00
@@ -69,7 +57,7 @@ export default function Listing() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Primeira Reunião</strong>
               </div>
             </div>
 
@@ -80,7 +68,7 @@ export default function Listing() {
               </span>
 
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Segunda Reunião</strong>
               </div>
             </div>
           </section>
@@ -93,7 +81,7 @@ export default function Listing() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Terceira Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -102,7 +90,7 @@ export default function Listing() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Quarta Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -111,7 +99,7 @@ export default function Listing() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Quinta Reunião</strong>
               </div>
             </div>
             <div className={styles.appointment}>
@@ -120,12 +108,12 @@ export default function Listing() {
                 08:00
               </span>
               <div>
-                <strong>Nome do usuário</strong>
+                <strong>Sexta Reunião</strong>
               </div>
             </div>
           </section>
         </div>
       </div>
     </div>
-  );
+  )
 }
