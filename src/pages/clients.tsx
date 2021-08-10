@@ -9,30 +9,17 @@ import {
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
-import { Counter } from '../components/Counter'
 import { MyClients } from '../interfaces/myClients.interface'
+import  { SearchBar } from '../components/SearchBar'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { extendTheme } from '@chakra-ui/react'
-import SimpleAccordion from '../components/NewClientsList'
-import Schedule from '../components/Schedule/Schedule'
 import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
 
 
 const breakpoints = createBreakpoints({
@@ -108,6 +95,7 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
   const iconSize = useBreakpointValue({ base: 'sm', sm: 'sm' })
+  const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
   const a = 'ASDS'
 
   return (
@@ -179,8 +167,8 @@ export default function Dashboard() {
           </SimpleGrid>
           <Box
               borderRadius={8}
-              backgroundColor="white"
-              h={{ base: '100vh', sm: '80vh', md: '67vh', xl: '78vh' }}
+              backgroundColor="blue.10"
+              h={{ base: '100vh', sm: '80vh', md: '67vh', xl: '72vh' }}
             >
               <Flex
                 minHeight="60px"
@@ -193,117 +181,105 @@ export default function Dashboard() {
               >
                 <Text
                   color="gray.200"
-                  fontSize={{
-                    base: '26px',
-                    tiny: '18px',
-                    sm: '22px',
-                    xl: '24px'
-                  }}
+                  fontSize="2xl"
                 >
                   Clientes
-                </Text>
+                </Text><SearchBar />
               </Flex>
               <Flex
                 backgroundColor="white"
                 className={styles.scrollFlex}
                 h={{ base: '90%', xl: '67vh' }}
               >
-
-          
           <List component="nav" aria-label="main mailbox folders">
           <div>
           {myClients.map((values) => (
-                  <ListItem button>
-                    <ListItemIcon>
-                    <Avatar
-                name="Dan Abrahmov"
-                src="https://bit.ly/dan-abramov"
-                border="3px solid#EBF5FF"
-                size={avatarSize}
+            <ListItem button id={values._id}>
+              <ListItemIcon>
+              <Avatar
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+              border="3px solid#EBF5FF"
+              size={avatarSize}
               />
-                    </ListItemIcon>
-                    <SimpleGrid
-                    width="100%"
-                    >
-                    <Text
-                    color="gray.400"
-                    fontSize={{
-                      base: '26px',
-                      tiny: '18px',
-                      sm: '22px',
-                      xl: '24px'
-                    }}
-                    >
-                  {values.name}
-                </Text></SimpleGrid>
-                <SimpleGrid
-                width="40%"
-                marginLeft="1vw"
-                >
-                <Text
-                color="gray.200"
-                fontSize={{
-                  base: '26px',
-                  tiny: '18px',
-                  sm: '22px',
-                  xl: '24px'
-                }}
-                >
-                  Idade - {values.idade}
-                </Text></SimpleGrid>
-                <SimpleGrid
-                width="100%"
-                marginLeft="4vw"
-                >
-                <Text
-                color="gray.200"
-                fontSize={{
-                  base: '26px',
-                  tiny: '18px',
-                  sm: '22px',
-                  xl: '24px'
-                }}
-                >
-                  Situação: Dieta {values.statusDieta}
-                </Text>
-                <Avatar
-                marginLeft="0.3vw"
-                name="Atualizada"
-                src="https://bit.ly/dan-abramov"
-                border="3px solid#EBF5FF"
-                size={iconSize}
+              </ListItemIcon>
+              <SimpleGrid
+              width="100%"
+              >
+              <Text
+              color="gray.400"
+              fontSize={{
+              base: '26px',
+              tiny: '18px',
+              sm: '22px',
+              xl: '24px'
+              }}
+              >
+            {values.name}
+              </Text></SimpleGrid>
+              <SimpleGrid
+              width="40%"
+              marginLeft="1vw"
+              >
+              <Text
+              color="gray.200"
+              fontSize={{
+                base: '26px',
+                tiny: '18px',
+                sm: '22px',
+                xl: '24px'
+              }}
+              >
+                Idade - {values.idade}
+              </Text></SimpleGrid>
+              <SimpleGrid
+              width="100%"
+              marginLeft="4vw"
+              >
+              <Text
+              color="gray.200"
+              fontSize={{
+                base: '26px',
+                tiny: '18px',
+                sm: '22px',
+                xl: '24px'
+              }}
+              >
+                Situação: Dieta {values.statusDieta}
+              </Text>
+              <Avatar
+              marginLeft="0.3vw"
+              name="Atualizada"
+              src="https://bit.ly/dan-abramov"
+              border="3px solid#EBF5FF"
+              size={iconSize}
               /></SimpleGrid>
               <SimpleGrid
               width="100%"
               marginLeft="4vw"
                 >
-                <Text 
-                color="gray.200"
-                fontSize={{
-                  base: '26px',
-                  tiny: '18px',
-                  sm: '22px',
-                  xl: '24px'
-                }}
-                >
-                  Tempo desde a última consulta presencial: {values.TempoUltimaVisita} dias
-                </Text></SimpleGrid>
-                  </ListItem>
-                  ))}
-                  </div>
-                </List>
-                
-
-
-
-
-              </Flex>
-            </Box>
-            
-          {/* </Flex> */}
-        </Flex>
+              <Text 
+              color="gray.200"
+              fontSize={{
+                base: '26px',
+                tiny: '18px',
+                sm: '22px',
+                xl: '24px'
+              }}
+              >
+                Tempo desde a última consulta presencial: {values.TempoUltimaVisita} dias
+              </Text></SimpleGrid>
+              </ListItem>
+                ))}
+                </div>
+              </List>
+            </Flex>
+          </Box>
       </Flex>
-      
+    </Flex>
+
+
+
     </>
   )
 }

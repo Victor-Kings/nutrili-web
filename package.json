@@ -9,6 +9,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@chakra-ui/core": "^0.8.0",
     "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",
@@ -19,7 +20,9 @@
     "@material-ui/icons": "^4.11.2",
     "@svgr/cli": "^5.5.0",
     "@svgr/webpack": "^5.5.0",
+    "antd": "^4.16.11",
     "framer-motion": "^4.1.17",
+    "framework7-react": "^6.2.0",
     "moment": "^2.29.1",
     "next": "10.2.3",
     "next-images": "^1.7.0",
