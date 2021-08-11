@@ -1,6 +1,5 @@
 import {
   Box,
-  SimpleGrid,
   useBreakpointValue,
   Avatar,
   Link,
@@ -17,8 +16,7 @@ import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import { MdCheckCircle } from 'react-icons/md'
 import stylesList from '../styles/listClients.module.scss'
 
 const breakpoints = createBreakpoints({
@@ -42,42 +40,42 @@ export default function Dashboard() {
       TempoUltimaVisita: 20
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d6dde663c082',
       name: 'Daniel Souza',
       idade: 67,
       statusDieta: 'Atualizada',
       TempoUltimaVisita: 27
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d6dde663c981',
       name: 'Lionel Messi',
       idade: 50,
       statusDieta: 'Desatualizada',
       TempoUltimaVisita: 29
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d6dde463c081',
       name: 'Vó do Hiago',
       idade: 80,
       statusDieta: 'Atualizada',
       TempoUltimaVisita: 16
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d6dde603c081',
       name: 'Tio do Vintão',
       idade: 40,
       statusDieta: 'Desatualizada',
       TempoUltimaVisita: 20
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d69de663c081',
       name: 'Papagaio do Murilo',
       idade: 30,
       statusDieta: 'Atualizada',
       TempoUltimaVisita: 40
     },
     {
-      _id: '60bd5abe07a5d6dde663c081',
+      _id: '60bd5abe07a5d6dde643c081',
       name: 'Hamster do Chris',
       idade: 10,
       statusDieta: 'Atualizada',
@@ -189,33 +187,37 @@ export default function Dashboard() {
               >
                 <div>
                   {myClients.map((values) => (
-                    <ListItem
-                      button
-                      id={values._id}
-                      className={stylesList.listItems}
+                    <Link
+                      key={values._id}
+                      bgColor="white"
+                      mt="15px"
+                      display="flex"
+                      _hover={{ textDecoration: 'none' }}
+                      height="70px"
                     >
-                      <ListItemIcon>
+                      <Flex alignItems="center" pl="50px">
                         <Avatar
                           name="Dan Abrahmov"
                           src="https://bit.ly/dan-abramov"
                           border="3px solid#EBF5FF"
                           size={avatarSize}
                         />
-                      </ListItemIcon>
-                      <SimpleGrid width="100%">
-                        <Text
-                          color="gray.400"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          {values.name}
-                        </Text>
-                      </SimpleGrid>
-                      <SimpleGrid width="40%" marginLeft="1vw">
+                        <Flex width="200px" ml="55px">
+                          <Text
+                            color="gray.400"
+                            fontSize={{
+                              base: '26px',
+                              tiny: '18px',
+                              sm: '22px',
+                              xl: '24px'
+                            }}
+                          >
+                            {values.name}
+                          </Text>
+                        </Flex>
+                      </Flex>
+
+                      <Flex minWidth="120px" alignItems="center" display="flex" flex="1">
                         <Text
                           color="gray.200"
                           fontSize={{
@@ -227,8 +229,8 @@ export default function Dashboard() {
                         >
                           Idade - {values.idade}
                         </Text>
-                      </SimpleGrid>
-                      <SimpleGrid width="100%" marginLeft="4vw">
+                      </Flex>
+                      <Flex minWidth="250px" alignItems="center" justifyContent="space-between">
                         <Text
                           color="gray.200"
                           fontSize={{
@@ -240,15 +242,15 @@ export default function Dashboard() {
                         >
                           Situação: Dieta {values.statusDieta}
                         </Text>
-                        <Avatar
-                          marginLeft="0.3vw"
-                          name="Atualizada"
-                          src="https://bit.ly/dan-abramov"
-                          border="3px solid#EBF5FF"
-                          size={iconSize}
+                        <Icon
+                          as={MdCheckCircle}
+                          fontSize={28}
+                          justifyContent="flex-start"
+                          bgColor="white"
+                          color="green"
                         />
-                      </SimpleGrid>
-                      <SimpleGrid width="100%" marginLeft="4vw">
+                      </Flex>
+                      <Flex width="100%" marginLeft="4vw" alignItems="center">
                         <Text
                           color="gray.200"
                           fontSize={{
@@ -261,8 +263,8 @@ export default function Dashboard() {
                           Tempo desde a última consulta presencial:{' '}
                           {values.TempoUltimaVisita} dias
                         </Text>
-                      </SimpleGrid>
-                    </ListItem>
+                      </Flex>
+                    </Link>
                   ))}
                 </div>
               </List>
