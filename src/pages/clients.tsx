@@ -5,22 +5,21 @@ import {
   Avatar,
   Link,
   Icon,
-  IconButton,
+  IconButton
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { MyClients } from '../interfaces/myClients.interface'
-import  { SearchBar } from '../components/SearchBar'
+import { SearchBar } from '../components/SearchBar'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { extendTheme } from '@chakra-ui/react'
 import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-
-
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import stylesList from '../styles/listClients.module.scss'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -100,7 +99,6 @@ export default function Dashboard() {
 
   return (
     <>
-    
       {isWideVersion && (
         <Flex p="4">
           <IconButton
@@ -140,7 +138,7 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-      
+
       <Flex direction="row" h="100vh">
         <Sidebar />
         <Flex
@@ -152,134 +150,126 @@ export default function Dashboard() {
           ml={1}
           marginRight={1}
         >
-          <SimpleGrid columns={2} spacingY="10px" pt={4} spacingX={4}>
-            <SimpleGrid
-              columns={2}
-              borderRadius={8}
-              maxWidth="100%"
-              alignItems="center"
-              minChildWidth="300px"
-              spacing={4}
-              pl={{ base: 2, sm: 2, xl: 0 }}
-              pr={{ base: 2, sm: 2, xl: 0 }}
-            >
-          </SimpleGrid>
-          </SimpleGrid>
           <Box
-              borderRadius={8}
-              backgroundColor="blue.10"
-              h={{ base: '100vh', sm: '80vh', md: '67vh', xl: '72vh' }}
+            marginTop="30px"
+            marginLeft="10px"
+            borderRadius={8}
+            backgroundColor="blue.300"
+            w="1370px" //define o tamanho que deseja
+            h={{
+              base: '100vh',
+              sm: '80vh',
+              md: '67vh',
+              xl: '72vh'
+            }}
+          >
+            <Flex
+              minHeight="60px"
+              maxHeight="83px"
+              height="15%"
+              alignItems="center"
+              pl="4%"
+              borderBottom="1px"
+              borderColor="gray.100"
             >
-              <Flex
-                minHeight="60px"
-                maxHeight="83px"
-                height="15%"
-                alignItems="center"
-                pl="4%"
-                borderBottom="1px"
-                borderColor="gray.100"
-              >
-                <Text
-                  color="gray.200"
-                  fontSize="2xl"
-                >
-                  Clientes
-                </Text><SearchBar />
-              </Flex>
-              <Flex
-                backgroundColor="white"
-                className={styles.scrollFlex}
-                h={{ base: '90%', xl: '67vh' }}
-              >
-          <List component="nav" aria-label="main mailbox folders">
-          <div>
-          {myClients.map((values) => (
-            <ListItem button id={values._id}>
-              <ListItemIcon>
-              <Avatar
-              name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
-              border="3px solid#EBF5FF"
-              size={avatarSize}
-              />
-              </ListItemIcon>
-              <SimpleGrid
-              width="100%"
-              >
-              <Text
-              color="gray.400"
-              fontSize={{
-              base: '26px',
-              tiny: '18px',
-              sm: '22px',
-              xl: '24px'
-              }}
-              >
-            {values.name}
-              </Text></SimpleGrid>
-              <SimpleGrid
-              width="40%"
-              marginLeft="1vw"
-              >
-              <Text
-              color="gray.200"
-              fontSize={{
-                base: '26px',
-                tiny: '18px',
-                sm: '22px',
-                xl: '24px'
-              }}
-              >
-                Idade - {values.idade}
-              </Text></SimpleGrid>
-              <SimpleGrid
-              width="100%"
-              marginLeft="4vw"
-              >
-              <Text
-              color="gray.200"
-              fontSize={{
-                base: '26px',
-                tiny: '18px',
-                sm: '22px',
-                xl: '24px'
-              }}
-              >
-                Situação: Dieta {values.statusDieta}
+              <Text color="gray.200" fontSize="2xl">
+                Clientes
               </Text>
-              <Avatar
-              marginLeft="0.3vw"
-              name="Atualizada"
-              src="https://bit.ly/dan-abramov"
-              border="3px solid#EBF5FF"
-              size={iconSize}
-              /></SimpleGrid>
-              <SimpleGrid
-              width="100%"
-              marginLeft="4vw"
-                >
-              <Text 
-              color="gray.200"
-              fontSize={{
-                base: '26px',
-                tiny: '18px',
-                sm: '22px',
-                xl: '24px'
-              }}
+              <SearchBar />
+            </Flex>
+            <Flex
+              backgroundColor="#F6F6F6"
+              className={styles.scrollFlex}
+              h={{ base: '90%', xl: '67vh' }}
+            >
+              <List
+                component="nav"
+                aria-label="main mailbox folders"
+                className={stylesList.list}
               >
-                Tempo desde a última consulta presencial: {values.TempoUltimaVisita} dias
-              </Text></SimpleGrid>
-              </ListItem>
-                ))}
+                <div>
+                  {myClients.map((values) => (
+                    <ListItem
+                      button
+                      id={values._id}
+                      className={stylesList.listItems}
+                    >
+                      <ListItemIcon>
+                        <Avatar
+                          name="Dan Abrahmov"
+                          src="https://bit.ly/dan-abramov"
+                          border="3px solid#EBF5FF"
+                          size={avatarSize}
+                        />
+                      </ListItemIcon>
+                      <SimpleGrid width="100%">
+                        <Text
+                          color="gray.400"
+                          fontSize={{
+                            base: '26px',
+                            tiny: '18px',
+                            sm: '22px',
+                            xl: '24px'
+                          }}
+                        >
+                          {values.name}
+                        </Text>
+                      </SimpleGrid>
+                      <SimpleGrid width="40%" marginLeft="1vw">
+                        <Text
+                          color="gray.200"
+                          fontSize={{
+                            base: '26px',
+                            tiny: '18px',
+                            sm: '22px',
+                            xl: '24px'
+                          }}
+                        >
+                          Idade - {values.idade}
+                        </Text>
+                      </SimpleGrid>
+                      <SimpleGrid width="100%" marginLeft="4vw">
+                        <Text
+                          color="gray.200"
+                          fontSize={{
+                            base: '26px',
+                            tiny: '18px',
+                            sm: '22px',
+                            xl: '24px'
+                          }}
+                        >
+                          Situação: Dieta {values.statusDieta}
+                        </Text>
+                        <Avatar
+                          marginLeft="0.3vw"
+                          name="Atualizada"
+                          src="https://bit.ly/dan-abramov"
+                          border="3px solid#EBF5FF"
+                          size={iconSize}
+                        />
+                      </SimpleGrid>
+                      <SimpleGrid width="100%" marginLeft="4vw">
+                        <Text
+                          color="gray.200"
+                          fontSize={{
+                            base: '26px',
+                            tiny: '18px',
+                            sm: '22px',
+                            xl: '24px'
+                          }}
+                        >
+                          Tempo desde a última consulta presencial:{' '}
+                          {values.TempoUltimaVisita} dias
+                        </Text>
+                      </SimpleGrid>
+                    </ListItem>
+                  ))}
                 </div>
               </List>
             </Flex>
           </Box>
+        </Flex>
       </Flex>
-    </Flex>
-
-
-
     </>
   )
 }
