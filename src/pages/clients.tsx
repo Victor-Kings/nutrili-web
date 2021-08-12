@@ -9,7 +9,7 @@ import {
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { MyClients } from '../interfaces/myClients.interface'
-import { SearchBar } from '../components/SearchBar'
+import { SearchBar } from '../components/SearchBar/SearchBar'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { extendTheme } from '@chakra-ui/react'
 import styles from '../styles/dashboard.module.scss'
@@ -18,6 +18,7 @@ import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import List from '@material-ui/core/List'
 import { MdCheckCircle } from 'react-icons/md'
 import stylesList from '../styles/listClients.module.scss'
+import { useState } from 'react'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -95,6 +96,12 @@ export default function Dashboard() {
   const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
   const a = 'ASDS'
 
+  const [retorno, setRetorno] = useState(myClients)
+  
+  const myFunction = (value: MyClients[]): void =>{
+    setRetorno(value)
+  }
+
   return (
     <>
       {isWideVersion && (
@@ -136,7 +143,6 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-
       <Flex direction="row" h="100vh">
         <Sidebar />
         <Flex
@@ -148,12 +154,12 @@ export default function Dashboard() {
           ml={1}
           marginRight={1}
         >
-          <Box
+          <Box 
             marginTop="30px"
             marginLeft="10px"
             borderRadius={8}
             backgroundColor="blue.300"
-            w="1370px" //define o tamanho que deseja
+            w="95%" //define o tamanho que deseja
             h={{
               base: '100vh',
               sm: '80vh',
@@ -161,7 +167,7 @@ export default function Dashboard() {
               xl: '72vh'
             }}
           >
-            <Flex
+            <Flex 
               minHeight="60px"
               maxHeight="83px"
               height="15%"
@@ -173,9 +179,10 @@ export default function Dashboard() {
               <Text color="gray.200" fontSize="2xl">
                 Clientes
               </Text>
-              <SearchBar />
+              <SearchBar clients={myClients} onHandleSearch={myFunction}/>
             </Flex>
-            <Flex
+            <Flex 
+            w="100%"
               backgroundColor="#F6F6F6"
               className={styles.scrollFlex}
               h={{ base: '90%', xl: '67vh' }}
@@ -186,7 +193,7 @@ export default function Dashboard() {
                 className={stylesList.list}
               >
                 <div>
-                  {myClients.map((values) => (
+                  {retorno.map((values) => (
                     <Link
                       key={values._id}
                       bgColor="white"
@@ -216,8 +223,12 @@ export default function Dashboard() {
                           </Text>
                         </Flex>
                       </Flex>
-
-                      <Flex minWidth="120px" alignItems="center" display="flex" flex="1">
+                      <Flex
+                        minWidth="120px"
+                        alignItems="center"
+                        display="flex"
+                        flex="1"
+                      >
                         <Text
                           color="gray.200"
                           fontSize={{
@@ -230,7 +241,11 @@ export default function Dashboard() {
                           Idade - {values.idade}
                         </Text>
                       </Flex>
-                      <Flex minWidth="250px" alignItems="center" justifyContent="space-between">
+                      <Flex
+                        minWidth="250px"
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
                         <Text
                           color="gray.200"
                           fontSize={{
