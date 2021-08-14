@@ -100,6 +100,7 @@ export function SidebarNav() {
               </Text>
             </Link>
             <Link
+              href="/notifications"
               display="flex"
               flex="1"
               align="center"
@@ -121,7 +122,8 @@ export function SidebarNav() {
                 Notificação
               </Text>
             </Link>
-            <Link href="/clients"
+            <Link 
+              href="/clients"
               display="flex"
               flex="1"
               align="center"
