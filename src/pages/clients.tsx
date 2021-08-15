@@ -19,6 +19,7 @@ import List from '@material-ui/core/List'
 import { MdCheckCircle } from 'react-icons/md'
 import stylesList from '../styles/listClients.module.scss'
 import { useState } from 'react'
+import ListClients from '../components/ListClients/ListClients'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -75,13 +76,13 @@ export default function Dashboard() {
       statusDieta: 'Atualizada',
       TempoUltimaVisita: 40
     },
-    {
-      _id: '60bd5abe07a5d6dde643c081',
-      name: 'Hamster do Chris',
-      idade: 10,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 10
-    }
+    // {
+    //   _id: '60bd5abe07a5d6dde643c081',
+    //   name: 'Hamster do Chris',
+    //   idade: 10,
+    //   statusDieta: 'Atualizada',
+    //   TempoUltimaVisita: 10
+    // }
   ]
 
   const { onOpen } = useSidebarDrawer()
@@ -159,7 +160,7 @@ export default function Dashboard() {
             marginLeft="10px"
             borderRadius={8}
             backgroundColor="blue.300"
-            w="95%" //define o tamanho que deseja
+            w={"95%"} 
             h={{
               base: '100vh',
               sm: '80vh',
@@ -192,96 +193,7 @@ export default function Dashboard() {
                 aria-label="main mailbox folders"
                 className={stylesList.list}
               >
-                <div>
-                  {retorno.map((values) => (
-                    <Link
-                      key={values._id}
-                      bgColor="white"
-                      mt="15px"
-                      display="flex"
-                      _hover={{ textDecoration: 'none' }}
-                      height="70px"
-                    >
-                      <Flex alignItems="center" pl="50px">
-                        <Avatar
-                          name="Dan Abrahmov"
-                          src="https://bit.ly/dan-abramov"
-                          border="3px solid#EBF5FF"
-                          size={avatarSize}
-                        />
-                        <Flex width="200px" ml="55px">
-                          <Text
-                            color="gray.400"
-                            fontSize={{
-                              base: '26px',
-                              tiny: '18px',
-                              sm: '22px',
-                              xl: '24px'
-                            }}
-                          >
-                            {values.name}
-                          </Text>
-                        </Flex>
-                      </Flex>
-                      <Flex
-                        minWidth="120px"
-                        alignItems="center"
-                        display="flex"
-                        flex="1"
-                      >
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Idade - {values.idade}
-                        </Text>
-                      </Flex>
-                      <Flex
-                        minWidth="250px"
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Situação: Dieta {values.statusDieta}
-                        </Text>
-                        <Icon
-                          as={MdCheckCircle}
-                          fontSize={28}
-                          justifyContent="flex-start"
-                          bgColor="white"
-                          color="green"
-                        />
-                      </Flex>
-                      <Flex width="100%" marginLeft="4vw" alignItems="center">
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Tempo desde a última consulta presencial:{' '}
-                          {values.TempoUltimaVisita} dias
-                        </Text>
-                      </Flex>
-                    </Link>
-                  ))}
-                </div>
+               <ListClients clients={retorno}/>
               </List>
             </Flex>
           </Box>
