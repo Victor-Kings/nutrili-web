@@ -7,6 +7,7 @@ import {
   IconButton
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
+import React, { useState, useEffect  } from 'react';
 import { Sidebar } from '../components/Sidebar'
 import { INotifications } from '../interfaces/notifications.interface'
 import { SearchBar } from '../components/SearchBar/SearchBar'
@@ -144,6 +145,14 @@ export default function Dashboard() {
   const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
   const a = 'ASDS'
 
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    notifications.map((values) => {
+      values.status == 'Nova' ? setCount(count + 1) : null;
+    })
+  },[]);
+  
   return (
     <>
       {isWideVersion && (
@@ -217,6 +226,13 @@ export default function Dashboard() {
                   fontSize="2xl"
                 >
                   Notificações
+                </Text>
+                <Text
+                  color="gray.200"
+                  fontSize="1xl"
+                  margin="0 6% 0 auto"
+                >
+                 {count} Novas
                 </Text>
               </Flex>
               <Flex
