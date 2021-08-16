@@ -1,8 +1,7 @@
 export interface INotifications {
     _id: string,
     from: string,
-    cpf: number,
-    idade: number,
+    title: string,
     msg: string,
     status: string,
     date: string;

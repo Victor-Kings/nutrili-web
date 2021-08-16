@@ -79,13 +79,13 @@ export default function SimpleAccordion(props: IProps) {
                 size={avatarSize}
               />
               <Flex width="20%">
-                <Text color="gray.400" pl="5%" fontSize={{ base: '14px' }}>
+                <Text color="gray.400" pl="5%" fontSize={{ base: '14px' }} fontWeight="bold">
                   {values.from}
                 </Text>
                 </Flex>
                 <Flex width="50%" overflowWrap="initial" textOverflow="ellipsis" overflow="hidden" white-space="nowrap">
                 <Text color="gray.200" pl="5%" fontSize={{ base: '14px' }} >
-                  {values.msg}
+                  {values.title}
                 </Text>
               </Flex>
               <Flex width="20%">
@@ -109,13 +109,12 @@ export default function SimpleAccordion(props: IProps) {
           <AccordionDetails style={{ display: 'block' }}>
             <SimpleGrid color="gray.200">
               <Flex flexDirection="column">
-                <Text>Nome: {values.from} </Text>
-                <Text>CPF: {values.cpf} </Text>
+                <Text ml="5%" color="gray.400" fontWeight="bold"> {values.title} </Text>
               </Flex>
 
               <Flex pt="2%">
                 <Flex flex="1" flexDirection="column">
-                  <Text>Mensagem: {values.msg}</Text>
+                  <Text ml="8%">{values.msg}</Text>
                 </Flex>
               </Flex>
             </SimpleGrid>
