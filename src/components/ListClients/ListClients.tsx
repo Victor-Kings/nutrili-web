@@ -16,13 +16,14 @@ import styles from './listClients.module.scss'
 export default function ListClients({ clients }: IListClientsProps) {
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
   return (
-    <div>
+    <div className={styles.divMain}>
       {clients.map((values) => (
         <Link
           key={values._id}
           bgColor="white"
           mt="15px"
           display="flex"
+          w="100%"
           _hover={{ textDecoration: 'none' }}
           className={styles.link}
         >
