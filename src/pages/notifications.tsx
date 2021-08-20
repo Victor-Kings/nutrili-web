@@ -134,14 +134,11 @@ export default function Dashboard() {
   const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
   const a = 'ASDS'
 
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    notifications.map((values) => {
-      values.status == 'Nova' ? setCount(count + 1) : null;
-    })
-  },[]);
+  const [count, setCount] = useState(notifications.filter( (value)=> value.status === 'Nova' ).length);
   
+    
+    
+
   return (
     <>
       {isWideVersion && (
