@@ -166,7 +166,6 @@ export default function Dashboard() {
               >
                 <SimpleGrid 
                 w="70%"
-                
                 >
                   <Text m="5%" color="gray.200">
                     Consultório
