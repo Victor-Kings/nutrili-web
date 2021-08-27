@@ -116,15 +116,25 @@ export default function SimpleAccordion(props: IProps) {
             justifyContent="space-between"
             ml={{base: "0px", lg:"40px"}}
           >
-            <Text
-              color="gray.200"
+            {values.status == 'Nova' ?
+              <Text
+              color="blue.500"
+              fontWeight="bold"
               fontSize={{
                 base: '14px',
                 lg: '18px'
               }}
-            >
-              {values.status}
-            </Text>
+            >{values.status}</Text>
+            :
+              <Text
+              color="green.500"
+              fontWeight="bold"
+              fontSize={{
+                base: '14px',
+                lg: '18px'
+              }}
+            >{values.status}</Text>
+          }
           </Flex>
           <Flex width="16%" marginLeft={{base: '0px', lg: "1vw"}} alignItems="center">
             <Text

@@ -254,7 +254,7 @@ export default function Dashboard() {
         <Sidebar />
         <Flex h="100vh" width="100%"  >
           <Flex
-            minWidth="65%"
+            minWidth={{ base: '90%', lg: '65%' }}
             mr={4}
             ml={{ base: 4, xl: 0 }}
             direction="column"
