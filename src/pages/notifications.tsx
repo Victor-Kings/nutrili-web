@@ -252,9 +252,9 @@ export default function Dashboard() {
       )}
       <Flex >
         <Sidebar />
-        <Flex h="100vh" w="100%" overflowY="scroll">
+        <Flex h="100vh" width="100%"  >
           <Flex
-            width="60%"
+            minWidth="65%"
             mr={4}
             ml={{ base: 4, xl: 0 }}
             direction="column"
@@ -290,7 +290,7 @@ export default function Dashboard() {
               <Flex
                 backgroundColor="#F6F6F6"
                 w="100%"
-                h="80vh"
+                h={{ base: '60vh', xl: '80vh' }}
               >
                 <SimpleAccordion notifications={notifications} />
               </Flex>

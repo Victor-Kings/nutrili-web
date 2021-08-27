@@ -14,10 +14,12 @@ import {
   Button,
   Text,
   Flex,
-  useBreakpointValue
+  useBreakpointValue,
+  Link,
+  Icon
 } from '@chakra-ui/react'
 import moment from 'moment'
-
+import { MdCheckCircle } from 'react-icons/md'
 const breakpoints = createBreakpoints({
   tiny: '20em',
   sm: '30em',
@@ -65,53 +67,84 @@ export default function SimpleAccordion(props: IProps) {
   return (
     <div className={styles.scrollFlex}>
       {props.notifications.map((values) => (
+        
+        
         <Accordion key={values._id}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+        <Flex alignItems="center" pl={{base:"20px",lg:"20px"}}>
+          
+          <Avatar
+            name="Dan Abrahmov"
+            src="https://bit.ly/dan-abramov"
+            border="3px solid#EBF5FF"
+            size={avatarSize}
+          />
+        </Flex>
+        <Flex flexDir={{base: 'column', lg: 'row'}} ml={{base: "30px", lg:"unset"}}>
+          
+          <Flex width={{base: "200px", xl:"260px"}} ml={{base: '0px', lg: "20px"}} alignItems="center">
+            <Text
+              color="gray.400"
+              fontWeight="bold"
+              fontSize={{
+                base: '14px',
+                lg: '18px'
+              }}
+            >
+              {values.from}
+            </Text>
+          </Flex>
+          {/* </Flex> */}
+          <Flex minWidth="230px" alignItems="center" display="flex" flex="1">
+            <Text
+              color="gray.200"
+              fontSize={{
+                base: '14px',
+                lg: '18px'
+              }}
+            >
+              {values.title}
+            </Text>
+          </Flex>
+          <Flex
+            minWidth={{base: "unset",lg:"160px"}}
+            alignItems="center"
+            justifyContent="space-between"
+            ml={{base: "0px", lg:"40px"}}
           >
-            <Flex flex="1" width="100%" flexDirection="row" alignItems="center">
-              <Avatar
-                name="Dan Abrahmov"
-                src="https://bit.ly/dan-abramov"
-                border="3px solid#EBF5FF"
-                size={avatarSize}
-              />
-              <Flex width="20%">
-                <Text color="gray.400" pl="5%" fontSize={{ base: '14px' }} fontWeight="bold">
-                  {values.from}
-                </Text>
-                </Flex>
-                <Flex width="40%" overflowWrap="initial" textOverflow="ellipsis" overflow="hidden" white-space="nowrap">
-                <Text color="gray.200" pl="5%" fontSize={{ base: '14px' }} >
-                  {values.title}
-                </Text>
-              </Flex>
-              <Flex width="20%">
-                <Text color="gray.200" pl="5%" fontSize={{ base: '14px' }}>
-                  {values.status}
-                </Text>
-              </Flex>
-              <Flex flex="1" justifyContent="center" alignItems="flex-end">
-                <Text
-                  color="gray.50"
-                  flex="1"
-                  textAlign="end"
-                  pr="2%"
-                  fontSize={{ base: '12px' }}
-                >
-                  {diffTimeTeste(values.date)}
-                </Text>
-              </Flex>
-            </Flex>
-          </AccordionSummary>
+            <Text
+              color="gray.200"
+              fontSize={{
+                base: '14px',
+                lg: '18px'
+              }}
+            >
+              {values.status}
+            </Text>
+          </Flex>
+          <Flex width="16%" marginLeft={{base: '0px', lg: "1vw"}} alignItems="center">
+            <Text
+              color="gray.200"
+              fontSize={{
+                base: '14px',
+                lg: '18px'
+              }}
+            >
+              {diffTimeTeste(values.date)}
+            </Text>
+          </Flex>
+          
+        </Flex>
+        </AccordionSummary>
           <AccordionDetails style={{ display: 'block' }}>
             <SimpleGrid color="gray.200">
               <Flex flexDirection="column">
                 <Text ml="5%" color="gray.400" fontWeight="bold"> {values.title} </Text>
               </Flex>
-
               <Flex pt="2%">
                 <Flex flex="1" flexDirection="column">
                   <Text ml="8%">{values.msg}</Text>
@@ -120,6 +153,8 @@ export default function SimpleAccordion(props: IProps) {
             </SimpleGrid>
           </AccordionDetails>
         </Accordion>
+        
+        
       ))}
     </div>
   )
