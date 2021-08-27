@@ -83,7 +83,7 @@ export default function SimpleAccordion(props: IProps) {
                   {values.from}
                 </Text>
                 </Flex>
-                <Flex width="50%" overflowWrap="initial" textOverflow="ellipsis" overflow="hidden" white-space="nowrap">
+                <Flex width="40%" overflowWrap="initial" textOverflow="ellipsis" overflow="hidden" white-space="nowrap">
                 <Text color="gray.200" pl="5%" fontSize={{ base: '14px' }} >
                   {values.title}
                 </Text>

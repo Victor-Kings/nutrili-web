@@ -4,7 +4,8 @@ import {
   Avatar,
   Link,
   Icon,
-  IconButton
+  IconButton,
+  Select
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import React, { useState, useEffect  } from 'react';
@@ -119,7 +120,79 @@ export default function Dashboard() {
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
       date: '2021-06-06T03:57:37+03:00',
-    }
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Antonio',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Cleyde',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Nerso',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Plâncton',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Nirleide',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Cleiton',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Japonês',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Mirlene',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
+    {
+      _id: '60bd5abe07a5d6dde663c081',
+      from: 'Clotilde',
+      title: 'Dieta está desatualizada',
+      msg: 'Cliente está solicitando mudança na dieta',
+      status: 'Visualizada',
+      date: '2021-06-06T03:57:37+03:00',
+    },
   ]
 
   const { onOpen } = useSidebarDrawer()
@@ -130,9 +203,6 @@ export default function Dashboard() {
   })
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
-  const iconSize = useBreakpointValue({ base: 'sm', sm: 'sm' })
-  const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
-  const a = 'ASDS'
 
   const [count, setCount] = useState(notifications.filter( (value)=> value.status === 'Nova' ).length);
   
@@ -180,57 +250,56 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-      <Flex direction="row" h="100vh">
+      <Flex >
         <Sidebar />
-        <Flex
-          flex="1"
-          flexDirection="column"
-          mr={4}
-          overflowY="scroll"
-          margin="0"
-          ml={1}
-          marginRight={1}
-        >
-            <Box
-            m="20px"
-            width="70%"
-              borderRadius={8}
-              backgroundColor="white"
-              h={{ base: '100vh', sm: '80vh', md: '67vh', xl: '78vh' }}
-            >
+        <Flex h="100vh" w="100%" overflowY="scroll">
+          <Flex
+            width="60%"
+            mr={4}
+            ml={{ base: 4, xl: 0 }}
+            direction="column"
+            justifyContent={{ base: 'unset', lg: 'unset' }}
+            className={styles.client}
+          >
+            <Flex>
+              <Text color="gray.500" fontSize="26px">
+                Notificações
+              </Text>
+            </Flex>
+
+            <Flex direction="column">
               <Flex
-                minHeight="60px"
-                maxHeight="83px"
-                height="15%"
+                bgColor="white"
+                borderBottomWidth="2px"
+                borderBottomColor="gray.50"
+                width="100%"
+                h="80px"
                 alignItems="center"
-                pl="4%"
-                borderBottom="1px"
-                borderColor="gray.100"
               >
-                <Text
-                  color="black"
-                  fontSize="2xl"
-                >
-                  Notificações
-                </Text>
                 <Text
                   color="gray.200"
                   fontSize="1xl"
-                  margin="0 6% 0 auto"
+                  ml={6}
                 >
                  {count} Novas
                 </Text>
               </Flex>
+            </Flex>
+
+            <Flex direction="column">
               <Flex
-                backgroundColor="white"
-                className={styles.scrollFlex}
-                h={{ base: '90%', xl: '67vh' }}
+                backgroundColor="#F6F6F6"
+                w="100%"
+                h="80vh"
               >
                 <SimpleAccordion notifications={notifications} />
               </Flex>
-            </Box>
+              <Flex alignItems="center" justifyContent="center" h="10vh">
+              </Flex>
+            </Flex>
+          </Flex>
         </Flex>
-      </Flex>
+      </Flex>           
     </>
   )
 }
