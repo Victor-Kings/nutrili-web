@@ -5,7 +5,8 @@ import {
   Link,
   Icon,
   IconButton,
-  SimpleGrid
+  SimpleGrid,
+  Image
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import React, { useState, useEffect  } from 'react';
@@ -96,7 +97,7 @@ export default function Dashboard() {
         >
             <Box
             m="20px"
-            width="70%"
+            width={{ sm: '95%', xl: '70%' }}
             overflowY="auto"
             overflowX="hidden"
               borderRadius={8}
@@ -106,31 +107,43 @@ export default function Dashboard() {
               <Flex
               borderRadius={8}
                 className={styles.scrollFlex}
-                h="100%"
+                h="90%"
                 display="flex"
                 flexDirection="column"
+                
               >
                 <Flex
                 borderRadius={8}
                 backgroundColor="white"
                 className={styles.scrollFlex}
-                h="50%"
+                h="400px"
                 display="flex"
                 flexDirection="row"
                 
               >
                 <SimpleGrid
-                w="30%"
-                h="100%"
-                m="3%"
+                maxWidth="200px"
+                minWidth="150px"
+                maxHeight="200px"
+                minHeight="200px"
+                ml="30px"
+                mt="10px"
+                mr="40px"
                 color="black"
+                
                 >                  
-                IMAGEM DE PERFIL
+                <Image
+                boxSize="100%"
+                objectFit="cover"
+                src="https://bit.ly/dan-abramov"
+                alt="Dan Abramov"
+                />
                 </SimpleGrid>
                 <SimpleGrid
                 w="100%"
-                h="100%"
-                m="3%"
+                h="200px"
+                mt="10px"
+                mb="60px"
                 >
                 <Text 
                   fontWeight="bold" 
@@ -157,38 +170,38 @@ export default function Dashboard() {
                 className={styles.scrollFlex}
                 display="flex"
                 flexDirection="row"
-                ml="3%"
-                mr="3%"
-                mt="8%"
-                mb="1%"
+                ml="30px"
+                mb="10px"
                 w="100%"
-                h="60%"
+                h="100%"
+                mt="20px"
               >
                 <SimpleGrid 
-                w="70%"
+                w="90%"
+                h="100%"
                 >
-                  <Text m="5%" color="gray.200">
+                  <Text mb="5px" ml="40px" color="gray.200">
                     Consultório
                   </Text>
-                  <Text m="1%" color="gray.400">
+                  <Text m="0px" color="gray.400">
                     Nome: Doutores Murphys
                   </Text>
-                  <Text m="1%" color="gray.400">
+                  <Text m="0px" color="gray.400">
                     Endereço: Rua blabla, 182 - Campinas - SP
                   </Text>
-                  <Text m="1%" color="gray.400">
+                  <Text m="0px" color="gray.400">
                     Telefone: (19) 9894-4652
                   </Text>
-                  <Text m="5%" color="gray.200">
+                  <Text mb="0px" ml="40px" mt="10px" color="gray.200">
                     Informações Pessoais
                   </Text>
-                  <Text m="1%" color="gray.400">
+                  <Text m="0px" color="gray.400">
                     Idade: 28
                   </Text>
-                  <Text m="1%" color="gray.400">
+                  <Text m="0px" color="gray.400">
                     Telefone: (19) 9894-4652
                   </Text>
-                  <Text m="1%" color="gray.400" >
+                  <Text m="0px" color="gray.400" >
                     Número de clientes: 21
                   </Text>
                 </SimpleGrid>
