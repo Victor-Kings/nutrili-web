@@ -38,6 +38,20 @@
     }
 }
 
+.inputData {
+    max-width: 35%;
+    margin-left: 10px;
+    color: black;
+    margin-top: -6px;
+}
+
+@media (max-width: 480px){
+    .inputData {
+        max-width: 65%;
+        margin-left: 10px;
+    }
+}
+
 .ranking {
     color: 'gray.200';
 }
