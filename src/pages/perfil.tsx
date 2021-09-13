@@ -114,7 +114,6 @@ export default function Dashboard() {
                 flexDirection="column"
               >
               <Flex className={styles.editBtn} >
-                
                 <Flex
                 className={styles.descriptionProfile}
                 >
