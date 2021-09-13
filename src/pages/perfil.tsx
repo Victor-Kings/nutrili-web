@@ -13,9 +13,11 @@ import React, { useState, useEffect  } from 'react';
 import { Sidebar } from '../components/Sidebar'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { extendTheme } from '@chakra-ui/react'
-import styles from '../styles/dashboard.module.scss'
+import styles from '../styles/profile.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
+import { SimpleRating } from '../components/ratingStars'
+import { EditIcon } from '@chakra-ui/icons'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -86,15 +88,15 @@ export default function Dashboard() {
       )}
       <Flex direction="row" h="100vh">
         <Sidebar />
-        <Flex
-          flex="1"
-          flexDirection="column"
-          mr={4}
-          overflowY="scroll"
-          margin="0"
-          ml={1}
-          marginRight={1}
-        >
+          <Flex
+            flex="1"
+            flexDirection="column"
+            mr={4}
+            overflowY="scroll"
+            margin="0"
+            ml={1}
+            marginRight={1}
+          >
             <Box
             m="20px"
             width={{ sm: '95%', xl: '70%' }}
@@ -110,60 +112,55 @@ export default function Dashboard() {
                 h="90%"
                 display="flex"
                 flexDirection="column"
-                
               >
+              <Flex className={styles.editBtn} >
+                
                 <Flex
-                borderRadius={8}
-                backgroundColor="white"
-                className={styles.scrollFlex}
-                h="400px"
-                display="flex"
-                flexDirection="row"
-                
-              >
-                <SimpleGrid
-                maxWidth="200px"
-                minWidth="150px"
-                maxHeight="200px"
-                minHeight="200px"
-                ml="30px"
-                mt="10px"
-                mr="40px"
-                color="black"
-                
-                >                  
-                <Image
-                boxSize="100%"
-                objectFit="cover"
-                src="https://bit.ly/dan-abramov"
-                alt="Dan Abramov"
-                />
-                </SimpleGrid>
-                <SimpleGrid
-                w="100%"
-                h="200px"
-                mt="10px"
-                mb="60px"
+                className={styles.descriptionProfile}
                 >
-                <Text 
-                  fontWeight="bold" 
-                  fontSize="2xl" 
-                  color="gray.200">
-                    Dra. Lynda Murphy
-                  </Text>
+                  <SimpleGrid
+                  maxWidth="200px"
+                  minWidth="150px"
+                  maxHeight="200px"
+                  minHeight="200px"
+                  ml="30px"
+                  mt="10px"
+                  mr="40px"
+                  color="black"
+                  >                  
+                  <Image
+                  boxSize="100%"
+                  objectFit="cover"
+                  src="https://bit.ly/dan-abramov"
+                  alt="Dan Abramov"
+                  />
+                  </SimpleGrid>
+                  <SimpleGrid
+                  w="100%"
+                  h="200px"
+                  mt="10px"
+                  mb="60px"
+                  >
                   <Text 
-                  color="gray.200">
-                    Nutricionista PHD
-                  </Text>
-                  <Text 
-                  color="gray.200">
-                    CRN3 - Nutricionista Definitivo
-                  </Text>
-                  <Text 
-                  color="gray.200">
-                    Ranking
-                  </Text>
-                </SimpleGrid>
+                    fontWeight="bold" 
+                    fontSize="2xl" 
+                    color="gray.200">
+                      Dra. Lynda Murphy
+                    </Text>
+                    <Text 
+                    color="blue.200">
+                      Nutricionista PHD
+                    </Text>
+                    <Text 
+                    color="gray.200">
+                      CRN3 - Nutricionista Definitivo
+                    </Text>
+                    <SimpleRating />
+                  </SimpleGrid>
+                  </Flex>
+                  <SimpleGrid w="30px" h="30px" mt={4} mr={4} ml='auto'>
+                  <EditIcon w={8} h={8} color="gray.500"/>
+                  </SimpleGrid>
                 </Flex>
                 <Flex
               borderRadius={8}
@@ -174,13 +171,12 @@ export default function Dashboard() {
                 mb="10px"
                 w="100%"
                 h="100%"
-                mt="20px"
+                mt="10px"
               >
                 <SimpleGrid 
-                w="90%"
-                h="100%"
+                className={styles.dataDescript}
                 >
-                  <Text mb="5px" ml="40px" color="gray.200">
+                  <Text mb="5px" ml="2%" color="gray.200" fontWeight="bold">
                     Consultório
                   </Text>
                   <Text m="0px" color="gray.400">
@@ -192,7 +188,7 @@ export default function Dashboard() {
                   <Text m="0px" color="gray.400">
                     Telefone: (19) 9894-4652
                   </Text>
-                  <Text mb="0px" ml="40px" mt="10px" color="gray.200">
+                  <Text mb="0px" ml="2%" mt="10px" color="gray.200" fontWeight="bold">
                     Informações Pessoais
                   </Text>
                   <Text m="0px" color="gray.400">
@@ -201,11 +197,10 @@ export default function Dashboard() {
                   <Text m="0px" color="gray.400">
                     Telefone: (19) 9894-4652
                   </Text>
-                  <Text m="0px" color="gray.400" >
+                  <Text m="0px" color="gray.400" mb="15px">
                     Número de clientes: 21
                   </Text>
                 </SimpleGrid>
-                
                 </Flex>
               </Flex>
             </Box>

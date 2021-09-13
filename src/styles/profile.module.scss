@@ -1,0 +1,43 @@
+.descriptionProfile {
+    border-radius: 8;
+    background-color: white;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 480px){
+    .descriptionProfile {
+        flex-direction: column;
+        margin: auto;
+        margin-left: 25px;
+    }
+}
+
+.dataDescript {
+    width: 90%;
+    height: 100%;
+}
+
+.editBtn {
+    flex-direction: row;
+    height: 280px;
+}
+
+@media (max-width: 480px){
+    .editBtn {
+        height: auto;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 350px){
+    .editBtn {
+        height: auto;
+        margin-bottom: 40px;
+    }
+}
+
+.ranking {
+    color: 'gray.200';
+}
