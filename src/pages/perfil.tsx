@@ -99,6 +99,7 @@ export default function Perfil() {
             flexDirection="column"
             mr={4}
             overflowY="scroll"
+            overflowX="hidden"
             margin="0"
             ml={1}
             marginRight={1}
@@ -107,17 +108,17 @@ export default function Perfil() {
             m="20px"
             width={{ sm: '95%', xl: '70%' }}
             overflowY="auto"
-            overflowX="hidden"
-              borderRadius={8}
-              backgroundColor="white"
-              h="80%"
+            overflowX="auto"
+            borderRadius={8}
+            backgroundColor="white"
+            h="80%"
             >
               <Flex
               borderRadius={8}
-                className={styles.scrollFlex}
-                h="90%"
-                display="flex"
-                flexDirection="column"
+              className={styles.scrollFlex}
+              h="90%"
+              display="flex"
+              flexDirection="column"
               >
               <Flex className={styles.editBtn} >
                 <Flex
@@ -125,7 +126,7 @@ export default function Perfil() {
                 >
                   <SimpleGrid
                   maxWidth="200px"
-                  minWidth="150px"
+                  minWidth="200px"
                   maxHeight="200px"
                   minHeight="200px"
                   ml="30px"
@@ -143,8 +144,7 @@ export default function Perfil() {
                   <SimpleGrid
                   w="100%"
                   h="200px"
-                  mt="10px"
-                  mb="60px"
+                  mt="20px"
                   >
                   <Text 
                     fontWeight="bold" 
@@ -176,7 +176,6 @@ export default function Perfil() {
                 mb="10px"
                 w="100%"
                 h="100%"
-                mt="10px"
               >
                 <SimpleGrid
                 className={styles.dataDescript}

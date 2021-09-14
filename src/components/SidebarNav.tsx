@@ -56,6 +56,7 @@ export function SidebarNav() {
         <Box w="100%">
           <Stack spacing="8" align="stretch">
             <Link
+              href="/dashboard"
               display="flex"
               flex="1"
               align="center"
