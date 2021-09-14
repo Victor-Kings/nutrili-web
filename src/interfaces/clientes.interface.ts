@@ -1,4 +1,4 @@
-export interface IClients {
+export interface  IClients {
     _id: string;
     name: string;
     idade: number;
