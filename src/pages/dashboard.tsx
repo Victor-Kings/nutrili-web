@@ -161,7 +161,6 @@ export default function Dashboard() {
   })
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
-  const a = 'ASDS'
 
   return (
     <>
@@ -238,7 +237,6 @@ export default function Dashboard() {
               />
             </SimpleGrid>
           </SimpleGrid>
-          {/* <Flex width="90vw" height="100vw"> */}
           <SimpleGrid
             columns={2}
             width={{ base: '20vw', tiny: '20vw', xl: '100vw' }}
@@ -295,7 +293,6 @@ export default function Dashboard() {
               <Schedule />
             </Box>
           </SimpleGrid>
-          {/* </Flex> */}
         </Flex>
       </Flex>
     </>

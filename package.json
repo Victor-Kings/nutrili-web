@@ -17,7 +17,7 @@
     "@emotion/styled": "^11.3.0",
     "@iconify/icons-bx": "^1.1.0",
     "@iconify/icons-emojione-monotone": "^1.1.0",
-    "@material-ui/core": "^4.11.4",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@svgr/cli": "^5.5.0",

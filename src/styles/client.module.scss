@@ -1,0 +1,12 @@
+.client{
+  height: 160vh;
+  @media (min-width: 460px) {
+    height: 130vh;
+  }
+  @media (min-width: 992px) {
+    height: 110vh;
+  }
+  @media (min-width: 992px) {
+    height: 120vh;
+  }
+}

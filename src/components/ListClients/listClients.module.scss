@@ -1,0 +1,14 @@
+.link{
+  @media (min-width: 460px) {
+justify-content: center;
+  }
+  @media (min-width: 1160px) {
+    height: 70px;
+}
+}
+.divMain {
+  @media (min-width: 460px) {
+
+    width: 100%;
+  }
+}

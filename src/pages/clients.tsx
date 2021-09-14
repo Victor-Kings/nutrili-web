@@ -1,88 +1,24 @@
 import {
-  Box,
   useBreakpointValue,
   Avatar,
   Link,
   Icon,
-  IconButton
+  IconButton,
+  Select
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { MyClients } from '../interfaces/myClients.interface'
 import { SearchBar } from '../components/SearchBar/SearchBar'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { extendTheme } from '@chakra-ui/react'
-import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
-import List from '@material-ui/core/List'
-import { MdCheckCircle } from 'react-icons/md'
-import stylesList from '../styles/listClients.module.scss'
 import { useState } from 'react'
-
-const breakpoints = createBreakpoints({
-  tiny: '20em',
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '80em',
-  xl2: '90em'
-})
-
-const theme = extendTheme({ breakpoints })
+import ListClients from '../components/ListClients/ListClients'
+import { Pagination } from '@material-ui/lab'
+import styles from '../styles/client.module.scss'
+import { myClients, teste } from '../../__mocks__/mockClients'
 
 export default function Dashboard() {
-  const myClients: MyClients[] = [
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      name: 'Cox Monroe',
-      idade: 87,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 20
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c082',
-      name: 'Daniel Souza',
-      idade: 67,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 27
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c981',
-      name: 'Lionel Messi',
-      idade: 50,
-      statusDieta: 'Desatualizada',
-      TempoUltimaVisita: 29
-    },
-    {
-      _id: '60bd5abe07a5d6dde463c081',
-      name: 'Vó do Hiago',
-      idade: 80,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 16
-    },
-    {
-      _id: '60bd5abe07a5d6dde603c081',
-      name: 'Tio do Vintão',
-      idade: 40,
-      statusDieta: 'Desatualizada',
-      TempoUltimaVisita: 20
-    },
-    {
-      _id: '60bd5abe07a5d69de663c081',
-      name: 'Papagaio do Murilo',
-      idade: 30,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 40
-    },
-    {
-      _id: '60bd5abe07a5d6dde643c081',
-      name: 'Hamster do Chris',
-      idade: 10,
-      statusDieta: 'Atualizada',
-      TempoUltimaVisita: 10
-    }
-  ]
 
   const { onOpen } = useSidebarDrawer()
 
@@ -92,14 +28,19 @@ export default function Dashboard() {
   })
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
-  const iconSize = useBreakpointValue({ base: 'sm', sm: 'sm' })
-  const listSize = useBreakpointValue({ base: 'xl', sm: 'xl' })
-  const a = 'ASDS'
 
   const [retorno, setRetorno] = useState(myClients)
-  
-  const myFunction = (value: MyClients[]): void =>{
+
+  const myFunction = (value: MyClients[]): void => {
     setRetorno(value)
+  }
+
+  const functionTest =(event: React.ChangeEvent<unknown>, page: number) =>{
+    if(page%2 == 0){
+      setRetorno(myClients)
+      return
+    }
+    setRetorno(teste)
   }
 
   return (
@@ -143,148 +84,62 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-      <Flex direction="row" h="100vh">
+      <Flex >
         <Sidebar />
-        <Flex
-          flex="1"
-          flexDirection="column"
-          mr={4}
-          overflowY="scroll"
-          margin="0"
-          ml={1}
-          marginRight={1}
-        >
-          <Box 
-            marginTop="30px"
-            marginLeft="10px"
-            borderRadius={8}
-            backgroundColor="blue.300"
-            w="95%" //define o tamanho que deseja
-            h={{
-              base: '100vh',
-              sm: '80vh',
-              md: '67vh',
-              xl: '72vh'
-            }}
+        <Flex h="100vh" w="100%" overflowY="scroll">
+          <Flex
+            width="100%"
+            mr={4}
+            ml={{ base: 4, xl: 0 }}
+            direction="column"
+            justifyContent={{ base: 'unset', lg: 'unset' }}
+            className={styles.client}
           >
-            <Flex 
-              minHeight="60px"
-              maxHeight="83px"
-              height="15%"
-              alignItems="center"
-              pl="4%"
-              borderBottom="1px"
-              borderColor="gray.100"
-            >
-              <Text color="gray.200" fontSize="2xl">
+            <Flex>
+              <Text color="gray.500" fontSize="26px">
                 Clientes
               </Text>
-              <SearchBar clients={myClients} onHandleSearch={myFunction}/>
             </Flex>
-            <Flex 
-            w="100%"
-              backgroundColor="#F6F6F6"
-              className={styles.scrollFlex}
-              h={{ base: '90%', xl: '67vh' }}
-            >
-              <List
-                component="nav"
-                aria-label="main mailbox folders"
-                className={stylesList.list}
+
+            <Flex direction="column">
+              <Flex
+                bgColor="blue.300"
+                width="100%"
+                h="80px"
+                alignItems="center"
               >
-                <div>
-                  {retorno.map((values) => (
-                    <Link
-                      key={values._id}
-                      bgColor="white"
-                      mt="15px"
-                      display="flex"
-                      _hover={{ textDecoration: 'none' }}
-                      height="70px"
-                    >
-                      <Flex alignItems="center" pl="50px">
-                        <Avatar
-                          name="Dan Abrahmov"
-                          src="https://bit.ly/dan-abramov"
-                          border="3px solid#EBF5FF"
-                          size={avatarSize}
-                        />
-                        <Flex width="200px" ml="55px">
-                          <Text
-                            color="gray.400"
-                            fontSize={{
-                              base: '26px',
-                              tiny: '18px',
-                              sm: '22px',
-                              xl: '24px'
-                            }}
-                          >
-                            {values.name}
-                          </Text>
-                        </Flex>
-                      </Flex>
-                      <Flex
-                        minWidth="120px"
-                        alignItems="center"
-                        display="flex"
-                        flex="1"
-                      >
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Idade - {values.idade}
-                        </Text>
-                      </Flex>
-                      <Flex
-                        minWidth="250px"
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Situação: Dieta {values.statusDieta}
-                        </Text>
-                        <Icon
-                          as={MdCheckCircle}
-                          fontSize={28}
-                          justifyContent="flex-start"
-                          bgColor="white"
-                          color="green"
-                        />
-                      </Flex>
-                      <Flex width="100%" marginLeft="4vw" alignItems="center">
-                        <Text
-                          color="gray.200"
-                          fontSize={{
-                            base: '26px',
-                            tiny: '18px',
-                            sm: '22px',
-                            xl: '24px'
-                          }}
-                        >
-                          Tempo desde a última consulta presencial:{' '}
-                          {values.TempoUltimaVisita} dias
-                        </Text>
-                      </Flex>
-                    </Link>
-                  ))}
-                </div>
-              </List>
+                <Select
+                  w="200px"
+                  h="40px"
+                  placeholder="Ordenação"
+                  bgColor="white"
+                  color="black"
+                  pl="20px"
+                >
+                  <option value="option1">A-Z</option>
+                  <option value="option2">1-9</option>
+                </Select>
+                <SearchBar clients={myClients} onHandleSearch={myFunction} />
+              </Flex>
+              <Flex
+                backgroundColor="#F6F6F6"
+                w="100%"
+                h={{ base: 'unset', lg: '100%' }}
+              >
+                <ListClients clients={retorno} />
+              </Flex>
+              <Flex alignItems="center" justifyContent="center" h="10vh">
+                <Pagination
+                  color="primary"
+                  count={10}
+                  siblingCount={0}
+                  variant="outlined"
+                  shape="rounded"
+                  onChange={functionTest}
+                />
+              </Flex>
             </Flex>
-          </Box>
+          </Flex>
         </Flex>
       </Flex>
     </>
