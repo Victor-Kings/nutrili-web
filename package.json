@@ -11,9 +11,10 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@chakra-ui/core": "^0.8.0",
-    "@chakra-ui/react": "^1.6.6",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+    "@chakra-ui/icons": "^1.0.15",
+    "@chakra-ui/react": "^1.6.3",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@iconify/icons-bx": "^1.1.0",
     "@iconify/icons-emojione-monotone": "^1.1.0",
     "@material-ui/core": "^4.12.3",
