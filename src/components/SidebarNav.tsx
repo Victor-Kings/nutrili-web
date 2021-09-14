@@ -78,6 +78,7 @@ export function SidebarNav() {
               </Text>
             </Link>
             <Link
+              href="/perfil"
               display="flex"
               flex="1"
               align="center"
