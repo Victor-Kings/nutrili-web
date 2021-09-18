@@ -148,6 +148,7 @@ export function SidebarNav() {
               </Text>
             </Link>
             <Link
+              href="/configuration"
               display="flex"
               flex="1"
               align="center"
