@@ -185,25 +185,25 @@ export default function Perfil() {
                     <Text mb="5px" ml="2%" color="gray.200" fontWeight="bold">
                       Consultório
                     </Text>
-                    <Text mb="0px" color="gray.400">
+                    <Text mb="5px" color="gray.400">
                       Nome: Doutores Murphys
                     </Text>
-                    <Text m="0px" color="gray.400">
+                    <Text mb="5px" color="gray.400">
                       Endereço: Rua blabla, 182 - Campinas - SP
                     </Text>
-                    <Text m="0px" color="gray.400">
+                    <Text mb="5px" color="gray.400">
                       Telefone: (19) 9894-4652
                     </Text>
-                    <Text mb="0px" ml="2%" mt="10px" color="gray.200" fontWeight="bold">
+                    <Text mb="5px" ml="2%" mt="10px" color="gray.200" fontWeight="bold">
                       Informações Pessoais
                     </Text>
-                    <Text m="0px" color="gray.400">
+                    <Text mb="5px" color="gray.400">
                       Idade: 28
                     </Text>
-                    <Text m="0px" color="gray.400">
+                    <Text mb="5px" color="gray.400">
                       Telefone: (19) 9894-4652
                     </Text>
-                    <Text m="0px" color="gray.400" mb="15px">
+                    <Text color="gray.400" mb="15px">
                       Número de clientes: 21
                     </Text>
                   </SimpleGrid>
