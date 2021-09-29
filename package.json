@@ -23,6 +23,7 @@
     "@svgr/cli": "^5.5.0",
     "@svgr/webpack": "^5.5.0",
     "antd": "^4.16.11",
+    "axios": "^0.21.4",
     "framer-motion": "^4",
     "framework7-react": "^6.2.0",
     "moment": "^2.29.1",
