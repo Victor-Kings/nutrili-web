@@ -1,7 +1,11 @@
 import { Flex, Text, Input, Button, Stack, Image } from '@chakra-ui/react'
+
 import FacebookIcon from '@material-ui/icons/Facebook'
+
 import googleIcon from '@iconify/icons-grommet-icons/google'
+
 import { Icon } from '@iconify/react'
+
 import Link from 'next/link'
 
 export default function Login() {
@@ -10,6 +14,7 @@ export default function Login() {
       <Flex w={['0%', '0%', '66%']}>
         <Image src="/icons/nutricionista.png" />
       </Flex>
+
       <Flex
         w={['100%', '100%', '34%']}
         minW="300px"
@@ -32,6 +37,7 @@ export default function Login() {
               borderRadius="50%"
             />
           </Flex>
+
           <Text
             fontWeight="semibold"
             color="white"
@@ -42,6 +48,7 @@ export default function Login() {
           >
             Faça Seu Login
           </Text>
+
           <Stack spacing={2}>
             <Input
               placeholder="email"
@@ -54,6 +61,7 @@ export default function Login() {
               _hover={{ color: 'blue.110' }}
               size="lg"
             />
+
             <Input
               placeholder="senha"
               _placeholder={{ color: 'blue.10' }}
@@ -66,6 +74,7 @@ export default function Login() {
               size="lg"
             />
           </Stack>
+
           <Link href="/dashboard">
             <Button
               type="submit"
@@ -78,6 +87,7 @@ export default function Login() {
               Entrar
             </Button>
           </Link>
+
           <Text
             fontWeight="medium"
             color="white"
@@ -88,6 +98,7 @@ export default function Login() {
           >
             Esqueci minha senha
           </Text>
+
           <Text
             fontWeight="medium"
             color="white"
@@ -99,6 +110,7 @@ export default function Login() {
           >
             -entrar com-
           </Text>
+
           <Flex width="100%" justifyContent="space-between">
             <Button
               leftIcon={<Icon icon={googleIcon} style={{ fontSize: '28px' }} />}
