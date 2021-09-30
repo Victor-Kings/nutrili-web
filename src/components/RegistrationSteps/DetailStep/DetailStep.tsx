@@ -50,19 +50,19 @@ export default function DetailStep({ handleClick }: IDetailStep) {
     'DF'
   ]
   const typesOfCRN = [
-    'CRN-1',
-    'CRN-2',
-    'CRN-3',
-    'CRN-4',
-    'CRN-5',
-    'CRN-6',
-    'CRN-7',
-    'CRN-8',
-    'CRN-9',
-    'CRN-10'
+    'CRN1',
+    'CRN2',
+    'CRN3',
+    'CRN4',
+    'CRN5',
+    'CRN6',
+    'CRN7',
+    'CRN8',
+    'CRN9',
+    'CRN10'
   ]
   return (
-    <>
+    <Flex flexDir="column" alignItems="center" pb="10%">
       <Text
         fontWeight="semibold"
         color="white"
@@ -76,21 +76,11 @@ export default function DetailStep({ handleClick }: IDetailStep) {
       </Text>
 
       <Flex
-        pb="5px"
-        width="100%"
-        flexDirection="row"
-        alignItems="center"
-        color="white"
-        fontSize={[10, 12, 14]}
-        fontFamily="heading"
-      ></Flex>
-
-      <Flex
         flexDir={['column', 'row']}
         width="100%"
         justifyContent="space-between"
       >
-        <Flex flexDir={'column'} width={['100%', '58%']}>
+        <Flex flexDir={'column'} width={['100%', '58%']} mb={['4%','0']}>
           <Text>Inscrição CRN</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -144,7 +134,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
         alignSelf="start"
         justifyContent="space-between"
       >
-        <Flex flexDir={'column'} width={['100%', '49%']}>
+        <Flex flexDir={'column'} width={['100%', '49%']} mb={['4%','0']}>
           <Text> Telefone</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -173,10 +163,9 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             as={InputMask}
             maskChar={null}
             mask="***.***.***-**"
-            mt={['15px', '0']}
             _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
-            _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
+            _focusVisible={{textColor:'blue.110', backgroundColor: 'white' }}
           />
         </Flex>
       </Flex>
@@ -196,7 +185,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
         width="100%"
         justifyContent="space-between"
       >
-        <Flex flexDir={'column'} width={['100%', '50%']}>
+        <Flex flexDir={'column'} width={['100%', '50%']} mb={['4%','0']}>
           <Text>Gênero</Text>
           <Select
             placeholder=""
@@ -231,7 +220,6 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            mt={['15px', '0']}
             _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
@@ -257,7 +245,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
         alignSelf="start"
         justifyContent="space-between"
       >
-        <Flex flexDir={'column'} width={['100%', '30%']}>
+        <Flex flexDir={'column'} width={['100%', '30%']}  mb={['4%','0']}>
           <Text>CEP</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -274,7 +262,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
         </Flex>
-        <Flex flexDir={'column'} width={['100%', '46%']}>
+        <Flex flexDir={'column'} width={['100%', '46%']} mb={['4%','0']}>
           <Text>Rua</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -283,7 +271,6 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            mt={['15px', '0']}
             _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
@@ -301,7 +288,6 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            mt={['15px', '0']}
             _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
@@ -325,7 +311,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
         alignSelf="start"
         justifyContent="space-between"
       >
-        <Flex flexDir={'column'} width={['100%', '41%']}>
+        <Flex flexDir={'column'} width={['100%', '41%']} mb={['4%','0']}>
           <Text>Bairro</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -339,7 +325,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
         </Flex>
-        <Flex flexDir={'column'} width={['100%', '41%']}>
+        <Flex flexDir={'column'} width={['100%', '41%']} mb={['4%','0']}>
           <Text>Cidade</Text>
           <Input
             _placeholder={{ color: 'blue.10' }}
@@ -348,7 +334,6 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            mt={['15px', '0']}
             _hover={{ color: 'blue.10' }}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
             height={['40px', '60px']}
@@ -368,6 +353,19 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             bg="blue.110"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '5px',
+              },
+              '&::-webkit-scrollbar-track': {
+                width: '6px',
+                height: '10px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: '#BEE3F8',
+                borderRadius: '24px',
+              },
+            }}
           >
             {countryState.map((value) => (
               <option key={value} value={value}>
@@ -386,10 +384,11 @@ export default function DetailStep({ handleClick }: IDetailStep) {
           bg="white"
           width="50%"
           height="5%"
+          minH="50px"
         >
           Próxima
         </Button>
       </Link>
-    </>
+    </Flex>
   )
 }

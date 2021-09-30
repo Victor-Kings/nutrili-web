@@ -13,24 +13,39 @@ export default function Registration() {
     setShow(e.target.checked)
   }
   return (
-    <Flex justifyContent="flex-end">
+    <Flex justifyContent="flex-end" h="100vh">
       <Flex
         w={['100%', '100%', '34%']}
         minW="300px"
         bgColor="blue.200"
-        h="100vh"
         justifyContent="center"
-        alignItems="start"
+        alignItems="center"
+        alignSelf= "center"
+        h='100%'
       >
         <Flex
           alignItems="center"
           flexDir="column"
           width="100%"
-          height="100%"
           paddingX={['30px', '60px']}
-          marginTop={['30px', '60px']}
+          h='100%'
+          mt="5%"
+          overflow="auto"
+          css={{
+            '&::-webkit-scrollbar': {
+              width: '5px',
+            },
+            '&::-webkit-scrollbar-track': {
+              width: '6px',
+              height: '10px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: 'white',
+              borderRadius: '24px',
+            },
+          }}
         >
-          <Flex justifyContent="center">
+          <Flex justifyContent="center" pb="10%">
             <Image
               src="/icons/logo.png"
               width={[120, 140, 140]}
@@ -47,7 +62,7 @@ export default function Registration() {
         </Flex>
       </Flex>
 
-      <Flex w={['0%', '0%', '66%']}>
+      <Flex w={['0%', '0%', '66%']} maxH="1080px">
         <Image src="/icons/nutricionista.png" />
       </Flex>
     </Flex>
