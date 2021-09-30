@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 import DefaultStep from '../components/RegistrationSteps/DefaultStep/DefaultStep'
+import DetailStep from '../components/RegistrationSteps/DetailStep/DetailStep'
 
 export default function Registration() {
   const [show, setShow] = useState(false)
@@ -42,11 +43,7 @@ export default function Registration() {
               borderRadius="50%"
             />
           </Flex>
-          <DefaultStep
-            show={show}
-            checkedItems={checkedItems}
-            handleClick={handleClick}
-          />
+          <DetailStep handleClick={handleClick} />
         </Flex>
       </Flex>
 

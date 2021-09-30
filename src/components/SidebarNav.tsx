@@ -124,7 +124,7 @@ export function SidebarNav() {
                 Notificação
               </Text>
             </Link>
-            <Link 
+            <Link
               href="/clients"
               display="flex"
               flex="1"
