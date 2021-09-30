@@ -15,6 +15,7 @@ import { TextInputMask, TextInputMasked } from 'react-native-masked-text'
 import { View } from 'framework7-react'
 import { StylesContext } from '@material-ui/styles'
 import { Style } from '@material-ui/icons'
+import { blueGrey } from '@material-ui/core/colors'
 
 export default function DetailStep({ handleClick }: IDetailStep) {
   const [tel, setTel] = useState('')
@@ -47,6 +48,18 @@ export default function DetailStep({ handleClick }: IDetailStep) {
     'SE',
     'TO',
     'DF'
+  ]
+  const typesOfCRN = [
+    'CRN-1',
+    'CRN-2',
+    'CRN-3',
+    'CRN-4',
+    'CRN-5',
+    'CRN-6',
+    'CRN-7',
+    'CRN-8',
+    'CRN-9',
+    'CRN-10'
   ]
   return (
     <>
@@ -86,28 +99,32 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
         </Flex>
         <Flex flexDir={'column'} width={['100%', '40%']}>
           <Text> CRN tipo</Text>
-          <Input
-            _placeholder={{ color: 'blue.10' }}
-            name="typesOfCRN"
+          <Select
+            placeholder=""
+            _placeholder={{ color: 'blue.110' }}
+            name="tpesOfCRN"
             type="text"
-            as={InputMask}
-            mask="CRN9"
-            maskChar={null}
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-          />
+            bg="blue.110"
+          >
+            {typesOfCRN.map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Select>
         </Flex>
       </Flex>
 
@@ -139,7 +156,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -157,7 +174,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             maskChar={null}
             mask="***.***.***-**"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -189,7 +206,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
             bg="blue.110"
@@ -215,12 +232,11 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
             maxlength="10"
             pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\d{2}"
-            required
           />
         </Flex>
       </Flex>
@@ -253,7 +269,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -268,7 +284,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -279,11 +295,14 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             _placeholder={{ color: 'blue.10' }}
             name="number"
             type="text"
+            as={InputMask}
+            maskChar={null}
+            mask="99999"
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -315,7 +334,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
           />
@@ -330,7 +349,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
             height={['40px', '60px']}
           />
@@ -346,7 +365,7 @@ export default function DetailStep({ handleClick }: IDetailStep) {
             bgColor="blue.110"
             variant="filled"
             _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             height={['40px', '60px']}
             bg="blue.110"
           >
