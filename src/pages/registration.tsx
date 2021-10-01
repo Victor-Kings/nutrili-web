@@ -1,18 +1,42 @@
-import { Flex, Text, Input, Button, Image, Checkbox } from '@chakra-ui/react'
-import { useState } from 'react'
-
-import Link from 'next/link'
+import { Flex, Image } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import DefaultStep from '../components/RegistrationSteps/DefaultStep/DefaultStep'
 import DetailStep from '../components/RegistrationSteps/DetailStep/DetailStep'
+
+interface DataUser {
+  Last_Name: string,
+  email: string,
+  name: string,
+  password: string,
+  password_repeat: string,
+  CRN: string,
+  CRN_type: string,
+  birth: string,
+  city: string,
+  cpf: string,
+  gender: string,
+  neighborhood: string,
+  number: string,
+  phone: string,
+  postal_code: string,
+  state: string,
+  street: string,
+}
 
 export default function Registration() {
   const [show, setShow] = useState(false)
   const [checkedItems, setCheckedItems] = useState(false)
-  const showDetailStep = true
-  const handleClick = (e) => {
+  const [showDetailStep, setShowDetailStep] = useState(false)
+  const showPassword = (e) => {
     setCheckedItems(e.target.checked)
     setShow(e.target.checked)
   }
+  const [data, setData] = useState<any>()
+  const handlerNextStep = (value: any, isDefaultStep = false) => {
+    setShowDetailStep(isDefaultStep)
+    setData({...value,...data})
+  }
+  console.log(data)
   return (
     <Flex justifyContent="flex-end" h="100vh">
       <Flex
@@ -59,15 +83,17 @@ export default function Registration() {
               borderRadius="50%"
             />
           </Flex>
+
           {showDetailStep ? (
-            <DetailStep handleClick={handleClick} />
+            <DetailStep handlerNextStep={handlerNextStep}/>
           ) : (
-            <DefaultStep
-              handleClick={handleClick}
-              show={show}
-              checkedItems={checkedItems}
-            />
-          )}
+              <DefaultStep
+                showPassword={showPassword}
+                show={show}
+                checkedItems={checkedItems}
+                handlerNextStep={handlerNextStep}
+              />
+            )}
         </Flex>
       </Flex>
 
