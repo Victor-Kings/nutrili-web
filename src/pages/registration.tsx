@@ -8,6 +8,7 @@ import DetailStep from '../components/RegistrationSteps/DetailStep/DetailStep'
 export default function Registration() {
   const [show, setShow] = useState(false)
   const [checkedItems, setCheckedItems] = useState(false)
+  const showDetailStep = true
   const handleClick = (e) => {
     setCheckedItems(e.target.checked)
     setShow(e.target.checked)
@@ -20,29 +21,29 @@ export default function Registration() {
         bgColor="blue.200"
         justifyContent="center"
         alignItems="center"
-        alignSelf= "center"
-        h='100%'
+        alignSelf="center"
+        h="100%"
       >
         <Flex
           alignItems="center"
           flexDir="column"
           width="100%"
           paddingX={['30px', '60px']}
-          h='100%'
+          h="100%"
           mt="5%"
           overflow="auto"
           css={{
             '&::-webkit-scrollbar': {
-              width: '5px',
+              width: '5px'
             },
             '&::-webkit-scrollbar-track': {
               width: '6px',
-              height: '10px',
+              height: '10px'
             },
             '&::-webkit-scrollbar-thumb': {
               background: 'white',
-              borderRadius: '24px',
-            },
+              borderRadius: '24px'
+            }
           }}
         >
           <Flex justifyContent="center" pb="10%">
@@ -58,7 +59,15 @@ export default function Registration() {
               borderRadius="50%"
             />
           </Flex>
-          <DetailStep handleClick={handleClick} />
+          {showDetailStep ? (
+            <DetailStep handleClick={handleClick} />
+          ) : (
+            <DefaultStep
+              handleClick={handleClick}
+              show={show}
+              checkedItems={checkedItems}
+            />
+          )}
         </Flex>
       </Flex>
 
