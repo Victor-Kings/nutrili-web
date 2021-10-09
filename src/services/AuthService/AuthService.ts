@@ -4,8 +4,7 @@ import { LOCAL_STORAGE_AUTH_TOKEN } from '../../configs/const'
 import {
   IAuthenticationToken,
   IAuthServiceProps,
-  IIsRegister,
-  IResponseAuthToken
+  IIsRegister
 } from './AuthService.interface'
 
 export class AuthService implements IAuthServiceProps {
@@ -16,24 +15,6 @@ export class AuthService implements IAuthServiceProps {
       params: { phone: phoneNumber },
       headers: { AOBARIZATION: process.env.AUTH_AOBARIZATION }
     })
-
-  authenticate = async (
-    phoneNumber: string,
-    smsToken: string
-  ): Promise<IResponseAuthToken> => {
-    const formData = this.mapToFormData(phoneNumber, smsToken)
-
-    const { data } = await apiBackend.post<IResponseAuthToken>(
-      '/oauth/token',
-      formData,
-      {
-        headers: {
-          Authorization: process.env.AUTH_AUTHORIZATION
-        }
-      }
-    )
-    return data
-  }
 
   verifyIsUser = async (token: string): Promise<IIsRegister> => {
     const { data } = await apiBackendAuthenticated.get<IIsRegister>(

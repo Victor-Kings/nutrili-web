@@ -1,4 +1,13 @@
-import { Flex, Text, Input, Button, Stack, Image } from '@chakra-ui/react'
+import {
+  Flex,
+  Text,
+  Input,
+  Button,
+  Stack,
+  Image,
+  Link as LinkChakra
+} from '@chakra-ui/react'
+import Router from 'next/router'
 
 import FacebookIcon from '@material-ui/icons/Facebook'
 
@@ -99,16 +108,28 @@ export default function Login() {
             Esqueci minha senha
           </Text>
 
+          <Link href="/registration">
+            <LinkChakra
+              fontWeight="medium"
+              color="white"
+              textAlign="center"
+              fontSize="20px"
+              fontFamily="heading"
+              pt="18%"
+              pb="2%"
+            >
+              Cadastrar
+            </LinkChakra>
+          </Link>
           <Text
             fontWeight="medium"
             color="white"
             textAlign="center"
             fontSize="16px"
             fontFamily="heading"
-            pt="20%"
             pb="5%"
           >
-            -entrar com-
+            -ou entrar com-
           </Text>
 
           <Flex width="100%" justifyContent="space-between">

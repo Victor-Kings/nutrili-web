@@ -4,5 +4,5 @@ export interface IDefaultStep {
   show: boolean
   checkedItems: boolean
   showPassword: (e: ChangeEvent) => void
-  handlerNextStep:(value:any, isDefaultStep:boolean) => void
+  handlerNextStep: (value: any, isDefaultStep: boolean) => void
 }

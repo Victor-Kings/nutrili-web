@@ -1,11 +1,22 @@
-import { Flex, Text, Input, Button, Select, FormControl } from '@chakra-ui/react'
+import {
+  Flex,
+  Text,
+  Input,
+  Button,
+  Select,
+  FormControl
+} from '@chakra-ui/react'
 import { IDetailStep } from './DetailStep.interface'
 import InputMask from 'react-input-mask'
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
 
-export default function DetailStep({ handlerNextStep }: IDetailStep) {
-  const { handleSubmit, register, watch, formState: { errors, isSubmitting } } = useForm();
-
+export default function DetailStep({ handlerSendData }: IDetailStep) {
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors, isSubmitting }
+  } = useForm()
 
   const gender = ['masculino', 'feminino']
   const countryState = [
@@ -50,7 +61,7 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
     'CRN10'
   ]
   function onSubmit(values) {
-    handlerNextStep(values)
+    handlerSendData(values)
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -66,7 +77,7 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
             pb="20px"
           >
             Vamos precisar de alguns dados iniciais!
-      </Text>
+          </Text>
 
           <Flex
             flexDir={['column', 'row']}
@@ -86,9 +97,9 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("CRN", {
-                  required: "O CRN é obrigatório",
-                  minLength: { value: 4, message: "Tamanho minimo deve ser 4" }
+                {...register('CRN', {
+                  required: 'O CRN é obrigatório',
+                  minLength: { value: 4, message: 'Tamanho minimo deve ser 4' }
                 })}
               />
             </Flex>
@@ -106,8 +117,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
                 bg="blue.110"
-                {...register("CRN_type", {
-                  required: "Selecione um tipo de CRN",
+                {...register('CRN_type', {
+                  required: 'Selecione um tipo de CRN'
                 })}
               >
                 {typesOfCRN.map((value) => (
@@ -150,8 +161,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("phone", {
-                  required: "O telefone é obrigatório",
+                {...register('phone', {
+                  required: 'O telefone é obrigatório'
                 })}
               />
             </Flex>
@@ -170,9 +181,12 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 mask="***.***.***-**"
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
-                _focusVisible={{ textColor: 'blue.110', backgroundColor: 'white' }}
-                {...register("cpf", {
-                  required: "O CPF é obrigatório",
+                _focusVisible={{
+                  textColor: 'blue.110',
+                  backgroundColor: 'white'
+                }}
+                {...register('cpf', {
+                  required: 'O CPF é obrigatório'
                 })}
               />
             </Flex>
@@ -208,8 +222,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
                 bg="blue.110"
-                {...register("gender", {
-                  required: "Selecione um genero",
+                {...register('gender', {
+                  required: 'Selecione um genero'
                 })}
               >
                 {gender.map((value) => (
@@ -236,8 +250,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("birth", {
-                  required: "Idade é obrigatório",
+                {...register('birth', {
+                  required: 'Idade é obrigatório'
                 })}
               />
             </Flex>
@@ -275,8 +289,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("postal_code", {
-                  required: "CEP é obrigatório",
+                {...register('postal_code', {
+                  required: 'CEP é obrigatório'
                 })}
               />
             </Flex>
@@ -293,8 +307,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("street", {
-                  required: "Rua é obrigatório",
+                {...register('street', {
+                  required: 'Rua é obrigatório'
                 })}
               />
             </Flex>
@@ -314,8 +328,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("number", {
-                  required: "número é obrigatório",
+                {...register('number', {
+                  required: 'número é obrigatório'
                 })}
               />
             </Flex>
@@ -350,8 +364,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 height={['40px', '60px']}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
-                {...register("neighborhood", {
-                  required: "Bairro é obrigatório",
+                {...register('neighborhood', {
+                  required: 'Bairro é obrigatório'
                 })}
               />
             </Flex>
@@ -368,8 +382,8 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                 _hover={{ color: 'blue.10' }}
                 _focusVisible={{ color: 'blue.110', backgroundColor: 'white' }}
                 height={['40px', '60px']}
-                {...register("city", {
-                  required: "Cidade é obrigatório",
+                {...register('city', {
+                  required: 'Cidade é obrigatório'
                 })}
               />
             </Flex>
@@ -401,11 +415,11 @@ export default function DetailStep({ handlerNextStep }: IDetailStep) {
                     borderRadius: '24px'
                   }
                 }}
-                {...register("state", {
-                  required: "Selecione uma cidade",
+                {...register('state', {
+                  required: 'Selecione uma cidade'
                 })}
               >
-                {countryState.map((value,index) => (
+                {countryState.map((value, index) => (
                   <option key={`${value}+${index}`} value={value}>
                     {value}
                   </option>

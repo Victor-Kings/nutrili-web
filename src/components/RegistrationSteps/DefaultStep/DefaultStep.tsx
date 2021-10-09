@@ -5,10 +5,10 @@ import {
   Input,
   Button,
   Checkbox,
-  FormControl,
+  FormControl
 } from '@chakra-ui/react'
 import { IDefaultStep } from './DesaultStep.interface'
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
 
 export default function DefaultStep({
   showPassword,
@@ -16,12 +16,17 @@ export default function DefaultStep({
   checkedItems,
   handlerNextStep
 }: IDefaultStep) {
-  const { handleSubmit, register, watch, formState: { errors, isSubmitting } } = useForm();
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors, isSubmitting }
+  } = useForm()
   function onSubmit(values) {
-    handlerNextStep(values,true)
+    handlerNextStep(values, true)
   }
-  const password = useRef({});
-  password.current = watch("password", "");
+  const password = useRef({})
+  password.current = watch('password', '')
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={errors.name}>
@@ -35,7 +40,7 @@ export default function DefaultStep({
           pb="30px"
         >
           Criar sua Conta do Nutrili
-      </Text>
+        </Text>
         <Flex
           flexDir={['column', 'row']}
           width="100%"
@@ -53,9 +58,9 @@ export default function DefaultStep({
             _hover={{ color: 'blue.110' }}
             width={['100%', '60%']}
             height={['40px', '60px']}
-            {...register("name", {
-              required: "O nome é obrigatório",
-              minLength: { value: 4, message: "Tamanho minimo deve ser 4" }
+            {...register('name', {
+              required: 'O nome é obrigatório',
+              minLength: { value: 4, message: 'Tamanho minimo deve ser 4' }
             })}
           />
 
@@ -72,9 +77,9 @@ export default function DefaultStep({
             _hover={{ color: 'blue.110' }}
             width={['100%', '38%']}
             height={['40px', '60px']}
-            {...register("Last_Name", {
-              required:  "O Sobrenome é obrigatório",
-              minLength: { value: 4, message: "Tamanho minimo deve ser 4" }
+            {...register('Last_Name', {
+              required: 'O Sobrenome é obrigatório',
+              minLength: { value: 4, message: 'Tamanho minimo deve ser 4' }
             })}
           />
         </Flex>
@@ -96,8 +101,8 @@ export default function DefaultStep({
             _hover={{ color: 'blue.110' }}
             width="100%"
             height={['40px', '60px']}
-            {...register("email", {
-              required: "This is required",
+            {...register('email', {
+              required: 'This is required'
             })}
           />
         </Flex>
@@ -119,11 +124,11 @@ export default function DefaultStep({
             _hover={{ color: 'blue.110' }}
             width={['100%', '49%']}
             height={['40px', '60px']}
-            {...register("password", {
-              required: "Senha é obrigatório",
+            {...register('password', {
+              required: 'Senha é obrigatório',
               minLength: {
                 value: 8,
-                message: "Senha deve ter mais de 8 caracteres"
+                message: 'Senha deve ter mais de 8 caracteres'
               }
             })}
           />
@@ -140,9 +145,9 @@ export default function DefaultStep({
             _hover={{ color: 'blue.110' }}
             width={['100%', '49%']}
             height={['40px', '60px']}
-            {...register("password_repeat", {
-              validate: value =>
-                value === password.current || "Senhas devem ser identicas"
+            {...register('password_repeat', {
+              validate: (value) =>
+                value === password.current || 'Senhas devem ser identicas'
             })}
           />
         </Flex>
@@ -151,7 +156,7 @@ export default function DefaultStep({
         <Flex flexDir="row" justifyContent="flex-start" w="100%" pt="15px">
           <Checkbox isChecked={checkedItems} onChange={(e) => showPassword(e)}>
             Mostrar senha
-        </Checkbox>
+          </Checkbox>
         </Flex>
       </FormControl>
       <Button
@@ -165,7 +170,6 @@ export default function DefaultStep({
       >
         Próximo
       </Button>
-
     </form>
   )
 }

@@ -1,27 +1,9 @@
 import { Flex, Image } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import DefaultStep from '../components/RegistrationSteps/DefaultStep/DefaultStep'
 import DetailStep from '../components/RegistrationSteps/DetailStep/DetailStep'
-
-interface DataUser {
-  Last_Name: string,
-  email: string,
-  name: string,
-  password: string,
-  password_repeat: string,
-  CRN: string,
-  CRN_type: string,
-  birth: string,
-  city: string,
-  cpf: string,
-  gender: string,
-  neighborhood: string,
-  number: string,
-  phone: string,
-  postal_code: string,
-  state: string,
-  street: string,
-}
+import { RegisterDataUserService } from '../services/registerUserDataService/registerUserDataService'
+import { DataUser } from '../services/registerUserDataService/registerUserDataService.interface'
 
 export default function Registration() {
   const [show, setShow] = useState(false)
@@ -31,12 +13,20 @@ export default function Registration() {
     setCheckedItems(e.target.checked)
     setShow(e.target.checked)
   }
-  const [data, setData] = useState<any>()
+  const [data, setData] = useState<DataUser>()
+  const registerUser = new RegisterDataUserService()
   const handlerNextStep = (value: any, isDefaultStep = false) => {
     setShowDetailStep(isDefaultStep)
-    setData({...value,...data})
+    setData({ ...value, ...data })
   }
-  console.log(data)
+
+  const handlerSendData = async (value: any) => {
+    console.log('VALIE', value)
+
+    const a = await registerUser.sendRegisterData({ ...data, ...value })
+    console.log('Ret', a)
+  }
+
   return (
     <Flex justifyContent="flex-end" h="100vh">
       <Flex
@@ -85,15 +75,15 @@ export default function Registration() {
           </Flex>
 
           {showDetailStep ? (
-            <DetailStep handlerNextStep={handlerNextStep}/>
+            <DetailStep handlerSendData={handlerSendData} />
           ) : (
-              <DefaultStep
-                showPassword={showPassword}
-                show={show}
-                checkedItems={checkedItems}
-                handlerNextStep={handlerNextStep}
-              />
-            )}
+            <DefaultStep
+              showPassword={showPassword}
+              show={show}
+              checkedItems={checkedItems}
+              handlerNextStep={handlerNextStep}
+            />
+          )}
         </Flex>
       </Flex>
 

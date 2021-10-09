@@ -16,10 +16,6 @@ export interface IIsRegister {
   ancientPlusComplete: boolean
 }
 export interface IAuthServiceProps {
-  authenticate: (
-    phoneNumber: string,
-    smsToken: string
-  ) => Promise<IResponseAuthToken>
   sendNumberToReceiverSMSToken: (phoneNumber: string) => Promise<AxiosResponse>
   verifyIsUser: (token: string) => Promise<IIsRegister>
 }

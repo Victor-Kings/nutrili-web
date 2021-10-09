@@ -1,29 +1,45 @@
 import { AxiosResponse } from 'axios'
 import {
+  DataUser,
   IRegisterDataUserServiceProps,
-  IpayloadResponses,
-  IPayloadUser
+  IRegisterUserDataMapToRequest
 } from './registerUserDataService.interface'
-import { apiBackendAuthenticated, getAccessToken } from '../../configs/api'
+import { apiBackend } from '../../configs/api'
 
 export class RegisterDataUserService implements IRegisterDataUserServiceProps {
-  sendResponseQuestions = async (
-    response: IpayloadResponses[] | null
-  ): Promise<AxiosResponse> => {
-    const token = await getAccessToken()
-    return apiBackendAuthenticated.post('/answer/insertAnswer', response, {
-      headers: {
-        Authorization: `Bearer ${token}`
+  sendRegisterData = async (response: DataUser): Promise<AxiosResponse> => {
+    const value = await apiBackend.post(
+      '/user/insertUser',
+      this.mapToRequest(response),
+      {
+        headers: {
+          AOBARIZATION: process.env.AUTH_AOBARIZATION
+        }
       }
-    })
+    )
+
+    return value
   }
 
-  sendRegisterData = async (response: IPayloadUser): Promise<AxiosResponse> => {
-    const token = await getAccessToken()
-    return apiBackendAuthenticated.put('/user/updateUser', response, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+  private mapToRequest = (request: DataUser) => {
+    const phone = request.phone.replace(/[^0-9]+/g, '')
+    const newValue: IRegisterUserDataMapToRequest = {
+      birth: request.birth,
+      name: `${request.name} ${request.Last_Name}`,
+      cep: request.postal_code,
+      city: request.city,
+      cpf: request.cpf,
+      crn: request.CRN,
+      crnType: request.CRN_type,
+      email: request.email,
+      gender: request.gender === 'masculino' ? 'M' : 'F',
+      neighborhood: request.neighborhood,
+      number: request.number,
+      password: request.password,
+      phone: phone,
+      state: request.state,
+      street: request.street
+    }
+    return newValue
   }
 }

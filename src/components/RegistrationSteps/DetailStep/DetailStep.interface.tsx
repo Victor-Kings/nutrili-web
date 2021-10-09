@@ -1,3 +1,3 @@
 export interface IDetailStep {
-  handlerNextStep: (values: any) => void
+  handlerSendData: (values: any) => void
 }
