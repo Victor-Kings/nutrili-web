@@ -8,7 +8,7 @@ import {
   Link as LinkChakra
 } from '@chakra-ui/react'
 import Router from 'next/router'
-
+import { useState } from 'react'
 import FacebookIcon from '@material-ui/icons/Facebook'
 
 import googleIcon from '@iconify/icons-grommet-icons/google'
@@ -16,8 +16,17 @@ import googleIcon from '@iconify/icons-grommet-icons/google'
 import { Icon } from '@iconify/react'
 
 import Link from 'next/link'
+import { AuthService } from '../services/AuthService/AuthService'
 
 export default function Login() {
+  const [email, setEmail] = useState<string>()
+  const [password, setPassword] = useState<string>()
+  const handleChangeEmail = (event) => setEmail(event.target.value)
+  const handleChangePassword = (event) => setPassword(event.target.value)
+  const sendDataLogin = new AuthService()
+  const handlerSendData = () => {
+    sendDataLogin.login(email, password)
+  }
   return (
     <Flex justifyContent="flex-end">
       <Flex w={['0%', '0%', '66%']}>
@@ -69,6 +78,7 @@ export default function Login() {
               variant="filled"
               _hover={{ color: 'blue.110' }}
               size="lg"
+              onChange={handleChangeEmail}
             />
 
             <Input
@@ -81,21 +91,21 @@ export default function Login() {
               variant="filled"
               _hover={{ color: 'blue.110' }}
               size="lg"
+              onChange={handleChangePassword}
             />
           </Stack>
 
-          <Link href="/dashboard">
-            <Button
-              type="submit"
-              mt="6"
-              colorScheme="blue"
-              variant="ghost"
-              bg="white"
-              width="100%"
-            >
-              Entrar
-            </Button>
-          </Link>
+          <Button
+            type="submit"
+            mt="6"
+            colorScheme="blue"
+            variant="ghost"
+            bg="white"
+            width="100%"
+            onClick={handlerSendData}
+          >
+            Entrar
+          </Button>
 
           <Text
             fontWeight="medium"

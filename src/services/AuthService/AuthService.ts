@@ -1,29 +1,27 @@
 import { AxiosResponse } from 'axios'
-import { apiBackend, apiBackendAuthenticated } from '../../configs/api'
+import { apiBackend } from '../../configs/api'
 import { LOCAL_STORAGE_AUTH_TOKEN } from '../../configs/const'
 import {
   IAuthenticationToken,
-  IAuthServiceProps,
-  IIsRegister
+  IAuthServiceProps
 } from './AuthService.interface'
 
 export class AuthService implements IAuthServiceProps {
-  sendNumberToReceiverSMSToken = async (
-    phoneNumber: string
-  ): Promise<AxiosResponse> =>
-    apiBackend.post('/user/smsToken', null, {
-      params: { phone: phoneNumber },
-      headers: { AOBARIZATION: process.env.AUTH_AOBARIZATION }
-    })
-
-  verifyIsUser = async (token: string): Promise<IIsRegister> => {
-    const { data } = await apiBackendAuthenticated.get<IIsRegister>(
-      '/user/isNewUser',
-      { headers: { Authorization: `Bearer ${token}` } }
+  login = async (email: string, password: string): Promise<AxiosResponse> => {
+    const a = await apiBackend.post(
+      '/oauth/token',
+      {
+        grant_type: process.env.AUTH_GRANT_TYPE,
+        username: `${email}:1`,
+        password: password
+      },
+      {
+        headers: { Authorization: process.env.AUTH_AUTHORIZATION }
+      }
     )
-    return data
+    console.log('LOGIN', a)
+    return a
   }
-
   async logout(): Promise<void> {}
 
   getCurrentToken = async (): Promise<IAuthenticationToken | null> => {
