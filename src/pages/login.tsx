@@ -44,7 +44,7 @@ export default function Login() {
         <Flex alignItems="center" flexDir="column">
           <Flex justifyContent="center" pt={['15%', '40%']}>
             <Image
-              src="/icons/logo.png"
+              src="/icons/Logo.png"
               width={[120, 140, 140]}
               height={[120, 140, 140]}
               maxW="140px"

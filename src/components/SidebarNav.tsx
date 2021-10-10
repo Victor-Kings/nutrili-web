@@ -8,8 +8,11 @@ import {
   Icon,
   Image
 } from '@chakra-ui/react'
+
 import { AiFillHome } from 'react-icons/ai'
+
 import { BsFillPersonFill, BsFillPeopleFill } from 'react-icons/bs'
+
 import { IoSettingsSharp } from 'react-icons/io5'
 
 export function SidebarNav() {
@@ -17,7 +20,7 @@ export function SidebarNav() {
     <>
       <Flex flex="1" justifyContent="center" pt="32px">
         <Image
-          src="/icons/logo.png"
+          src="/icons/Logo.png"
           width="117px"
           height="117px"
           bg="blue.300"
@@ -26,6 +29,7 @@ export function SidebarNav() {
           borderRadius="50%"
         />
       </Flex>
+
       <Flex flex="1" justifyContent="center" pt="51px" p="34px">
         <Avatar
           name="Dan Abrahmov"
@@ -34,6 +38,7 @@ export function SidebarNav() {
           height="57px"
           border="3px solid white"
         />
+
         <Flex
           flex="1"
           w="100%"
@@ -45,6 +50,7 @@ export function SidebarNav() {
           <Text fontWeight="semibold" color="white" fontSize="18px">
             Joaozinho Pereira
           </Text>
+
           <Link href="/login">
             <Text fontWeight="semibold" fontSize="14px" color="blue.10">
               SAIR
@@ -52,6 +58,7 @@ export function SidebarNav() {
           </Link>
         </Flex>
       </Flex>
+
       <Stack spacing="12" align="flex-start" flex="1">
         <Box w="100%">
           <Stack spacing="8" align="stretch">
@@ -69,6 +76,7 @@ export function SidebarNav() {
                 justifyContent="flex-start"
                 ml="15%"
               />
+
               <Text
                 fontWeight="medium"
                 ml="5%"
@@ -78,6 +86,7 @@ export function SidebarNav() {
                 Home
               </Text>
             </Link>
+
             <Link
               href="/perfil"
               display="flex"
@@ -92,6 +101,7 @@ export function SidebarNav() {
                 justifyContent="flex-start"
                 ml="15%"
               />
+
               <Text
                 fontWeight="medium"
                 ml="5%"
@@ -101,6 +111,7 @@ export function SidebarNav() {
                 Perfil
               </Text>
             </Link>
+
             <Link
               href="/notifications"
               display="flex"
@@ -115,6 +126,7 @@ export function SidebarNav() {
                 justifyContent="flex-start"
                 ml="15%"
               />
+
               <Text
                 fontWeight="medium"
                 ml="5%"
@@ -124,6 +136,7 @@ export function SidebarNav() {
                 Notificação
               </Text>
             </Link>
+
             <Link
               href="/clients"
               display="flex"
@@ -138,6 +151,7 @@ export function SidebarNav() {
                 justifyContent="flex-start"
                 ml="15%"
               />
+
               <Text
                 fontWeight="medium"
                 ml="5%"
@@ -147,6 +161,7 @@ export function SidebarNav() {
                 Clientes
               </Text>
             </Link>
+
             <Link
               href="/configuration"
               display="flex"
@@ -161,6 +176,7 @@ export function SidebarNav() {
                 justifyContent="flex-start"
                 ml="15%"
               />
+
               <Text
                 fontWeight="medium"
                 ml="5%"

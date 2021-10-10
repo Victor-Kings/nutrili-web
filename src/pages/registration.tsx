@@ -1,22 +1,35 @@
 import { Flex, Image } from '@chakra-ui/react'
+
 import { useState } from 'react'
+
 import DefaultStep from '../components/RegistrationSteps/DefaultStep/DefaultStep'
+
 import DetailStep from '../components/RegistrationSteps/DetailStep/DetailStep'
+
 import { RegisterDataUserService } from '../services/registerUserDataService/registerUserDataService'
+
 import { DataUser } from '../services/registerUserDataService/registerUserDataService.interface'
 
 export default function Registration() {
   const [show, setShow] = useState(false)
+
   const [checkedItems, setCheckedItems] = useState(false)
+
   const [showDetailStep, setShowDetailStep] = useState(false)
+
   const showPassword = (e) => {
     setCheckedItems(e.target.checked)
+
     setShow(e.target.checked)
   }
+
   const [data, setData] = useState<DataUser>()
+
   const registerUser = new RegisterDataUserService()
+
   const handlerNextStep = (value: any, isDefaultStep = false) => {
     setShowDetailStep(isDefaultStep)
+
     setData({ ...value, ...data })
   }
 
@@ -24,6 +37,7 @@ export default function Registration() {
     console.log('VALIE', value)
 
     const a = await registerUser.sendRegisterData({ ...data, ...value })
+
     console.log('Ret', a)
   }
 
@@ -50,19 +64,23 @@ export default function Registration() {
             '&::-webkit-scrollbar': {
               width: '5px'
             },
+
             '&::-webkit-scrollbar-track': {
               width: '6px',
+
               height: '10px'
             },
+
             '&::-webkit-scrollbar-thumb': {
               background: 'white',
+
               borderRadius: '24px'
             }
           }}
         >
           <Flex justifyContent="center" pb="10%">
             <Image
-              src="/icons/logo.png"
+              src="/icons/Logo.png"
               width={[120, 140, 140]}
               height={[120, 140, 140]}
               maxW="140px"
