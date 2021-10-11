@@ -3,32 +3,22 @@ import {
   SimpleGrid,
   useBreakpointValue,
   Avatar,
-  Link,
   Icon,
-  IconButton
+  IconButton,
+  Button
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { Counter } from '../components/Counter'
 import { IClients } from '../interfaces/clientes.interface'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { extendTheme } from '@chakra-ui/react'
 import SimpleAccordion from '../components/NewClientsList'
 import Schedule from '../components/Schedule/Schedule'
 import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
-
-const breakpoints = createBreakpoints({
-  tiny: '20em',
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '80em',
-  xl2: '90em'
-})
-
-const theme = extendTheme({ breakpoints })
+import { useContext } from 'react'
+import AuthContext from '../contexts/AuthContext'
+import { withSSRAuth } from '../utils/withSSRAuth'
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -162,6 +152,11 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
+  const { signOut } = useContext(AuthContext)
+  const handlerLogout = () => {
+    signOut()
+  }
+
   return (
     <>
       {isWideVersion && (
@@ -188,11 +183,16 @@ export default function Dashboard() {
               <Text fontWeight="semibold" color="blue.300" fontSize="18px">
                 Joaozinho Pereira
               </Text>
-              <Link href="/login">
-                <Text fontWeight="semibold" fontSize="14px" color="blue.10">
-                  SAIR
-                </Text>
-              </Link>
+
+              <Button
+                onClick={handlerLogout}
+                fontWeight="semibold"
+                fontSize="14px"
+                color="blue.10"
+                variant="link"
+              >
+                SAIR
+              </Button>
             </Flex>
             <Avatar
               name="Dan Abrahmov"
@@ -298,3 +298,9 @@ export default function Dashboard() {
     </>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})

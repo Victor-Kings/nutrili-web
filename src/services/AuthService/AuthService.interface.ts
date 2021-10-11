@@ -17,4 +17,5 @@ export interface IIsRegister {
 }
 export interface IAuthServiceProps {
   login: (email: string, password: string) => Promise<AxiosResponse>
+  logout: (token: string) => Promise<AxiosResponse>
 }

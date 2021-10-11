@@ -7,8 +7,7 @@ import {
   Image,
   Link as LinkChakra
 } from '@chakra-ui/react'
-import Router from 'next/router'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import FacebookIcon from '@material-ui/icons/Facebook'
 
 import googleIcon from '@iconify/icons-grommet-icons/google'
@@ -16,17 +15,26 @@ import googleIcon from '@iconify/icons-grommet-icons/google'
 import { Icon } from '@iconify/react'
 
 import Link from 'next/link'
-import { AuthService } from '../services/AuthService/AuthService'
+import AuthContext from '../contexts/AuthContext'
+import Router from 'next/router'
 
 export default function Login() {
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
   const handleChangeEmail = (event) => setEmail(event.target.value)
   const handleChangePassword = (event) => setPassword(event.target.value)
-  const sendDataLogin = new AuthService()
-  const handlerSendData = () => {
-    sendDataLogin.login(email, password)
+
+  const { signIn, isAuthenticated } = useContext(AuthContext)
+  useEffect(() => {
+    if (isAuthenticated) {
+      Router.push('/dashboard')
+    }
+  }, [isAuthenticated])
+
+  const handlerSendData = async () => {
+    signIn(email, password)
   }
+
   return (
     <Flex justifyContent="flex-end">
       <Flex w={['0%', '0%', '66%']}>

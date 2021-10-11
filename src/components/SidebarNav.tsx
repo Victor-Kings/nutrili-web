@@ -3,10 +3,11 @@ import {
   Box,
   Stack,
   Text,
-  Link,
   Flex,
   Icon,
-  Image
+  Image,
+  Link,
+  Button
 } from '@chakra-ui/react'
 
 import { AiFillHome } from 'react-icons/ai'
@@ -14,8 +15,14 @@ import { AiFillHome } from 'react-icons/ai'
 import { BsFillPersonFill, BsFillPeopleFill } from 'react-icons/bs'
 
 import { IoSettingsSharp } from 'react-icons/io5'
+import { useContext } from 'react'
+import AuthContext from '../contexts/AuthContext'
 
 export function SidebarNav() {
+  const { signOut } = useContext(AuthContext)
+  const handlerLogout = () => {
+    signOut()
+  }
   return (
     <>
       <Flex flex="1" justifyContent="center" pt="32px">
@@ -51,11 +58,16 @@ export function SidebarNav() {
             Joaozinho Pereira
           </Text>
 
-          <Link href="/login">
-            <Text fontWeight="semibold" fontSize="14px" color="blue.10">
-              SAIR
-            </Text>
-          </Link>
+          <Button
+            onClick={handlerLogout}
+            fontWeight="semibold"
+            fontSize="14px"
+            color="blue.10"
+            variant="link"
+            alignSelf="flex-start"
+          >
+            SAIR
+          </Button>
         </Flex>
       </Flex>
 

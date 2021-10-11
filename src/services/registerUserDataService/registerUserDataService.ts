@@ -6,7 +6,7 @@ import {
   IRegisterUserDataMapToRequest
 } from './registerUserDataService.interface'
 
-import { apiBackend } from '../../configs/api'
+import { apiBackend } from '../apiClient'
 
 export class RegisterDataUserService implements IRegisterDataUserServiceProps {
   sendRegisterData = async (response: DataUser): Promise<AxiosResponse> => {
