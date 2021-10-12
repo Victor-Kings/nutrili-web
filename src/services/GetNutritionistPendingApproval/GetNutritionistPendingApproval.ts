@@ -1,3 +1,4 @@
+import { parseCookies } from 'nookies'
 import { IClientsData } from '../../interfaces/clientes.interface'
 import { apiBackend } from '../apiClient'
 import { IGetNutritionistPendingApprovalProps } from './GetNutritionistPendingApproval.interface'
@@ -5,12 +6,12 @@ import { IGetNutritionistPendingApprovalProps } from './GetNutritionistPendingAp
 export class GetNutritionistPendingApproval
   implements IGetNutritionistPendingApprovalProps
 {
-  getApproval = async (token: string): Promise<IClientsData> => {
+  getApproval = async (): Promise<IClientsData> => {
     const { data } = await apiBackend.get(
       '/nutritionist/getNutritionistRequest',
       {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${parseCookies()['auth-token']}`
         }
       }
     )
@@ -18,7 +19,6 @@ export class GetNutritionistPendingApproval
   }
 
   acceptUser = async (
-    token: string,
     requestId: string,
     approval: boolean
   ): Promise<IClientsData | Error> => {
@@ -29,10 +29,10 @@ export class GetNutritionistPendingApproval
           approval
         },
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${parseCookies()['auth-token']}`
         }
       })
-      const data = await this.getApproval(token)
+      const data = await this.getApproval()
       return data
     } catch (err) {
       console.log(err)

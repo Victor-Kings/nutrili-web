@@ -19,7 +19,7 @@ import { useContext } from 'react'
 import AuthContext from '../contexts/AuthContext'
 
 export function SidebarNav() {
-  const { signOut } = useContext(AuthContext)
+  const { signOut, user } = useContext(AuthContext)
   const handlerLogout = () => {
     signOut()
   }
@@ -40,7 +40,10 @@ export function SidebarNav() {
       <Flex flex="1" justifyContent="center" pt="51px" p="34px">
         <Avatar
           name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
+          src={
+            user?.imgURL ||
+            'https://yt3.ggpht.com/ytc/AKedOLQ6Ief26j8b1lgSA1OpXSCzJBlnlEEsWtQAfdwB=s900-c-k-c0x00ffffff-no-rj'
+          }
           width="57px"
           height="57px"
           border="3px solid white"
@@ -55,7 +58,7 @@ export function SidebarNav() {
           justifyContent="center"
         >
           <Text fontWeight="semibold" color="white" fontSize="18px">
-            Joaozinho Pereira
+            {user?.name}
           </Text>
 
           <Button

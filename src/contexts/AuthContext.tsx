@@ -4,7 +4,7 @@ import { setCookie, parseCookies, destroyCookie } from 'nookies'
 
 import { AuthService } from '../services/AuthService/AuthService'
 import { apiBackend } from '../services/apiClient'
-import jwt_decode from 'jwt-decode'
+import { GetDataUserService } from '../services/GetDataUserService/GetDataUserService'
 
 interface IAuthProvider {
   loading: boolean
@@ -15,22 +15,24 @@ interface IAuthProvider {
 }
 
 type User = {
-  email: string
+  name?: string
+  email?: string
+  imgURL?: string
 }
 
 const AuthContext = createContext<IAuthProvider>(null)
 
 export const finishedSession = async () => {
   try {
-    const { 'auth-token': accessToken } = parseCookies()
     const sendDataLogin = new AuthService()
-    await sendDataLogin.logout(accessToken)
+    await sendDataLogin.logout(parseCookies()['auth-token'])
     cleanSession()
     return
   } catch (err) {
-    console.log(err)
+    console.error('Finished Session', err)
   }
 }
+
 export const cleanSession = async () => {
   destroyCookie(undefined, 'auth-token')
   destroyCookie(undefined, 'auth-refresh-token')
@@ -43,7 +45,6 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState<User>(null)
   const [loading, setLoading] = useState(true)
   const isAuthenticated = !!user
-  console.log(user)
 
   useEffect(() => {
     authChannel = new BroadcastChannel('auth')
@@ -63,19 +64,31 @@ export function AuthProvider({ children }) {
 
   const signOut = async () => {
     try {
-      finishedSession()
+      await finishedSession()
       authChannel.postMessage('signOut')
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => {
-    const { 'auth-token': accessToken } = parseCookies()
+  const fetchDataUser = () => {
+    const { getDataUser } = new GetDataUserService()
+    getDataUser()
+      .then((data) => {
+        setUser({
+          name: data.name,
+          imgURL: data.profilePicture,
+          email: data.email
+        })
+      })
+      .catch((err) => {
+        console.error('Fetch Data User', err)
+      })
+  }
 
-    if (accessToken) {
-      const accessTokenDecoded = jwt_decode<any>(accessToken)
-      setUser({ email: accessTokenDecoded.user_name })
+  useEffect(() => {
+    if (parseCookies()['auth-token']) {
+      fetchDataUser()
     }
   }, [])
 
@@ -83,8 +96,7 @@ export function AuthProvider({ children }) {
     const sendDataLogin = new AuthService()
     try {
       setLoading(true)
-      const response = sendDataLogin.login(email, password)
-      console.log(response)
+      const response = await sendDataLogin.login(email, password)
       const { access_token, refresh_token } = (await response).data
 
       setUser({
@@ -102,10 +114,14 @@ export function AuthProvider({ children }) {
       })
 
       apiBackend.defaults.headers['Authorization'] = `Bearer ${access_token}`
+
+      fetchDataUser()
+
       authChannel.postMessage('signIn')
+
       Router.push('/dashboard')
     } catch (err) {
-      console.error(err)
+      console.error('SigIn', err)
     } finally {
       setLoading(false)
     }

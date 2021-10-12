@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
-import { collectProjectingAncestors } from 'framer-motion/types/render/dom/projection/utils'
 import { parseCookies, setCookie } from 'nookies'
-import { finishedSession } from '../contexts/AuthContext'
+import { cleanSession } from '../contexts/AuthContext'
+import { COOCKIE_AUTH_REFRESH_TOKEN, COOCKIE_AUTH_TOKEN } from './const'
 interface IAuthProps {
   access_token: string
   refresh_token: string
@@ -19,8 +19,8 @@ let failedRequestsQueue: IFailed[] = []
 
 const mapToFormData = (refresh_token: string) => {
   const bodyFormData = new FormData()
-  bodyFormData.append('grant_type', 'refresh_token')
-  bodyFormData.append('refresh_token', `${refresh_token}`)
+  bodyFormData.append('grant_type', COOCKIE_AUTH_REFRESH_TOKEN)
+  bodyFormData.append(COOCKIE_AUTH_REFRESH_TOKEN, `${refresh_token}`)
   return bodyFormData
 }
 
@@ -28,7 +28,7 @@ export function setupAPIClient(ctx = undefined) {
   const apiBackend = axios.create({
     baseURL: process.env.URL_BACKEND,
     headers: {
-      Authorization: `bearer ${parseCookies()['auth-token']}`
+      Authorization: `bearer ${parseCookies()[COOCKIE_AUTH_TOKEN]}`
     }
   })
 
@@ -39,7 +39,7 @@ export function setupAPIClient(ctx = undefined) {
     (error: AxiosError) => {
       if (error.response.status == 401) {
         if (error.response?.data.error === 'invalid_token') {
-          const refreshToken = parseCookies()['auth-refresh-token']
+          const refreshToken = parseCookies()[COOCKIE_AUTH_REFRESH_TOKEN]
           const originalConfig = error.config
 
           const formData = mapToFormData(refreshToken)
@@ -53,12 +53,12 @@ export function setupAPIClient(ctx = undefined) {
               .then((response) => {
                 const { access_token, refresh_token } = response.data
 
-                setCookie(ctx, 'auth-token', access_token, {
+                setCookie(ctx, COOCKIE_AUTH_TOKEN, access_token, {
                   maxAge: 60 * 60 * 24 * 30,
                   path: '/'
                 })
 
-                setCookie(ctx, 'auth-refresh-token', refresh_token, {
+                setCookie(ctx, COOCKIE_AUTH_REFRESH_TOKEN, refresh_token, {
                   maxAge: 60 * 60 * 24 * 30,
                   path: '/'
                 })
@@ -75,7 +75,7 @@ export function setupAPIClient(ctx = undefined) {
                 failedRequestsQueue.forEach((request) => request.onFailed(err))
                 failedRequestsQueue = []
 
-                if (process.browser) finishedSession()
+                if (process.browser) cleanSession()
               })
               .finally(() => {
                 isRefreshing = false
@@ -95,7 +95,7 @@ export function setupAPIClient(ctx = undefined) {
             })
           })
         } else {
-          if (process.browser) finishedSession()
+          if (process.browser) cleanSession()
         }
       }
       return Promise.reject(error)
