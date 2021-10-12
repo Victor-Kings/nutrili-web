@@ -205,7 +205,7 @@ export default function ContentModal({
             })
           }}
         >
-          Todos os dias
+          Toda semana
         </Checkbox>
       </div>
     </div>

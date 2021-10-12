@@ -18,7 +18,7 @@ export default function Schedule() {
     try {
       await new InsertNewSchedulingService().insertScheduling(value)
     } catch (err) {
-      console.log('DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd')
+      console.error('Schedule', err)
     }
   }
   return (
