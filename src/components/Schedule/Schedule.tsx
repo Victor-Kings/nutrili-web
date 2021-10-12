@@ -4,6 +4,8 @@ import styles from './Schedule.module.scss'
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
 import ContentModal from './ContentModal'
+import { IRegisterSchedulerProps } from '../../interfaces/registerScheduler.interface'
+import { InsertNewSchedulingService } from '../../services/InsertNewSchedulingService/InsertNewSchedulingService'
 
 export default function Schedule() {
   const [showModal, SetShowModal] = useState(false)
@@ -11,12 +13,25 @@ export default function Schedule() {
   const closeModal = () => {
     SetShowModal(false)
   }
+
+  const SaveNewScheduling = async (value: IRegisterSchedulerProps) => {
+    try {
+      await new InsertNewSchedulingService().insertScheduling(value)
+    } catch (err) {
+      console.log('DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd')
+    }
+  }
   return (
     <div className={styles.content}>
       <Modal
         showModal={showModal}
         closeModal={closeModal}
-        content={<ContentModal closeModal={closeModal} />}
+        content={
+          <ContentModal
+            closeModal={closeModal}
+            saveScheduling={SaveNewScheduling}
+          />
+        }
       />
       <div className={styles.schedule}>
         <div className={styles.header}>

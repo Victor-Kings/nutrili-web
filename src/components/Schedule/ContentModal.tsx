@@ -1,23 +1,28 @@
 import { useState } from 'react'
-import {
-  FormControl,
-  FormLabel,
-  Text,
-  Textarea,
-  Input,
-  Checkbox,
-  Button,
-  Grid
-} from '@chakra-ui/react'
+import { Text, Textarea, Input, Checkbox, Button, Grid } from '@chakra-ui/react'
 import styles from './Schedule.module.scss'
 import { Icon, InlineIcon } from '@iconify/react'
 import Trash from '@iconify/icons-bx/bxs-trash-alt'
 import X from '@iconify/icons-emojione-monotone/heavy-multiplication-x'
 import DatePicker from '../DatePicker/DatePicker'
+import { IRegisterSchedulerProps } from '../../interfaces/registerScheduler.interface'
 
-export default function ContentModal({ closeModal }) {
-  const [startDate, setStartDate] = useState(new Date())
-  const setDate = (date) => setStartDate(date)
+interface ContentModalProps {
+  closeModal: any
+  saveScheduling: (value: IRegisterSchedulerProps) => void
+}
+
+export default function ContentModal({
+  closeModal,
+  saveScheduling
+}: ContentModalProps) {
+  // const [startDate, setStartDate] = useState(new Date())
+  const [stateForm, setStateForm] = useState<IRegisterSchedulerProps>()
+  const handleClickToSave = () => {
+    closeModal()
+    saveScheduling(stateForm)
+  }
+  // const setDate = (date) => setStartDate(date)
   return (
     <div className={styles.containerContentModal}>
       <div className={styles.headerContentModal}>
@@ -50,7 +55,7 @@ export default function ContentModal({ closeModal }) {
               backgroundColor="blue.110"
               colorScheme="blue"
               variant="solid"
-              onClick={closeModal}
+              onClick={handleClickToSave}
             >
               Salvar
             </Button>
@@ -82,6 +87,9 @@ export default function ContentModal({ closeModal }) {
           borderColor="blue.110"
           size="md"
           marginBottom="4%"
+          onChange={(event) =>
+            setStateForm({ ...stateForm, title: event.target.value })
+          }
         />
         <Text
           fontWeight="semibold"
@@ -107,12 +115,27 @@ export default function ContentModal({ closeModal }) {
           size="sm"
           maxH="40px"
           borderRadius="md"
+          onChange={(event) =>
+            setStateForm({ ...stateForm, summary: event.target.value })
+          }
         />
         <div>
           <div>
             <label htmlFor="startDate">Início</label>
             <div>
-              <input id="startDate" type="date" />
+              <input
+                id="startDate"
+                type="date"
+                onChange={(event) => {
+                  setStateForm({
+                    ...stateForm,
+                    startingDate: event.target.value
+                      .split('-')
+                      .reverse()
+                      .join('/')
+                  })
+                }}
+              />
               <input
                 type="time"
                 id="startHour"
@@ -120,21 +143,44 @@ export default function ContentModal({ closeModal }) {
                 min="09:00"
                 max="18:00"
                 required
+                onChange={(event) => {
+                  setStateForm({
+                    ...stateForm,
+                    startingTime: event.target.value
+                  })
+                }}
               />
             </div>
           </div>
           <div>
             <label htmlFor="endDate">Fim</label>
             <div>
-              <input id="endDate" type="date" />
+              <input
+                id="endDate"
+                type="date"
+                onChange={(event) => {
+                  setStateForm({
+                    ...stateForm,
+                    endingDate: event.target.value
+                      .split('-')
+                      .reverse()
+                      .join('/')
+                  })
+                }}
+              />
               <input
                 type="time"
                 id="endHour"
                 name="endHour"
                 min="09:00"
                 max="18:00"
-                value="#fff"
                 required
+                onChange={(event) => {
+                  setStateForm({
+                    ...stateForm,
+                    endingTime: event.target.value
+                  })
+                }}
               />
             </div>
           </div>
@@ -149,7 +195,16 @@ export default function ContentModal({ closeModal }) {
             />
           </FormControl> */}
         </div>
-        <Checkbox color="blue.200" defaultIsChecked>
+        <Checkbox
+          color="blue.200"
+          defaultIsChecked
+          onChange={(event) => {
+            setStateForm({
+              ...stateForm,
+              everyWeek: event.target.checked
+            })
+          }}
+        >
           Todos os dias
         </Checkbox>
       </div>
