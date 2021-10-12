@@ -39,10 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-import { IClients } from '../interfaces/clientes.interface'
+import { IClientsData } from '../interfaces/clientes.interface'
 
 interface IProps {
-  clients: IClients[]
+  clients: IClientsData
+  handleClick: (requestID: string, value: boolean) => void
 }
 
 function diffTimeTeste(tempo: string): string {
@@ -61,10 +62,11 @@ export default function SimpleAccordion(props: IProps) {
 
   moment.locale('pt-br')
   const classes = useStyles()
+
   return (
     <div className={styles.scrollFlex}>
-      {props.clients.map((values) => (
-        <Accordion key={values._id}>
+      {props.clients.nutritionistList.map((values) => (
+        <Accordion key={values.requestId}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
             aria-controls="panel1a-content"
@@ -79,7 +81,7 @@ export default function SimpleAccordion(props: IProps) {
               />
               <Flex width="55%">
                 <Text color="gray.200" pl="5%" fontSize={{ base: '14px' }}>
-                  {values.name} - {values.idade} anos
+                  {values.name} - {values.age} anos
                 </Text>
               </Flex>
               <Flex flex="1" justifyContent="center" alignItems="flex-end">
@@ -90,7 +92,7 @@ export default function SimpleAccordion(props: IProps) {
                   pr="2%"
                   fontSize={{ base: '12px' }}
                 >
-                  {diffTimeTeste(values.data)}
+                  {diffTimeTeste(values.date)}
                 </Text>
               </Flex>
             </Flex>
@@ -100,21 +102,38 @@ export default function SimpleAccordion(props: IProps) {
               <Flex flexDirection="column">
                 <Text>Informações: </Text>
                 <Text>CPF: {values.cpf} </Text>
-                <Text>Endereço: {values.endereco} </Text>
+                <Text>Endereço: {values.address} </Text>
               </Flex>
 
               <Flex pt="4%">
                 <Flex flex="1" flexDirection="column">
-                  <Text>Altura: {values.medicao.altura} cm</Text>
-                  <Text>IMC: {values.medicao.imc} </Text>
-                  <Text>Medida A: {values.medicao.medida_a}</Text>
-                  <Text>Medida B: {values.medicao.medida_b}</Text>
+                  <Text>Altura: {values.measure.height} cm</Text>
+                  <Text>Peso: {values.measure.weight} </Text>
+                  <Text>IMC: {values.measure.bmi} </Text>
+
+                  {/* 
+                  TODO: Não sei como era pra ser 
+                  {values.}
+                  */}
+                  {values.answerList.map((value, index) => (
+                    <>
+                      <Text key={`${value.idQuestion}${index}`}>
+                        Pergunta: {value.question}
+                      </Text>
+                      <Text key={`${value.idQuestion}${value.question}`}>
+                        Resposta: {value.answer}
+                      </Text>
+                    </>
+                  ))}
+                  {/* 
+                  TODO: Não sei como era pra ser 
+                  */}
                 </Flex>
-                <Flex flex="1" flexDirection="column">
+                {/* <Flex flex="1" flexDirection="column">
                   <Text>Peso: {values.medicao.peso} Kg </Text>
                   <Text>Medida C: {values.medicao.medida_c}</Text>
                   <Text>Medida D: {values.medicao.medida_d}x</Text>
-                </Flex>
+                </Flex> */}
               </Flex>
 
               <Grid
@@ -125,12 +144,22 @@ export default function SimpleAccordion(props: IProps) {
               >
                 <GridItem colStart={3} colEnd={3} h="10">
                   <Flex Flex="1" justifyContent="flex-end">
-                    <Button backgroundColor="blue.200">ACEITAR</Button>
+                    <Button
+                      backgroundColor="blue.200"
+                      onClick={() => props.handleClick(values.requestId, true)}
+                    >
+                      ACEITAR
+                    </Button>
                   </Flex>
                 </GridItem>
                 <GridItem colStart={4} colEnd={4} h="10">
                   <Flex Flex="1" justifyContent="flex-start">
-                    <Button backgroundColor="#D93F3F">NEGAR</Button>
+                    <Button
+                      backgroundColor="#D93F3F"
+                      onClick={() => props.handleClick(values.requestId, false)}
+                    >
+                      NEGAR
+                    </Button>
                   </Flex>
                 </GridItem>
               </Grid>

@@ -8,7 +8,7 @@ import {
   Select
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { INotifications } from '../interfaces/notifications.interface'
 import { SearchBar } from '../components/SearchBar/SearchBar'
@@ -39,7 +39,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'A dieta do cliente fulano de tal está desatualizada',
       status: 'Nova',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -47,7 +47,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'A dieta do cliente está atualizada',
       status: 'Visualizada',
-      date: '2021-04-06T02:57:37+03:00',
+      date: '2021-04-06T02:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -55,7 +55,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'A dieta do cliente está desatualizada',
       status: 'Visualizada',
-      date: '2021-08-14T16:05:37+03:00',
+      date: '2021-08-14T16:05:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -63,7 +63,7 @@ export default function Dashboard() {
       title: 'Dieta está atualizada',
       msg: 'Dieta do cliente fulano de tal, está atualizada',
       status: 'Nova',
-      date: '2020-06-06T07:57:37+03:00',
+      date: '2020-06-06T07:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -71,7 +71,7 @@ export default function Dashboard() {
       title: 'Dieta está atualizada',
       msg: 'Dieta do cliente fulano de tal, está atualizada',
       status: 'Nova',
-      date: '2021-06-06T12:57:37+03:00',
+      date: '2021-06-06T12:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -79,7 +79,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -87,7 +87,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -95,7 +95,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Dieta do cliente fulano de tal, está atualizada',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -103,7 +103,7 @@ export default function Dashboard() {
       title: 'Dieta está atualizada',
       msg: 'Dieta do cliente fulano de tal, está atualizada',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -111,7 +111,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -119,7 +119,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -127,7 +127,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -135,7 +135,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -143,7 +143,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -151,7 +151,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -159,7 +159,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -167,7 +167,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -175,7 +175,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -183,7 +183,7 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
+      date: '2021-06-06T03:57:37+03:00'
     },
     {
       _id: '60bd5abe07a5d6dde663c081',
@@ -191,8 +191,8 @@ export default function Dashboard() {
       title: 'Dieta está desatualizada',
       msg: 'Cliente está solicitando mudança na dieta',
       status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00',
-    },
+      date: '2021-06-06T03:57:37+03:00'
+    }
   ]
 
   const { onOpen } = useSidebarDrawer()
@@ -204,10 +204,9 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
-  const [count, setCount] = useState(notifications.filter( (value)=> value.status === 'Nova' ).length);
-  
-    
-    
+  const [count, setCount] = useState(
+    notifications.filter((value) => value.status === 'Nova').length
+  )
 
   return (
     <>
@@ -250,9 +249,9 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-      <Flex >
+      <Flex>
         <Sidebar />
-        <Flex h="100vh" width="100%"  >
+        <Flex h="100vh" width="100%">
           <Flex
             minWidth={{ base: '90%', lg: '65%' }}
             mr={4}
@@ -276,12 +275,8 @@ export default function Dashboard() {
                 h="80px"
                 alignItems="center"
               >
-                <Text
-                  color="gray.200"
-                  fontSize="1xl"
-                  ml={6}
-                >
-                 {count} Novas
+                <Text color="gray.200" fontSize="1xl" ml={6}>
+                  {count} Novas
                 </Text>
               </Flex>
             </Flex>
@@ -294,12 +289,11 @@ export default function Dashboard() {
               >
                 <SimpleAccordion notifications={notifications} />
               </Flex>
-              <Flex alignItems="center" justifyContent="center" h="10vh">
-              </Flex>
+              <Flex alignItems="center" justifyContent="center" h="10vh"></Flex>
             </Flex>
           </Flex>
         </Flex>
-      </Flex>           
+      </Flex>
     </>
   )
 }

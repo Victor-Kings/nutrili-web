@@ -10,7 +10,7 @@ import {
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { Counter } from '../components/Counter'
-import { IClients } from '../interfaces/clientes.interface'
+import { IClients, IClientsData } from '../interfaces/clientes.interface'
 import SimpleAccordion from '../components/NewClientsList'
 import Schedule from '../components/Schedule/Schedule'
 import styles from '../styles/dashboard.module.scss'
@@ -19,6 +19,9 @@ import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import { useContext } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { withSSRAuth } from '../utils/withSSRAuth'
+import { useEffect, useState } from 'react'
+import { GetNutritionistPendingApproval } from '../services/GetNutritionistPendingApproval/GetNutritionistPendingApproval'
+import { parseCookies } from 'nookies'
 
 export default function Dashboard() {
   const newClients: IClients[] = [
@@ -39,6 +42,7 @@ export default function Dashboard() {
         medida_d: 84
       }
     },
+
     {
       _id: '60bd5abefc84f9e7a30a2042',
       name: 'Evans Stephenson',
@@ -56,6 +60,7 @@ export default function Dashboard() {
         medida_d: 55
       }
     },
+
     {
       _id: '60bd5abed90506afdb6214b1',
       name: 'Suarez Erickson',
@@ -73,6 +78,7 @@ export default function Dashboard() {
         medida_d: 87
       }
     },
+
     {
       _id: '60bd5abee42b7bfdcd33a0b2',
       name: 'Velasquez Garcia',
@@ -90,6 +96,7 @@ export default function Dashboard() {
         medida_d: 86
       }
     },
+
     {
       _id: '60bd5abe0a2ff3deab0e7295',
       name: 'Moses Hunter',
@@ -107,6 +114,7 @@ export default function Dashboard() {
         medida_d: 72
       }
     },
+
     {
       _id: '60bd5abe54809f13c733410f',
       name: 'Lindsay Glass',
@@ -124,6 +132,7 @@ export default function Dashboard() {
         medida_d: 96
       }
     },
+
     {
       _id: '60bd5abe5522aa43a43b06d0',
       name: 'Renee Cummings',
@@ -143,6 +152,35 @@ export default function Dashboard() {
     }
   ]
 
+  const clients: IClientsData = {
+    numberOfPatient: 1,
+    numberOfPendingRequest: 1,
+    nutritionistList: [
+      {
+        address: 'Rua Zezinho',
+        name: 'Joao',
+        age: 12,
+        cpf: '10376874381',
+        date: '2020-06-06T07:57:37+03:00',
+        measure: {
+          bmi: 22,
+          height: 10,
+          weight: 5
+        },
+        requestId: '1a5a15a15a1a15a115a',
+        answerList: [
+          {
+            idQuestion: 1,
+            answer: 'opapapa',
+            question: 'teste da question'
+          }
+        ]
+      }
+    ]
+  }
+
+  const [clientsToApprove, setClientsToApprove] =
+    useState<IClientsData>(clients)
   const { onOpen } = useSidebarDrawer()
 
   const isWideVersion = useBreakpointValue({
@@ -151,10 +189,42 @@ export default function Dashboard() {
   })
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
-
   const { signOut } = useContext(AuthContext)
+  const { 'auth-token': accessToken } = parseCookies()
+
+  const myFunc = async () => {
+    try {
+      const response = await new GetNutritionistPendingApproval().getApproval(
+        accessToken
+      )
+      setClientsToApprove(response)
+    } catch (err) {
+      console.log('ERRO no carregamento da infos')
+    }
+  }
+
+  useEffect(() => {
+    myFunc()
+  }, [])
+
   const handlerLogout = () => {
     signOut()
+  }
+
+  const handleClickToAccept = async (requestID: string, value: boolean) => {
+    try {
+      await new GetNutritionistPendingApproval().acceptUser(
+        accessToken,
+        requestID,
+        value
+      )
+      const response = await new GetNutritionistPendingApproval().getApproval(
+        accessToken
+      )
+      setClientsToApprove(response)
+    } catch (err) {
+      console.log('PROBLEMA PARA APROVAR')
+    }
   }
 
   return (
@@ -170,6 +240,7 @@ export default function Dashboard() {
             onClick={onOpen}
             pr="2"
           />
+
           <Flex width="100%" justifyContent="flex-end">
             <Flex
               flex="1"
@@ -194,6 +265,7 @@ export default function Dashboard() {
                 SAIR
               </Button>
             </Flex>
+
             <Avatar
               name="Dan Abrahmov"
               src="https://bit.ly/dan-abramov"
@@ -203,8 +275,10 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
+
       <Flex direction="row" h="100vh">
         <Sidebar />
+
         <Flex
           flex="1"
           flexDirection="column"
@@ -226,17 +300,23 @@ export default function Dashboard() {
               pr={{ base: 2, sm: 2, xl: 0 }}
             >
               <Counter
-                contentText="PACIENTE"
+                contentText={
+                  clientsToApprove.numberOfPatient > 1
+                    ? 'PACIENTES'
+                    : 'PACIENTE'
+                }
                 imageName="/icons/iconPeoples.svg"
-                valueData={5}
+                valueData={clientsToApprove.numberOfPatient}
               />
+
               <Counter
                 contentText="APROVAÇÕES PENDENTES"
                 imageName="/icons/iconPeoples.svg"
-                valueData={newClients.length}
+                valueData={clientsToApprove.numberOfPendingRequest}
               />
             </SimpleGrid>
           </SimpleGrid>
+
           <SimpleGrid
             columns={2}
             width={{ base: '20vw', tiny: '20vw', xl: '100vw' }}
@@ -275,12 +355,16 @@ export default function Dashboard() {
                   Aprovações Pendentes
                 </Text>
               </Flex>
+
               <Flex
                 backgroundColor="white"
                 className={styles.scrollFlex}
                 h={{ base: '90%', xl: '67vh' }}
               >
-                <SimpleAccordion clients={newClients} />
+                <SimpleAccordion
+                  clients={clientsToApprove}
+                  handleClick={handleClickToAccept}
+                />
               </Flex>
             </Box>
 
