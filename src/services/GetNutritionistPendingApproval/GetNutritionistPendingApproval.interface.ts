@@ -1,7 +1,7 @@
 import { IClientsData } from '../../interfaces/clientes.interface'
 
 export interface IGetNutritionistPendingApprovalProps {
-  getApproval: (token: string) => Promise<IClientsData>
+  getApproval: () => Promise<IClientsData>
 
   acceptUser: (
     requestId: string,

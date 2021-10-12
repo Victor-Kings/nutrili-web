@@ -1,8 +1,8 @@
 export interface INotifications {
-    _id: string,
-    from: string,
-    title: string,
-    msg: string,
-    status: string,
-    date: string;
-  }
+  id: string
+  senderName: string
+  message: string
+  dateOfNotification: string
+  status: boolean
+  index: number
+}
