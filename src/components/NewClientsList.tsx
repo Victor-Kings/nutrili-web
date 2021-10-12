@@ -47,16 +47,12 @@ interface IProps {
 }
 
 function diffTimeTeste(tempo: string): string {
+  tempo = tempo.replace(' ', 'T')
   const date = new Date(tempo)
-
-  const dateFormated =
-    date.toISOString().slice(0, 4) +
-    date.toISOString().slice(5, 7) +
-    date.toISOString().slice(8, 10)
-  const diff = moment(dateFormated, 'YYYYMMDD').fromNow()
-
+  const diff = moment(date, 'YYYYMMDD').fromNow()
   return diff
 }
+
 export default function SimpleAccordion(props: IProps) {
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 

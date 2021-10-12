@@ -7,11 +7,10 @@ import {
   IconButton,
   Select
 } from '@chakra-ui/react'
-import { Flex, Text } from '@chakra-ui/react'
-import React, { useState, useEffect } from 'react'
+import { Flex, Text, Button } from '@chakra-ui/react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { INotifications } from '../interfaces/notifications.interface'
-import { SearchBar } from '../components/SearchBar/SearchBar'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { extendTheme } from '@chakra-ui/react'
 import styles from '../styles/dashboard.module.scss'
@@ -19,6 +18,8 @@ import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import SimpleAccordion from '../components/NotificationsList'
 import { valueScaleCorrection } from 'framer-motion/types/render/dom/projection/scale-correction'
+import { NotificationsService } from '../services/NotificationsService/NotificationsService'
+import AuthContext from '../contexts/AuthContext'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -29,171 +30,9 @@ const breakpoints = createBreakpoints({
   xl2: '90em'
 })
 
-const theme = extendTheme({ breakpoints })
-
 export default function Dashboard() {
-  const notifications: INotifications[] = [
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Vó do Hiago',
-      title: 'Dieta está desatualizada',
-      msg: 'A dieta do cliente fulano de tal está desatualizada',
-      status: 'Nova',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Papagaio do Vintão',
-      title: 'Dieta está desatualizada',
-      msg: 'A dieta do cliente está atualizada',
-      status: 'Visualizada',
-      date: '2021-04-06T02:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Vô do Murilo',
-      title: 'Dieta está desatualizada',
-      msg: 'A dieta do cliente está desatualizada',
-      status: 'Visualizada',
-      date: '2021-08-14T16:05:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Véia do 71',
-      title: 'Dieta está atualizada',
-      msg: 'Dieta do cliente fulano de tal, está atualizada',
-      status: 'Nova',
-      date: '2020-06-06T07:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Dona florinda',
-      title: 'Dieta está atualizada',
-      msg: 'Dieta do cliente fulano de tal, está atualizada',
-      status: 'Nova',
-      date: '2021-06-06T12:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Sistema',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Sistema',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Sistema',
-      title: 'Dieta está desatualizada',
-      msg: 'Dieta do cliente fulano de tal, está atualizada',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Sistema',
-      title: 'Dieta está atualizada',
-      msg: 'Dieta do cliente fulano de tal, está atualizada',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Euclides da Silva',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Geraldo',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Antonio',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Cleyde',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Nerso',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Plâncton',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Nirleide',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Cleiton',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Japonês',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Mirlene',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    },
-    {
-      _id: '60bd5abe07a5d6dde663c081',
-      from: 'Clotilde',
-      title: 'Dieta está desatualizada',
-      msg: 'Cliente está solicitando mudança na dieta',
-      status: 'Visualizada',
-      date: '2021-06-06T03:57:37+03:00'
-    }
-  ]
+  const [notifications, setNotifications] = useState<INotifications[]>([])
+  console.log('notifications', notifications)
 
   const { onOpen } = useSidebarDrawer()
 
@@ -204,9 +43,38 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
-  const [count, setCount] = useState(
-    notifications.filter((value) => value.status === 'Nova').length
-  )
+  const count = notifications
+    ? notifications.filter((value) => value.status == true).length
+    : 0
+
+  const fetchNotificationsData = useCallback(async () => {
+    try {
+      const response = await new NotificationsService().getNotifications()
+      setNotifications(response)
+    } catch (err) {
+      console.error('Carregamento das notificações')
+    }
+  }, [])
+
+  const { signOut, user } = useContext(AuthContext)
+
+  const handlerLogout = () => {
+    signOut()
+  }
+
+  const handlerViewNotification = async (idNotification: string) => {
+    try {
+      await new NotificationsService().sendVisualizatedNotifications(
+        idNotification
+      )
+    } catch (err) {
+      console.error('Envio de visualização de notificação')
+    }
+  }
+
+  useEffect(() => {
+    fetchNotificationsData()
+  }, [fetchNotificationsData])
 
   return (
     <>
@@ -232,17 +100,26 @@ export default function Dashboard() {
               pr="4"
             >
               <Text fontWeight="semibold" color="blue.300" fontSize="18px">
-                Joaozinho Pereira
+                {user?.name}
               </Text>
-              <Link href="/login">
+              <Button
+                onClick={handlerLogout}
+                fontWeight="semibold"
+                fontSize="14px"
+                color="blue.10"
+                variant="link"
+              >
                 <Text fontWeight="semibold" fontSize="14px" color="blue.10">
                   SAIR
                 </Text>
-              </Link>
+              </Button>
             </Flex>
             <Avatar
               name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
+              src={
+                user?.imgURL ||
+                'https://yt3.ggpht.com/ytc/AKedOLQ6Ief26j8b1lgSA1OpXSCzJBlnlEEsWtQAfdwB=s900-c-k-c0x00ffffff-no-rj'
+              }
               size={avatarSize}
               border="3px solid white"
             />
@@ -287,7 +164,11 @@ export default function Dashboard() {
                 w="100%"
                 h={{ base: '60vh', xl: '80vh' }}
               >
-                <SimpleAccordion notifications={notifications} />
+                <SimpleAccordion
+                  notifications={notifications}
+                  handlerViewNotification={handlerViewNotification}
+                  setNotifications={setNotifications}
+                />
               </Flex>
               <Flex alignItems="center" justifyContent="center" h="10vh"></Flex>
             </Flex>

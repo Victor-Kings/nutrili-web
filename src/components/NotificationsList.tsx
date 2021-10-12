@@ -1,6 +1,5 @@
 import React from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
@@ -9,25 +8,11 @@ import styles from '../styles/NewClientsList.module.scss'
 import {
   Avatar,
   SimpleGrid,
-  Grid,
-  GridItem,
-  Button,
   Text,
   Flex,
-  useBreakpointValue,
-  Link,
-  Icon
+  useBreakpointValue
 } from '@chakra-ui/react'
 import moment from 'moment'
-import { MdCheckCircle } from 'react-icons/md'
-const breakpoints = createBreakpoints({
-  tiny: '20em',
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '80em',
-  xl2: '90em'
-})
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,129 +27,124 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 function diffTimeTeste(tempo: string): string {
+  tempo = tempo.replace(' ', 'T')
   const date = new Date(tempo)
-
-  const dateFormated =
-    date.toISOString().slice(0, 4) +
-    date.toISOString().slice(5, 7) +
-    date.toISOString().slice(8, 10)
-  const diff = moment(dateFormated, 'YYYYMMDD').fromNow()
-
+  const diff = moment(date, 'YYYYMMDD').fromNow()
   return diff
 }
 
 import { INotifications } from '../interfaces/notifications.interface'
+import { forEach } from 'lodash'
 
 interface IProps {
   notifications: INotifications[]
+  handlerViewNotification: (id: string) => void
+  setNotifications: (params: any) => void
 }
 
 export default function SimpleAccordion(props: IProps) {
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
+  console.log(props.notifications)
 
+  const hadlerClick = (id: string, status: boolean) => {
+    console.log('status', status)
+    if (!status) {
+      props.handlerViewNotification(id)
+      const elementChange = props.notifications.find((value) => value.id == id)
+      elementChange.status = true
+      const otherElements = props.notifications.filter(
+        (value) => value.id != id
+      )
+      const newNotifications = [elementChange, ...otherElements].sort(
+        (valueA, valueB) => {
+          return valueA.index - valueB.index
+        }
+      )
+      props.setNotifications(newNotifications)
+    }
+  }
   moment.locale('pt-br')
   const classes = useStyles()
   return (
     <div className={styles.scrollFlex}>
       {props.notifications.map((values) => (
-        
-        
-        <Accordion key={values._id}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+        <Accordion
+          key={values.id}
+          onClick={() => hadlerClick(values.id, values.status)}
         >
-        <Flex alignItems="center" pl={{base:"20px",lg:"20px"}}>
-          
-          <Avatar
-            name="Dan Abrahmov"
-            src="https://bit.ly/dan-abramov"
-            border="3px solid#EBF5FF"
-            size={avatarSize}
-          />
-        </Flex>
-        <Flex flexDir={{base: 'column', lg: 'row'}} ml={{base: "30px", lg:"unset"}}>
-          
-          <Flex width={{base: "200px", xl:"260px"}} ml={{base: '0px', lg: "20px"}} alignItems="center">
-            <Text
-              color="gray.400"
-              fontWeight="bold"
-              fontSize={{
-                base: '14px',
-                lg: '18px'
-              }}
-            >
-              {values.from}
-            </Text>
-          </Flex>
-          {/* </Flex> */}
-          <Flex minWidth="230px" alignItems="center" display="flex" flex="1">
-            <Text
-              color="gray.200"
-              fontSize={{
-                base: '14px',
-                lg: '18px'
-              }}
-            >
-              {values.title}
-            </Text>
-          </Flex>
-          <Flex
-            minWidth={{base: "unset",lg:"160px"}}
-            alignItems="center"
-            justifyContent="space-between"
-            ml={{base: "0px", lg:"40px"}}
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon className={classes.iconArrow} />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
           >
-            {values.status == 'Nova' ?
-              <Text
-              color="blue.500"
-              fontWeight="bold"
-              fontSize={{
-                base: '14px',
-                lg: '18px'
-              }}
-            >{values.status}</Text>
-            :
-              <Text
-              color="green.500"
-              fontWeight="bold"
-              fontSize={{
-                base: '14px',
-                lg: '18px'
-              }}
-            >{values.status}</Text>
-          }
-          </Flex>
-          <Flex width="16%" marginLeft={{base: '0px', lg: "1vw"}} alignItems="center">
-            <Text
-              color="gray.200"
-              fontSize={{
-                base: '14px',
-                lg: '18px'
-              }}
-            >
-              {diffTimeTeste(values.date)}
-            </Text>
-          </Flex>
-          
-        </Flex>
-        </AccordionSummary>
+            <Flex flexDir={{ base: 'column', lg: 'row' }}>
+              <Flex
+                width={{ base: '200px', xl: '400px' }}
+                ml={{ base: '0px', lg: '20px' }}
+                alignItems="center"
+              >
+                <Text
+                  color="gray.400"
+                  fontWeight="bold"
+                  fontSize={{
+                    base: '14px',
+                    lg: '18px'
+                  }}
+                >
+                  {values.senderName}
+                </Text>
+              </Flex>
+              <Flex alignItems="center" justifyContent="space-between">
+                {!values.status ? (
+                  <Text
+                    color="blue.500"
+                    fontWeight="bold"
+                    fontSize={{
+                      base: '14px',
+                      lg: '18px'
+                    }}
+                  >
+                    Nova
+                  </Text>
+                ) : (
+                  <Text
+                    color="green.500"
+                    fontWeight="bold"
+                    fontSize={{
+                      base: '14px',
+                      lg: '18px'
+                    }}
+                  >
+                    Visualizada
+                  </Text>
+                )}
+                <Flex
+                  marginLeft={{ base: '0px', lg: '1vw' }}
+                  alignItems="center"
+                >
+                  <Text
+                    color="gray.200"
+                    fontSize={{
+                      base: '14px',
+                      lg: '18px'
+                    }}
+                  >
+                    {diffTimeTeste(values.dateOfNotification)}
+                  </Text>
+                </Flex>
+              </Flex>
+            </Flex>
+          </AccordionSummary>
           <AccordionDetails style={{ display: 'block' }}>
             <SimpleGrid color="gray.200">
-              <Flex flexDirection="column">
-                <Text ml="5%" color="gray.400" fontWeight="bold"> {values.title} </Text>
-              </Flex>
               <Flex pt="2%">
                 <Flex flex="1" flexDirection="column">
-                  <Text ml="8%">{values.msg}</Text>
+                  <Text ml="8%">{values.message}</Text>
                 </Flex>
               </Flex>
             </SimpleGrid>
           </AccordionDetails>
         </Accordion>
-        
-        
       ))}
     </div>
   )
