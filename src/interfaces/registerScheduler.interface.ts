@@ -11,6 +11,8 @@ export interface IRegisterSchedulerProps {
 export interface IMorning {
   message: string
   hour: string
+  summary: string
+  id: string
 }
 
 export interface IGetSchedulers {
