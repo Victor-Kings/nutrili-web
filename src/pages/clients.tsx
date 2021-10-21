@@ -12,11 +12,12 @@ import { MyClients } from '../interfaces/myClients.interface'
 import { SearchBar } from '../components/SearchBar/SearchBar'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ListClients from '../components/ListClients/ListClients'
 import { Pagination } from '@material-ui/lab'
 import styles from '../styles/client.module.scss'
 import { myClients, teste } from '../../__mocks__/mockClients'
+import { GetClientsService } from '../services/getClientsService/getClientsService'
 
 export default function Dashboard() {
 
@@ -29,7 +30,15 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
-  const [retorno, setRetorno] = useState(myClients)
+  const [retorno, setRetorno] = useState(null)
+
+  useEffect(()=>{
+    new GetClientsService().getClientsPagination(1,false)
+    .then((data)=>{
+      setRetorno(data.patient)
+    })
+    .catch((err)=>{ console.error('Fetch Clients data', err)})
+  },[])
 
   const myFunction = (value: MyClients[]): void => {
     setRetorno(value)
