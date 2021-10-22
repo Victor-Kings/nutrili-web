@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
-import { MyClients } from '../interfaces/myClients.interface'
 import { SearchBar } from '../components/SearchBar/SearchBar'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
@@ -18,6 +17,7 @@ import { Pagination } from '@material-ui/lab'
 import styles from '../styles/client.module.scss'
 import { myClients, teste } from '../../__mocks__/mockClients'
 import { GetClientsService } from '../services/getClientsService/getClientsService'
+import {IClientData} from "../services/getClientsService/getClientsService.interface"
 
 export default function Dashboard() {
 
@@ -31,17 +31,20 @@ export default function Dashboard() {
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
   const [retorno, setRetorno] = useState(null)
+  const [numberOfPage, setNumberOfPage] = useState(0)
 
   useEffect(()=>{
     new GetClientsService().getClientsPagination(1,false)
     .then((data)=>{
       setRetorno(data.patient)
+      setNumberOfPage(data.numberOfPages)
     })
     .catch((err)=>{ console.error('Fetch Clients data', err)})
   },[])
 
-  const myFunction = (value: MyClients[]): void => {
+  const myFunction = (value: IClientData[], numberOfPage: number): void => {
     setRetorno(value)
+    setNumberOfPage(numberOfPage)
   }
 
   const functionTest =(event: React.ChangeEvent<unknown>, page: number) =>{
@@ -49,7 +52,12 @@ export default function Dashboard() {
       setRetorno(myClients)
       return
     }
-    setRetorno(teste)
+    new GetClientsService().getClientsPagination(page,false)
+    .then((data)=>{
+      setRetorno(data.patient)
+      setNumberOfPage(data.numberOfPages)
+    })
+    .catch((err)=>{ console.error('Fetch Clients data', err)})
   }
 
   return (
@@ -128,7 +136,7 @@ export default function Dashboard() {
                   <option value="option1">A-Z</option>
                   <option value="option2">1-9</option>
                 </Select>
-                <SearchBar clients={myClients} onHandleSearch={myFunction} />
+                <SearchBar clients={retorno} numberOfPage={numberOfPage} onHandleSearch={myFunction} />
               </Flex>
               <Flex
                 backgroundColor="#F6F6F6"
@@ -140,7 +148,7 @@ export default function Dashboard() {
               <Flex alignItems="center" justifyContent="center" h="10vh">
                 <Pagination
                   color="primary"
-                  count={10}
+                  count={numberOfPage}
                   siblingCount={0}
                   variant="outlined"
                   shape="rounded"

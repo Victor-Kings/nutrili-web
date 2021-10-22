@@ -1,26 +1,35 @@
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { Flex, Text } from '@chakra-ui/react'
 import { ISearchBar } from './SearchBar.interface'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
+import { GetClientsService } from '../../services/getClientsService/getClientsService'
+export function SearchBar({clients, numberOfPage, onHandleSearch }: ISearchBar) {
 
-export function SearchBar({ clients, onHandleSearch }: ISearchBar) {
   const [busca, setBusca] = useState('')
 
   const handle = (event: any) => {
     if (!event.target.value) {
-      onHandleSearch(clients)
+      onHandleSearch(clients, numberOfPage)
       setBusca('')
       return
     }
-    setBusca(event.target.value)
-    const clientsFiltered = clients.filter((clientes) =>
-      clientes.name.toLowerCase().includes(busca.toLowerCase())
-    )
-    onHandleSearch(clientsFiltered)
+    setBusca(event.target.value.toLowerCase())
   }
 
+  useEffect(()=>{
+    if(busca!=''){
+        new GetClientsService().getClientsPagination(1, false, busca)
+        .then((data)=>{
+          onHandleSearch(data.patient, data.numberOfPages)
+        })
+        .catch((err)=>{
+          console.error('Fetch Clients data', err)
+        })
+    }
+  },[busca])
+  
   return (
     <>
       <Flex

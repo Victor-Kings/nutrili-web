@@ -1,6 +1,6 @@
-import { MyClients } from "../../interfaces/myClients.interface";
-
+import {IClientData} from "../../services/getClientsService/getClientsService.interface"
 export interface ISearchBar {
-  clients: MyClients[];
-  onHandleSearch: (value: MyClients[]) => void
+  clients: IClientData[]
+  numberOfPage: number
+  onHandleSearch: (value: IClientData[], numberOfPage:number) => void
 }

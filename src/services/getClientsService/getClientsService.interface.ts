@@ -1,4 +1,4 @@
-interface IClientData{
+export interface IClientData{
     patientID:string,
     profileIcon: string,
     name: string,
