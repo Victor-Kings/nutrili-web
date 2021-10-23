@@ -15,12 +15,10 @@ import { useEffect, useState } from 'react'
 import ListClients from '../components/ListClients/ListClients'
 import { Pagination } from '@material-ui/lab'
 import styles from '../styles/client.module.scss'
-import { myClients, teste } from '../../__mocks__/mockClients'
 import { GetClientsService } from '../services/getClientsService/getClientsService'
-import {IClientData} from "../services/getClientsService/getClientsService.interface"
+import { IClientData } from '../services/getClientsService/getClientsService.interface'
 
 export default function Dashboard() {
-
   const { onOpen } = useSidebarDrawer()
 
   const isWideVersion = useBreakpointValue({
@@ -30,34 +28,52 @@ export default function Dashboard() {
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
-  const [retorno, setRetorno] = useState(null)
+  const [retorno, setRetorno] = useState([])
   const [numberOfPage, setNumberOfPage] = useState(0)
+  const [ordenation, setOrdenation] = useState('')
+  const [page, setPage] = useState(1)
+  useEffect(() => {
+    new GetClientsService()
+      .getClientsPagination(1, false)
+      .then((data) => {
+        setRetorno(data.patientDTOList)
+        setNumberOfPage(data.numberOfPages)
+      })
+      .catch((err) => {
+        console.error('Fetch Clients data', err)
+      })
+  }, [])
 
-  useEffect(()=>{
-    new GetClientsService().getClientsPagination(1,false)
-    .then((data)=>{
-      setRetorno(data.patient)
-      setNumberOfPage(data.numberOfPages)
-    })
-    .catch((err)=>{ console.error('Fetch Clients data', err)})
-  },[])
+  useEffect(() => {
+    if (ordenation != '') {
+      new GetClientsService()
+        .getClientsPagination(page, ordenation == 'asc' ? true : false)
+        .then((data) => {
+          setRetorno(data.patientDTOList)
+          setNumberOfPage(data.numberOfPages)
+        })
+        .catch((err) => {
+          console.error('Fetch Clients ordenation data', err)
+        })
+    }
+  }, [ordenation])
 
   const myFunction = (value: IClientData[], numberOfPage: number): void => {
     setRetorno(value)
     setNumberOfPage(numberOfPage)
   }
 
-  const functionTest =(event: React.ChangeEvent<unknown>, page: number) =>{
-    if(page%2 == 0){
-      setRetorno(myClients)
-      return
-    }
-    new GetClientsService().getClientsPagination(page,false)
-    .then((data)=>{
-      setRetorno(data.patient)
-      setNumberOfPage(data.numberOfPages)
-    })
-    .catch((err)=>{ console.error('Fetch Clients data', err)})
+  const functionTest = (event: React.ChangeEvent<unknown>, page: number) => {
+    setPage(page)
+    new GetClientsService()
+      .getClientsPagination(page, ordenation == 'asc' ? true : false)
+      .then((data) => {
+        setRetorno(data.patientDTOList)
+        setNumberOfPage(data.numberOfPages)
+      })
+      .catch((err) => {
+        console.error('Fetch Clients data', err)
+      })
   }
 
   return (
@@ -101,7 +117,7 @@ export default function Dashboard() {
           </Flex>
         </Flex>
       )}
-      <Flex >
+      <Flex>
         <Sidebar />
         <Flex h="100vh" w="100%" overflowY="scroll">
           <Flex
@@ -132,11 +148,17 @@ export default function Dashboard() {
                   bgColor="white"
                   color="black"
                   pl="20px"
+                  onChange={(value) => setOrdenation(value.target.value)}
                 >
-                  <option value="option1">A-Z</option>
-                  <option value="option2">1-9</option>
+                  <option value="asc">A-Z</option>
+                  <option value="desc">Z-A</option>
                 </Select>
-                <SearchBar clients={retorno} numberOfPage={numberOfPage} onHandleSearch={myFunction} />
+                <SearchBar
+                  page={page}
+                  clients={retorno}
+                  numberOfPage={numberOfPage}
+                  onHandleSearch={myFunction}
+                />
               </Flex>
               <Flex
                 backgroundColor="#F6F6F6"

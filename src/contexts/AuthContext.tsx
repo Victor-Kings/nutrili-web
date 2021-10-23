@@ -9,7 +9,7 @@ import { GetDataUserService } from '../services/GetDataUserService/GetDataUserSe
 interface IAuthProvider {
   loading: boolean
   signOut: () => Promise<void>
-  signIn: (email: string, password: string) => Promise<void>
+  signIn: (email: string, password: string) => Promise<boolean>
   isAuthenticated: boolean
   user: User
 }
@@ -122,9 +122,11 @@ export function AuthProvider({ children }) {
       Router.push('/dashboard')
     } catch (err) {
       console.error('SigIn', err)
+      return true
     } finally {
       setLoading(false)
     }
+    return false
   }
 
   return (

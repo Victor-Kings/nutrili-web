@@ -5,9 +5,18 @@ import {
   Button,
   Stack,
   Image,
-  Link as LinkChakra
+  Alert,
+  Link as LinkChakra,
+  AlertIcon,
+  Box,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent
 } from '@chakra-ui/react'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, useRef } from 'react'
 import FacebookIcon from '@material-ui/icons/Facebook'
 
 import googleIcon from '@iconify/icons-grommet-icons/google'
@@ -23,6 +32,9 @@ export default function Login() {
   const [password, setPassword] = useState<string>()
   const handleChangeEmail = (event) => setEmail(event.target.value)
   const handleChangePassword = (event) => setPassword(event.target.value)
+  const [isOpen, setIsOpen] = useState(false)
+  const onClose = () => setIsOpen(false)
+  const cancelRef = useRef()
 
   const { signIn, isAuthenticated } = useContext(AuthContext)
   useEffect(() => {
@@ -32,7 +44,8 @@ export default function Login() {
   }, [isAuthenticated])
 
   const handlerSendData = async () => {
-    signIn(email, password)
+    const status = await signIn(email, password)
+    if (status) setIsOpen(true)
   }
 
   return (
@@ -175,6 +188,34 @@ export default function Login() {
           </Flex>
         </Flex>
       </Flex>
+      <>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogContent backgroundColor="transparent" shadow="none">
+            <AlertDialogBody width="25vw" alignSelf="center">
+              <Alert status="error" borderRadius="5px">
+                <AlertIcon />
+                <Box flex="1">
+                  <AlertTitle>Erro!</AlertTitle>
+                  <AlertDescription display="block">
+                    Credencial inválida!
+                  </AlertDescription>
+                </Box>
+                <CloseButton
+                  position="absolute"
+                  right="8px"
+                  top="8px"
+                  ref={cancelRef}
+                  onClick={onClose}
+                />
+              </Alert>
+            </AlertDialogBody>
+          </AlertDialogContent>
+        </AlertDialog>
+      </>
     </Flex>
   )
 }
