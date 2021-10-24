@@ -15,6 +15,7 @@ import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import { CardPageInfo } from '../components/PageInfoComponents/CardPageInfo'
 import { ChartPageInfo } from '../components/PageInfoComponents/ChartPageInfo'
+import { CardInfoEditabled } from '../components/PageInfoComponents/CardInfoEditabled'
 
 export default function Infos() {
   const [editField, setEditField] = useState(false)
@@ -90,6 +91,7 @@ export default function Infos() {
         >
           <CardPageInfo />
           <ChartPageInfo />
+          <CardInfoEditabled a="a" />
         </Flex>
       </Flex>
     </>

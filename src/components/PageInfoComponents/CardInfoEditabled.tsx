@@ -2,19 +2,14 @@ import { useState, useEffect } from 'react'
 import {
   Text,
   Flex,
-  Avatar,
-  Editable,
-  EditableInput,
-  EditablePreview,
   ButtonGroup,
-  useEditableControls,
   IconButton,
-  Input,
   Grid,
-  Box
+  NumberInput,
+  Box,
+  NumberInputField
 } from '@chakra-ui/react'
-import styles from '../../styles/profile.module.scss'
-import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons'
+import { CheckIcon, EditIcon } from '@chakra-ui/icons'
 interface ICardInfoEditabledProps {
   a: string
 }
@@ -32,6 +27,7 @@ const MockData = {
 export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [dataInfos, setDataInfos] = useState<IDataInfos>(null)
+  console.log(dataInfos)
 
   useEffect(() => {
     setDataInfos(MockData)
@@ -43,13 +39,6 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
         <IconButton
           aria-label="Search database"
           icon={<CheckIcon />}
-          onClick={() => {
-            setIsEditing(false)
-          }}
-        />
-        <IconButton
-          aria-label="Search database"
-          icon={<CloseIcon />}
           onClick={() => {
             setIsEditing(false)
           }}
@@ -68,6 +57,7 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
       </Flex>
     )
   }
+
   return (
     <Flex
       backgroundColor="white"
@@ -81,26 +71,14 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
       flexDir="column"
       alignItems="center"
       maxW="440px"
-      background="blackAlpha.200"
     >
-      <Flex
-        justifyContent="space-between"
-        width="100%"
-        backgroundColor="bisque"
-        paddingX="5%"
-      >
+      <Flex justifyContent="space-between" width="100%" paddingX="5%">
         <Text color="#494949" fontWeight="bold" fontSize="24px">
           Informações:
         </Text>
         <EditableControls />
       </Flex>
-      <Flex
-        justifyContent="space-between"
-        width="100%"
-        backgroundColor="green.300"
-        paddingX="5%"
-        mt="5%"
-      >
+      <Flex justifyContent="space-between" width="100%" paddingX="5%" mt="5%">
         {!isEditing ? (
           <Grid
             width="100%"
@@ -108,19 +86,25 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
             templateRows="repeat(2, 1fr)"
             gap={1}
           >
-            <Box w="100%" h="10" bg="blue.500" alignContent="center">
+            <Box w="100%" h="10" alignContent="center">
               <Flex height="100%" alignItems="center">
-                Altura: {dataInfos?.height}
+                <Text color="gray.400">Altura: {dataInfos?.height}</Text>
+                <Text color="gray.400" pl="1%">
+                  cm
+                </Text>
               </Flex>
             </Box>
-            <Box w="100%" h="10" bg="blue.500" alignContent="center">
+            <Box w="100%" h="10" alignContent="center">
               <Flex height="100%" alignItems="center">
-                Peso: {dataInfos?.weigth}
+                <Text color="gray.400">Peso: {dataInfos?.weigth}</Text>
+                <Text color="gray.400" pl="1%">
+                  Kg
+                </Text>
               </Flex>
             </Box>
-            <Box w="100%" h="10" bg="blue.500" alignContent="center">
+            <Box w="100%" h="10" alignContent="center">
               <Flex height="100%" alignItems="center">
-                IMC: {dataInfos?.IMC}
+                <Text color="gray.400">IMC: {dataInfos?.IMC}</Text>
               </Flex>
             </Box>
           </Grid>
@@ -131,22 +115,48 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
             templateRows="repeat(2, 1fr)"
             gap={1}
           >
-            <Box w="100%" h="10" bg="blue.500">
+            <Box w="100%" h="10">
               <Flex alignItems="center">
-                <Text>Altura:</Text>
-                <Input pl="2%" value={dataInfos?.height} />
+                <Text color="gray.400">Altura:</Text>
+                <NumberInput value={dataInfos?.height}>
+                  <NumberInputField
+                    color="gray.400"
+                    pl="2%"
+                    onChange={(event) =>
+                      setDataInfos({ ...dataInfos, height: event.target.value })
+                    }
+                  />
+                </NumberInput>
               </Flex>
             </Box>
-            <Box w="100%" h="10" bg="blue.500">
+            <Box w="100%" h="10">
               <Flex alignItems="center">
-                <Text>Peso:</Text>
-                <Input pl="2%" value={dataInfos?.weigth} />
+                <Text color="gray.400">Peso:</Text>
+                <NumberInput value={dataInfos?.weigth}>
+                  <NumberInputField
+                    color="gray.400"
+                    pl="2%"
+                    value={dataInfos?.weigth}
+                    onChange={(event) =>
+                      setDataInfos({ ...dataInfos, weigth: event.target.value })
+                    }
+                  />
+                </NumberInput>
               </Flex>
             </Box>
-            <Box w="100%" h="10" bg="blue.500">
+            <Box w="100%" h="10">
               <Flex alignItems="center">
-                <Text>IMC:</Text>
-                <Input pl="2%" value={dataInfos?.IMC} />
+                <Text color="gray.400">IMC:</Text>
+                <NumberInput value={dataInfos?.IMC}>
+                  <NumberInputField
+                    color="gray.400"
+                    pl="2%"
+                    value={dataInfos?.IMC}
+                    onChange={(event) =>
+                      setDataInfos({ ...dataInfos, IMC: event.target.value })
+                    }
+                  />
+                </NumberInput>
               </Flex>
             </Box>
           </Grid>
