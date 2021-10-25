@@ -3,9 +3,10 @@ import {
   Avatar,
   Link,
   Icon,
-  IconButton
+  IconButton,
+  extendTheme
 } from '@chakra-ui/react'
-
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { Flex, Text } from '@chakra-ui/react'
 
 import React, { useState, useEffect } from 'react'
@@ -16,8 +17,19 @@ import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import { CardPageInfo } from '../components/PageInfoComponents/CardPageInfo'
 import { ChartPageInfo } from '../components/PageInfoComponents/ChartPageInfo'
 import { CardInfoEditabled } from '../components/PageInfoComponents/CardInfoEditabled'
+import { CardDiet } from '../components/PageInfoComponents/CardDiet'
 
 export default function Infos() {
+  const breakpoints = createBreakpoints({
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px',
+    xl2: '1279px',
+    g: '1600px'
+  })
+  const theme = extendTheme({ breakpoints })
+
   const [editField, setEditField] = useState(false)
 
   function handleClick() {
@@ -88,10 +100,18 @@ export default function Infos() {
           margin="0"
           ml={1}
           marginRight={1}
+          bg="chartreuse"
         >
-          <CardPageInfo />
-          <ChartPageInfo />
-          <CardInfoEditabled a="a" />
+          <Flex height="50%" width="100%">
+            <Flex flexDirection="column" width="33%">
+              <CardPageInfo />
+              <CardInfoEditabled a="a" />
+            </Flex>
+            <ChartPageInfo />
+          </Flex>
+          <Flex height="45%" width="100%">
+            <CardDiet />
+          </Flex>
         </Flex>
       </Flex>
     </>
