@@ -17,6 +17,7 @@ import { Pagination } from '@material-ui/lab'
 import styles from '../styles/client.module.scss'
 import { GetClientsService } from '../services/getClientsService/getClientsService'
 import { IClientData } from '../services/getClientsService/getClientsService.interface'
+import { withSSRAuth } from '../utils/withSSRAuth'
 
 export default function Dashboard() {
   const { onOpen } = useSidebarDrawer()
@@ -184,3 +185,9 @@ export default function Dashboard() {
     </>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})

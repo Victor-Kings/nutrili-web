@@ -1,4 +1,6 @@
-import { Text, Flex, Avatar } from '@chakra-ui/react'
+import { Text, Flex, Avatar, Icon } from '@chakra-ui/react'
+import { MdCheckCircle } from 'react-icons/md'
+import { TiWarning } from 'react-icons/ti'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 
 interface ICardPageProps {
@@ -13,10 +15,7 @@ export function CardPageInfo(props: ICardPageProps) {
     <Flex
       backgroundColor="white"
       h="100%"
-      // mr="10px"
-      // ml="10px"
-      // mt={{ base: '', lg: '25px' }}
-      // pt={{ base: '', lg: '25px' }}
+      minW="300px"
       borderRadius="5px"
       justifyContent="flex-start"
       flexDir="column"
@@ -37,15 +36,41 @@ export function CardPageInfo(props: ICardPageProps) {
         alignItems="center"
       >
         <Text color="#494949" fontWeight="bold" fontSize="24px">
-          Silvio Santos
+          {props.name || ''}
         </Text>
         <Text color="#6F6F6F" fontSize="18px">
-          Idade - 67
+          Idade - {props.age || ''}
         </Text>
-        <Text color="#6F6F6F" fontSize="18px">
-          Situação: Dieta atualizada
-          <CheckCircleIcon color="green" ml="20px" />
-        </Text>
+        <Flex>
+          <Text
+            color="#6F6F6F"
+            fontSize={{
+              base: '14px',
+              lg: '18px'
+            }}
+          >
+            Situação: Dieta {props.situation || 'Desatualizada'}
+          </Text>
+          {props.situation ? (
+            <Icon
+              as={MdCheckCircle}
+              fontSize={{ base: 20, lg: 28 }}
+              justifyContent="flex-start"
+              bgColor="white"
+              color="green"
+              mr={{ base: '5px', lg: 'unset' }}
+            />
+          ) : (
+            <Icon
+              as={TiWarning}
+              fontSize={{ base: 20, lg: 28 }}
+              justifyContent="flex-start"
+              bgColor="white"
+              color="#FA931A"
+              mr={{ base: '5px', lg: 'unset' }}
+            />
+          )}
+        </Flex>
       </Flex>
     </Flex>
   )

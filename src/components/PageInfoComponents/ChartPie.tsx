@@ -29,51 +29,6 @@ const options = {
     }
   ]
 }
-/* {
-  chart: {
-    toolbar: {
-      show: false
-    },
-    zoom: {
-      enabled: false
-    },
-    foreColor: '#717171'
-  },
-  grid: {
-    show: false
-  },
-  dataLabels: {
-    enabled: false
-  },
-  tooltip: {
-    enabled: false
-  },
-  xaxis: {
-    type: 'datetime',
-    axisBorder: {
-      color: '#428245'
-    },
-    axisTicks: {
-      color: '#FA333F'
-    },
-    categories: [
-      '2018-09-18T00:00:00.000Z',
-      '2018-09-19T01:30:00.000Z',
-      '2018-09-20T02:30:00.000Z',
-      '2018-09-21T03:30:00.000Z',
-      '2018-09-22T04:30:00.000Z'
-    ],
-    fill: {
-      opacity: 0.3,
-      type: 'gradient',
-      gradient: {
-        shade: 'dark',
-        opacityFrom: 0.8,
-        opacityTo: 0.2
-      }
-    }
-  }
-}*/
 
 const series = [44, 55, 13, 43, 22]
 
@@ -84,10 +39,6 @@ export function ChartPieInfo(props: ICardPageProps) {
     <Flex
       backgroundColor="white"
       h="280px"
-      // mt={isSmallThan600 ? '20px' : '25px'}
-      // mr="10px"
-      // ml="10px"
-      // pt={{ base: '', lg: '' }}
       borderRadius="5px"
       justifyContent="flex-start"
       alignItems="center"

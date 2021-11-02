@@ -10,36 +10,39 @@ import {
   NumberInputField
 } from '@chakra-ui/react'
 import { CheckIcon, EditIcon } from '@chakra-ui/icons'
-interface ICardInfoEditabledProps {
-  a: string
-}
+import { GetClientsService } from '../../services/getClientsService/getClientsService'
 interface IDataInfos {
-  height?: string
-  weigth?: string
-  IMC?: string
+  height?: number
+  weigth?: number
+  IMC?: number
+  patientID?: string
 }
 
-const MockData = {
-  height: '1.2',
-  weigth: '70',
-  IMC: '43'
-}
-export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
+export function CardInfoEditabled(props: IDataInfos) {
   const [isEditing, setIsEditing] = useState(false)
   const [dataInfos, setDataInfos] = useState<IDataInfos>(null)
-  console.log(dataInfos)
 
   useEffect(() => {
-    setDataInfos(MockData)
+    setDataInfos(props)
   }, [])
+
+  const updateDate = async () => {
+    const a = await new GetClientsService().updateClient(
+      props.patientID,
+      props.height,
+      props.weigth
+    )
+    console.log(a)
+  }
 
   function EditableControls() {
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton
-          aria-label="Search database"
+          aria-label="Check Icon"
           icon={<CheckIcon />}
           onClick={() => {
+            updateDate()
             setIsEditing(false)
           }}
         />
@@ -47,7 +50,7 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
     ) : (
       <Flex justifyContent="center">
         <IconButton
-          aria-label="Search database"
+          aria-label="Edit Icon"
           size="sm"
           icon={<EditIcon />}
           onClick={() => {
@@ -61,13 +64,10 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
   return (
     <Flex
       backgroundColor="white"
+      minW="300px"
       h="100%"
       w="100%"
       maxW="540px"
-      // mr="2%"
-      // ml="2%"
-      // mt={{ base: '', lg: '25px' }}
-      // pt={{ base: '', lg: '25px' }}
       borderRadius="5px"
       justifyContent="flex-start"
       flexDir="column"
@@ -124,7 +124,10 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
                     color="gray.400"
                     pl="2%"
                     onChange={(event) =>
-                      setDataInfos({ ...dataInfos, height: event.target.value })
+                      setDataInfos({
+                        ...dataInfos,
+                        height: parseInt(event.target.value) | 0
+                      })
                     }
                   />
                 </NumberInput>
@@ -139,25 +142,18 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
                     pl="2%"
                     value={dataInfos?.weigth}
                     onChange={(event) =>
-                      setDataInfos({ ...dataInfos, weigth: event.target.value })
+                      setDataInfos({
+                        ...dataInfos,
+                        weigth: parseInt(event.target.value) | 0
+                      })
                     }
                   />
                 </NumberInput>
               </Flex>
             </Box>
-            <Box w="100%" h="10">
-              <Flex alignItems="center">
-                <Text color="gray.400">IMC:</Text>
-                <NumberInput value={dataInfos?.IMC}>
-                  <NumberInputField
-                    color="gray.400"
-                    pl="2%"
-                    value={dataInfos?.IMC}
-                    onChange={(event) =>
-                      setDataInfos({ ...dataInfos, IMC: event.target.value })
-                    }
-                  />
-                </NumberInput>
+            <Box w="100%" h="10" alignContent="center">
+              <Flex height="100%" alignItems="center">
+                <Text color="gray.400">IMC: {dataInfos?.IMC}</Text>
               </Flex>
             </Box>
           </Grid>

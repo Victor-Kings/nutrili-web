@@ -19,6 +19,7 @@ import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import { SimpleRating } from '../components/ratingStars'
 import { EditIcon } from '@chakra-ui/icons'
+import { withSSRAuth } from '../utils/withSSRAuth'
 
 const breakpoints = createBreakpoints({
   tiny: '20em',
@@ -319,3 +320,9 @@ export default function Perfil() {
     </>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})
