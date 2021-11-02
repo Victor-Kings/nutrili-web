@@ -7,7 +7,7 @@ import {
   extendTheme
 } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, Grid, Box } from '@chakra-ui/react'
 
 import React, { useState, useEffect } from 'react'
 
@@ -16,8 +16,11 @@ import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
 import { CardPageInfo } from '../components/PageInfoComponents/CardPageInfo'
 import { ChartPageInfo } from '../components/PageInfoComponents/ChartPageInfo'
+import { ChartPieInfo } from '../components/PageInfoComponents/ChartPie'
 import { CardInfoEditabled } from '../components/PageInfoComponents/CardInfoEditabled'
 import { CardDiet } from '../components/PageInfoComponents/CardDiet'
+import styles from '../styles/infos.module.scss'
+
 
 export default function Infos() {
   const breakpoints = createBreakpoints({
@@ -89,31 +92,42 @@ export default function Infos() {
           </Flex>
         </Flex>
       )}
-      <Flex direction="row" h="100vh">
+      <Flex direction="row" h="100vh" w="100%">
         <Sidebar />
-        <Flex
+        {/* <Flex
           flex="1"
           flexDirection="column"
-          mr={4}
-          overflowY="scroll"
-          overflowX="hidden"
           margin="0"
+          p="0"
           ml={1}
-          marginRight={1}
           bg="chartreuse"
-        >
-          <Flex height="50%" width="100%">
-            <Flex flexDirection="column" width="33%">
-              <CardPageInfo />
-              <CardInfoEditabled a="a" />
-            </Flex>
+        > */}
+
+        <div className={styles.mygrid}>
+          <Box className={styles.Info}>
+            <CardPageInfo />
+          </Box>
+          {/* </Flex> */}
+          <Box className={styles.ChartInfo}>
             <ChartPageInfo />
-          </Flex>
-          <Flex height="45%" width="100%">
+          </Box>
+          <Box className={styles.ChartPie}>
+            <ChartPieInfo />
+          </Box>
+          <Box className={styles.InfoEditabled}>
+            <CardInfoEditabled a="a" />
+          </Box>
+          <Box bg="green.300" className={styles.Diet}>
             <CardDiet />
+          </Box>
+        </div>
+        {/*  <Flex width="85%" h="100vh" bg="pink.700" flexWrap="wrap"  flexDirection="column">
+              
+          <Flex  h="20%" width="100%">
           </Flex>
-        </Flex>
+        </Flex> */}
       </Flex>
+      {/* </Flex> */}
     </>
   )
 }

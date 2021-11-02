@@ -12,16 +12,17 @@ export function CardPageInfo(props: ICardPageProps) {
   return (
     <Flex
       backgroundColor="white"
-      h="280px"
-      mr="10px"
-      ml="10px"
-      mt={{ base: '', lg: '25px' }}
-      pt={{ base: '', lg: '25px' }}
+      h="100%"
+      // mr="10px"
+      // ml="10px"
+      // mt={{ base: '', lg: '25px' }}
+      // pt={{ base: '', lg: '25px' }}
       borderRadius="5px"
       justifyContent="flex-start"
       flexDir="column"
       alignItems="center"
-      maxW="440px"
+      w="100%"
+      maxW="540px"
     >
       <Avatar
         mt="10px"

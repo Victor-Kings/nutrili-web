@@ -61,16 +61,17 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
   return (
     <Flex
       backgroundColor="white"
-      h="280px"
-      mr="2%"
-      ml="2%"
-      mt={{ base: '', lg: '25px' }}
-      pt={{ base: '', lg: '25px' }}
+      h="100%"
+      w= "100%"
+      maxW="540px"
+      // mr="2%"
+      // ml="2%"
+      // mt={{ base: '', lg: '25px' }}
+      // pt={{ base: '', lg: '25px' }}
       borderRadius="5px"
       justifyContent="flex-start"
       flexDir="column"
       alignItems="center"
-      maxW="440px"
     >
       <Flex justifyContent="space-between" width="100%" paddingX="5%">
         <Text color="#494949" fontWeight="bold" fontSize="24px">

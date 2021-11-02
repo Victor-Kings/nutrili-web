@@ -49,6 +49,7 @@ export function CardDiet({ a }: ICardDietProps) {
     })
     setCards(auxCards)
     setNewFood('')
+    setIsNewFood('')
   }
 
   const deleteFood = (value: ICardDietData, itemFood: string) => {
@@ -68,23 +69,36 @@ export function CardDiet({ a }: ICardDietProps) {
     <Flex
       backgroundColor="white"
       h="100%"
-      mr="10px"
-      ml="10px"
-      mt={{ base: '', lg: '25px' }}
+      // mr="10px"
+      // ml="10px"
+      // mt={{ base: '', lg: '25px' }}
       borderRadius="5px"
       justifyContent="flex-start"
       flexDir="column"
       w="100%"
     >
-      <Text color="#494949" fontWeight="bold" fontSize="24px" height="8%">
+      <Text color="#494949" fontWeight="bold" fontSize="24px" pl="2%">
         Dieta da semana
       </Text>
       <Flex
-        height="90%"
+        height="88%"
         w="98%"
-        overflowY="auto"
+        overflow="auto"
         alignSelf="center"
-        bg="yellow.600"
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '2px',
+            height: '5px'
+          },
+          '&::-webkit-scrollbar-track': {
+            width: '2px',
+            height: '2px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: '#4ba1d3',
+            borderRadius: '24px',
+          }
+        }}
       >
         {cards.map((value, index) => (
           <Flex
@@ -92,11 +106,17 @@ export function CardDiet({ a }: ICardDietProps) {
             pt="1%"
             flexDir="column"
             alignItems="center"
-            bg="whatsapp.200"
-            w="20%"
-            ml="2%"
+            css={{
+              background: '#FFFFFF',
+              'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+              'border-radius': '3px'
+            }}
+            w="22%"
+            ml="1px"
+            mr="2%"
+            minW="300px"
           >
-            <Flex alignItems="center">
+            <Flex alignItems="center" justifyContent="space-between" w="90%">
               <Text color="#6F6F6F" fontSize="18px">
                 {value?.nameFeed}
               </Text>
@@ -109,20 +129,42 @@ export function CardDiet({ a }: ICardDietProps) {
                 }}
               />
             </Flex>
-            <Flex flexDirection="column" w="100%">
+            <Flex
+              flexDirection="column"
+              w="92%"
+              overflowY="auto"
+              maxH="300px"
+              css={{
+                '&::-webkit-scrollbar': {
+                  width: '5px'
+                },
+                '&::-webkit-scrollbar-track': {
+                  width: '6px',
+                  height: '10px'
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  background: '#4ba1d3',
+                  borderRadius: '24px'
+                }
+              }}
+            >
               {value.foods?.map((valueFoods, index) => (
                 <>
                   <Flex
                     key={`${valueFoods}-${index}-${value?.nameFeed}`}
                     w="98%"
-                    h="40px"
-                    bg="blueviolet"
+                    minH="40px"
                     alignSelf="center"
                     borderRadius="4px"
                     alignItems="center"
                     px="5%"
                     my="2%"
                     justifyContent="space-between"
+                    css={{
+                      background: '#FFFFFF',
+                      'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                      'border-radius': '3px'
+                    }}
                   >
                     <Text color="#6F6F6F" fontSize="18px">
                       {valueFoods}
@@ -144,14 +186,18 @@ export function CardDiet({ a }: ICardDietProps) {
                   {index == value.foods?.length - 1 && (
                     <Flex
                       w="98%"
-                      h="40px"
-                      bg="blueviolet"
+                      minH="40px"
                       alignSelf="center"
                       borderRadius="4px"
                       alignItems="center"
                       px="5%"
                       my="2%"
                       justifyContent="space-between"
+                      css={{
+                        background: '#FFFFFF',
+                        'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                        'border-radius': '3px'
+                      }}
                     >
                       <Text color="#6F6F6F" fontSize="18px">
                         Adicionar Alimento
@@ -175,7 +221,7 @@ export function CardDiet({ a }: ICardDietProps) {
                     index == value.foods?.length - 1 && (
                       <Flex
                         w="98%"
-                        h="40px"
+                        minH="40px"
                         bg="blueviolet"
                         alignSelf="center"
                         borderRadius="4px"
@@ -183,6 +229,11 @@ export function CardDiet({ a }: ICardDietProps) {
                         px="5%"
                         my="2%"
                         justifyContent="space-between"
+                        css={{
+                          background: '#FFFFFF',
+                          'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                          'border-radius': '3px'
+                        }}
                       >
                         <Input
                           textColor="blackAlpha.800"
@@ -231,7 +282,10 @@ export function CardDiet({ a }: ICardDietProps) {
                   type="text"
                   value={newFeed?.nameFeed}
                   onChange={(event) =>
-                    setNewFeed({ nameFeed: event.target.value })
+                    setNewFeed({
+                      nameFeed: event.target.value,
+                      foods: ['Exemplo']
+                    })
                   }
                 />
                 <IconButton

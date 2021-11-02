@@ -64,10 +64,10 @@ export function ChartPageInfo(props: ICardPageProps) {
     <Flex
       backgroundColor="white"
       h="280px"
-      mt={isSmallThan600 ? '20px' : '25px'}
-      mr="10px"
-      ml="10px"
-      pt={{ base: '', lg: '' }}
+      // mt={isSmallThan600 ? '20px' : '25px'}
+      // mr="10px"
+      // ml="10px"
+      // pt={{ base: '', lg: '' }}
       borderRadius="5px"
       justifyContent="flex-start"
       alignItems="center"

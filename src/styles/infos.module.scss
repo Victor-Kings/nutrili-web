@@ -1,0 +1,49 @@
+.Info {
+  grid-area: Info;
+}
+.ChartInfo {
+  grid-area: ChartInfo;
+}
+.ChartPie {
+  grid-area: ChartPie;
+}
+.InfoEditabled {
+    grid-area: InfoEditabled;
+}
+.Diet {
+    grid-area:Diet;
+}
+.mygrid {
+  display: grid;
+  width: 100%;
+  overflow-y: auto;
+  row-gap: 20px;
+  column-gap: 20px;
+  grid-template-columns: 1fr ;
+  grid-template-rows: repeat(5,1fr);
+  grid-template-areas:
+  'Info'
+  'ChartInfo'
+  'ChartPie '
+  'InfoEditabled'
+  'Diet';
+  margin: 30px 30px 0px 30px;
+
+  @media (min-width: 1200px){
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 280px 280px 1fr;
+    grid-template-areas:
+    'Info ChartInfo'
+    'ChartPie InfoEditabled'
+    'Diet Diet';
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 280px 280px 1fr;
+    grid-template-areas:
+      'Info ChartInfo ChartPie'
+      'InfoEditabled . .'
+      'Diet Diet Diet';
+  }
+}
