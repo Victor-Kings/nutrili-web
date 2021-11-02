@@ -62,7 +62,7 @@ export function CardInfoEditabled({ a }: ICardInfoEditabledProps) {
     <Flex
       backgroundColor="white"
       h="100%"
-      w= "100%"
+      w="100%"
       maxW="540px"
       // mr="2%"
       // ml="2%"

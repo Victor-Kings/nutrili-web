@@ -85,6 +85,7 @@ export function CardDiet({ a }: ICardDietProps) {
         w="98%"
         overflow="auto"
         alignSelf="center"
+        flexWrap={{ base: 'wrap', xl: 'unset' }}
         css={{
           '&::-webkit-scrollbar': {
             width: '2px',
@@ -92,11 +93,11 @@ export function CardDiet({ a }: ICardDietProps) {
           },
           '&::-webkit-scrollbar-track': {
             width: '2px',
-            height: '2px',
+            height: '2px'
           },
           '&::-webkit-scrollbar-thumb': {
             background: '#4ba1d3',
-            borderRadius: '24px',
+            borderRadius: '24px'
           }
         }}
       >
@@ -114,7 +115,9 @@ export function CardDiet({ a }: ICardDietProps) {
             w="22%"
             ml="1px"
             mr="2%"
+            minH="350px"
             minW="300px"
+            mb="10px"
           >
             <Flex alignItems="center" justifyContent="space-between" w="90%">
               <Text color="#6F6F6F" fontSize="18px">
@@ -262,17 +265,22 @@ export function CardDiet({ a }: ICardDietProps) {
           </Flex>
         ))}
         <Flex
-          mt="5px"
           flexDir="column"
           justifyContent="center"
           alignItems="center"
           bg="whatsapp.50"
           minW="20%"
-          ml="2%"
+          mb="10px"
         >
           {isNewFeed ? (
-            <Flex flexDirection="column" alignItems="center">
-              <Text color="#6F6F6F" fontSize="18px" pb="2%">
+            <Flex
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              minW="300px"
+              minH="350px"
+            >
+              <Text color="#6F6F6F" fontSize="18px">
                 Nome da Refeição
               </Text>
               <Flex>
@@ -281,12 +289,12 @@ export function CardDiet({ a }: ICardDietProps) {
                   borderRadius="5px"
                   type="text"
                   value={newFeed?.nameFeed}
-                  onChange={(event) =>
+                  onChange={(event) => {
                     setNewFeed({
                       nameFeed: event.target.value,
                       foods: ['Exemplo']
                     })
-                  }
+                  }}
                 />
                 <IconButton
                   aria-label="Add feed"
@@ -298,7 +306,13 @@ export function CardDiet({ a }: ICardDietProps) {
               </Flex>
             </Flex>
           ) : (
-            <Flex flexDirection="column" alignItems="center">
+            <Flex
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              minW="300px"
+              minH="350px"
+            >
               <Text color="#6F6F6F" fontSize="18px">
                 Adicionar Refeição
               </Text>

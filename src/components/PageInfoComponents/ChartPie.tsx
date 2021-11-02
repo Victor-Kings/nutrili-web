@@ -9,13 +9,14 @@ interface ICardPageProps {
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
-const options ={
-    chart: {
-      width: 380,
-      type: 'pie',
-    },
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-    responsive: [{
+const options = {
+  chart: {
+    width: 380,
+    type: 'pie'
+  },
+  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+  responsive: [
+    {
       breakpoint: 480,
       options: {
         chart: {
@@ -25,8 +26,9 @@ const options ={
           position: 'bottom'
         }
       }
-    }]
-};
+    }
+  ]
+}
 /* {
   chart: {
     toolbar: {
@@ -73,7 +75,7 @@ const options ={
   }
 }*/
 
-const series =[44, 55, 13, 43, 22]
+const series = [44, 55, 13, 43, 22]
 
 export function ChartPieInfo(props: ICardPageProps) {
   const [isSmallThan600] = useMediaQuery('(max-width: 600px)')
@@ -97,12 +99,7 @@ export function ChartPieInfo(props: ICardPageProps) {
         Categoria de Alimento
       </Text>
       {isSmallThan600 ? (
-        <Chart
-          type="pie"
-          width={335}
-          options={options}
-          series={series}
-        />
+        <Chart type="pie" width={335} options={options} series={series} />
       ) : (
         <Chart
           type="pie"

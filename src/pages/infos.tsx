@@ -21,7 +21,6 @@ import { CardInfoEditabled } from '../components/PageInfoComponents/CardInfoEdit
 import { CardDiet } from '../components/PageInfoComponents/CardDiet'
 import styles from '../styles/infos.module.scss'
 
-
 export default function Infos() {
   const breakpoints = createBreakpoints({
     sm: '320px',
@@ -92,7 +91,7 @@ export default function Infos() {
           </Flex>
         </Flex>
       )}
-      <Flex direction="row" h="100vh" w="100%">
+      <Flex direction="row" h={{ base: '89vh', xl: '98vh' }} w="100%" pb="1%">
         <Sidebar />
         {/* <Flex
           flex="1"
