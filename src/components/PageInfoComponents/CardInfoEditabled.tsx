@@ -29,8 +29,8 @@ export function CardInfoEditabled(props: IDataInfos) {
   const updateDate = async () => {
     const a = await new GetClientsService().updateClient(
       props.patientID,
-      props.height,
-      props.weigth
+      dataInfos.height,
+      dataInfos.weigth
     )
     console.log(a)
   }

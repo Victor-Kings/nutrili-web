@@ -2,7 +2,8 @@ import { parseCookies } from 'nookies'
 import { apiBackend } from '../apiClient'
 import {
   IGetDataUserServiceProps,
-  IUserData
+  IUserData,
+  IUserDataComplete
 } from './GetDataUserService.interface'
 
 export class GetDataUserService implements IGetDataUserServiceProps {
@@ -14,4 +15,46 @@ export class GetDataUserService implements IGetDataUserServiceProps {
     })
     return data
   }
+
+  getDataUserComplete = async (): Promise<IUserDataComplete> => {
+    const { data } = await apiBackend.get('/nutritionist/getNutritionistInfo', {
+      headers: {
+        Authorization: `Bearer ${parseCookies()['auth-token']}`
+      }
+    })
+    return data
+  }
+
+  updateDataUser = async (
+    userDate: IUserDataComplete
+  ): Promise<IUserDataComplete> => {
+    const { data } = await apiBackend.put(
+      'user/updateUser',
+      mappingFields(userDate),
+      {
+        headers: {
+          Authorization: `Bearer ${parseCookies()['auth-token']}`
+        }
+      }
+    )
+    return data
+  }
+}
+const mappingFields = (userDate: IUserDataComplete) => {
+  const body = {
+    nutritionist: true,
+    phone: userDate.phone,
+    officeAddress: {
+      cep: userDate.office.cep,
+      state: userDate.office.state,
+      city: userDate.office.city,
+      neighborhood: userDate.office.neighborhood,
+      street: userDate.office.street,
+      number: userDate.office.number,
+      officeName: userDate.office.officeName,
+      officePhone: userDate.office.officePhone
+    },
+    birth: userDate.age
+  }
+  return body
 }

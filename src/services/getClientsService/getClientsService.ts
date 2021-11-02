@@ -43,14 +43,15 @@ export class GetClientsService implements IGetClientsServiceProps {
     height: number,
     weigth: number
   ): Promise<AxiosResponse> => {
-    console.log('ENTROU')
+    console.log('ENTROU', patientID, height, weigth)
 
     const { data } = await apiBackend.put(
       'nutritionist/updatePatient',
       {
+        nutritionist: false,
         patientID: patientID,
         height: height,
-        weigth: weigth
+        weight: weigth
       },
       {
         headers: {
