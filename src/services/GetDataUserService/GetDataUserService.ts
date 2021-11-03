@@ -28,15 +28,14 @@ export class GetDataUserService implements IGetDataUserServiceProps {
   updateDataUser = async (
     userDate: IUserDataComplete
   ): Promise<IUserDataComplete> => {
-    const { data } = await apiBackend.put(
-      'user/updateUser',
-      mappingFields(userDate),
-      {
-        headers: {
-          Authorization: `Bearer ${parseCookies()['auth-token']}`
-        }
+    const test = mappingFields(userDate)
+    console.log(test)
+
+    const { data } = await apiBackend.put('user/updateUser', test, {
+      headers: {
+        Authorization: `Bearer ${parseCookies()['auth-token']}`
       }
-    )
+    })
     return data
   }
 }
@@ -54,7 +53,7 @@ const mappingFields = (userDate: IUserDataComplete) => {
       officeName: userDate.office.officeName,
       officePhone: userDate.office.officePhone
     },
-    birth: userDate.age
+    birth: userDate.birth
   }
   return body
 }

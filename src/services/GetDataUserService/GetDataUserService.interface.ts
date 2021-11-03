@@ -9,12 +9,10 @@ export interface IUserDataComplete {
   crnType: string
   score: number
   profilePic: string | null
-  age: number
+  birth: string
   phone: string
   office: Address
   numberOfPatients: number
-  officeName: string | null
-  officePhone: string | null
 }
 export interface Address {
   cep: string

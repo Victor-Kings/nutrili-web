@@ -45,6 +45,7 @@ export default function Perfil() {
   }
   const updateData = async () => {
     const response = await new GetDataUserService().updateDataUser(clientData)
+    setEditField(false)
     console.log(response)
   }
   const fetchData = useCallback(async () => {
@@ -154,7 +155,9 @@ export default function Perfil() {
                       <Image
                         boxSize="100%"
                         objectFit="cover"
-                        src="https://bit.ly/dan-abramov"
+                        src={
+                          clientData?.profilePic || 'https://bit.ly/dan-abramov'
+                        }
                         alt="Dan Abramov"
                       />
                     </SimpleGrid>
@@ -162,7 +165,7 @@ export default function Perfil() {
                       <Text fontWeight="bold" fontSize="2xl" color="gray.200">
                         {clientData.name}
                       </Text>
-                      <Text color="blue.200">Nutricionista PHD</Text>
+                      <Text color="blue.200">Nutricionista</Text>
                       <Text color="gray.200">
                         CRN{clientData.crnType} - Nutricionista Definitivo
                       </Text>
@@ -200,13 +203,19 @@ export default function Perfil() {
                           Consultório
                         </Text>
                         <Text mb="5px" color="gray.400">
-                          Nome: {clientData.officeName}
+                          Nome: {clientData.office.officeName}
                         </Text>
                         <Text mb="5px" color="gray.400">
-                          Endereço: {clientData.office}
+                          Endereço: {clientData.office.street},{' '}
+                          {clientData.office.number},{' '}
+                          {clientData.office.neighborhood},{' '}
+                          {clientData.office.city}-{clientData.office.state}
                         </Text>
                         <Text mb="5px" color="gray.400">
-                          Telefone: {clientData.officePhone}
+                          CEP: {clientData.office.cep}
+                        </Text>
+                        <Text mb="5px" color="gray.400">
+                          Telefone: {clientData.office.officePhone}
                         </Text>
                         <Text
                           mb="5px"
@@ -218,7 +227,7 @@ export default function Perfil() {
                           Informações Pessoais
                         </Text>
                         <Text mb="5px" color="gray.400">
-                          Nacimento: {clientData.age}
+                          Nacimento: {clientData.birth}
                         </Text>
                         <Text mb="5px" color="gray.400">
                           Telefone: {clientData.phone}
@@ -245,11 +254,14 @@ export default function Perfil() {
                           </Flex>
                           <Input
                             className={styles.inputData}
-                            value={clientData.officeName}
+                            value={clientData.office.officeName}
                             onChange={(value) =>
                               setClientData({
                                 ...clientData,
-                                officeName: value.target.value
+                                office: {
+                                  ...clientData.office,
+                                  officeName: value.target.value
+                                }
                               })
                             }
                           />
@@ -386,11 +398,14 @@ export default function Perfil() {
                           </Flex>
                           <Input
                             className={styles.inputData}
-                            value={clientData.officePhone}
+                            value={clientData.office.officePhone}
                             onChange={(value) =>
                               setClientData({
                                 ...clientData,
-                                officePhone: value.target.value
+                                office: {
+                                  ...clientData.office,
+                                  officePhone: value.target.value
+                                }
                               })
                             }
                           />
@@ -413,11 +428,11 @@ export default function Perfil() {
                           </Flex>
                           <Input
                             className={styles.inputData}
-                            value={clientData.age}
+                            value={clientData.birth}
                             onChange={(value) =>
                               setClientData({
                                 ...clientData,
-                                age: parseInt(value.target.value)
+                                birth: value.target.value
                               })
                             }
                           />
