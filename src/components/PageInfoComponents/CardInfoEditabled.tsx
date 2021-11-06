@@ -72,6 +72,7 @@ export function CardInfoEditabled(props: IDataInfos) {
       justifyContent="flex-start"
       flexDir="column"
       alignItems="center"
+      pt="4%"
     >
       <Flex justifyContent="space-between" width="100%" paddingX="5%">
         <Text color="#494949" fontWeight="bold" fontSize="24px">
@@ -105,7 +106,9 @@ export function CardInfoEditabled(props: IDataInfos) {
             </Box>
             <Box w="100%" h="10" alignContent="center">
               <Flex height="100%" alignItems="center">
-                <Text color="gray.400">IMC: {dataInfos?.IMC}</Text>
+                <Text color="gray.400">
+                  IMC: {Math.round(dataInfos?.IMC * 10) / 10}
+                </Text>
               </Flex>
             </Box>
           </Grid>

@@ -26,11 +26,16 @@ export interface IWeightHistoryChart {
   dates: string[]
   chartData: IChartData
 }
+export interface IMealChartDataDTO {
+  category: string[]
+  count: number[]
+}
 
 export interface IClientDataComplete {
   weightHistoryChart: IWeightHistoryChart
   measure: IMeasure
   patient: IClientData
+  mealChartDataDTO: IMealChartDataDTO
 }
 export interface IGetClientsServiceProps {
   getClientsPagination: (

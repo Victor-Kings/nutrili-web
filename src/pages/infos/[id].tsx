@@ -137,7 +137,10 @@ function Infos({ id }: any) {
               />
             </Box>
             <Box className={styles.ChartPie}>
-              <ChartPieInfo />
+              <ChartPieInfo
+                series={clientData.mealChartDataDTO.count}
+                labels={clientData.mealChartDataDTO.category}
+              />
             </Box>
             <Box className={styles.InfoEditabled}>
               <CardInfoEditabled

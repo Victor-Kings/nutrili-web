@@ -1,39 +1,35 @@
 import { Flex, useMediaQuery, Text } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-interface ICardPageProps {
-  image?: string
-  name?: string
-  age?: string
-  situation?: string
+interface IChartPieInfosProps {
+  series?: number[]
+  labels?: string[]
 }
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
-const options = {
-  chart: {
-    width: 380,
-    type: 'pie'
-  },
-  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
-        },
-        legend: {
-          position: 'bottom'
+export function ChartPieInfo({ series, labels }: IChartPieInfosProps) {
+  const [isSmallThan600] = useMediaQuery('(max-width: 600px)')
+
+  const options = {
+    chart: {
+      width: 380,
+      type: 'pie'
+    },
+    labels: labels,
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
         }
       }
-    }
-  ]
-}
-
-const series = [44, 55, 13, 43, 22]
-
-export function ChartPieInfo(props: ICardPageProps) {
-  const [isSmallThan600] = useMediaQuery('(max-width: 600px)')
+    ]
+  }
 
   return (
     <Flex
