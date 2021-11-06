@@ -1,9 +1,11 @@
+import { AxiosAdapter, AxiosResponse } from 'axios'
 import { parseCookies } from 'nookies'
 import { apiBackend } from '../apiClient'
 import {
   IGetDataUserServiceProps,
   IUserData,
-  IUserDataComplete
+  IUserDataComplete,
+  ICardDietData
 } from './GetDataUserService.interface'
 
 export class GetDataUserService implements IGetDataUserServiceProps {
@@ -38,7 +40,29 @@ export class GetDataUserService implements IGetDataUserServiceProps {
     })
     return data
   }
+
+  updateDataDietUser = async (
+    patientID: string,
+    dietData: ICardDietData[]
+  ): Promise<AxiosResponse> => {
+    console.log('Enviado alimento', dietData)
+
+    const { data } = await apiBackend.put(
+      'diet/updateDiet',
+      mappingDiet(dietData),
+      {
+        headers: {
+          Authorization: `Bearer ${parseCookies()['auth-token']}`
+        },
+        params: {
+          patientID
+        }
+      }
+    )
+    return data
+  }
 }
+
 const mappingFields = (userDate: IUserDataComplete) => {
   const body = {
     nutritionist: true,
@@ -55,5 +79,18 @@ const mappingFields = (userDate: IUserDataComplete) => {
     },
     birth: userDate.birth
   }
+  return body
+}
+
+const mappingDiet = (dietData: ICardDietData[]) => {
+  const body = []
+
+  dietData.map((element) =>
+    body.push({
+      name: element.nameFeed,
+      food: element.foods
+    })
+  )
+
   return body
 }

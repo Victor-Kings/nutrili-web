@@ -1,28 +1,19 @@
 import { Text, Flex, Input, IconButton } from '@chakra-ui/react'
 import { useState } from 'react'
 import { AddIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons'
-
-interface ICardDietProps {
-  a?: string
-}
+import { GetDataUserService } from '../../services/GetDataUserService/GetDataUserService'
 
 interface ICardDietData {
-  nameFeed?: string
-  foods?: string[]
+  nameFeed: string
+  foods: string[]
+}
+interface ICardDietProps {
+  dataDiet: ICardDietData[]
+  patientID: string
 }
 
-export function CardDiet({ a }: ICardDietProps) {
-  const [cards, setCards] = useState<ICardDietData[]>([
-    {
-      nameFeed: 'A',
-      foods: ['1Arsroz', '3Fei4jão']
-    },
-    {
-      nameFeed: 'B',
-      foods: ['2Ar1roz', '4Fei5jão']
-    }
-  ])
-  console.log('CARDS', cards)
+export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
+  const [cards, setCards] = useState<ICardDietData[]>(dataDiet)
 
   const [isNewFeed, setIsNewFeed] = useState(false)
   const [newFeed, setNewFeed] = useState<ICardDietData>(null)
@@ -40,6 +31,13 @@ export function CardDiet({ a }: ICardDietProps) {
   const deleteFeed = (value: ICardDietData) => {
     const list = cards.filter((item: ICardDietData) => item !== value)
     setCards(list)
+
+    console.log('DELETANDO FEED', cards)
+    cards.filter((element) => {
+      if (element == value && element.foods.length > 0) {
+        sendDataDiet()
+      }
+    })
   }
 
   const handlerNewFood = (value: ICardDietData) => {
@@ -50,6 +48,13 @@ export function CardDiet({ a }: ICardDietProps) {
     setCards(auxCards)
     setNewFood('')
     setIsNewFood('')
+
+    console.log('ADICIONANDO FOOD', cards)
+    auxCards.filter((element) => {
+      if (element == value && element.foods.length > 0) {
+        sendDataDiet()
+      }
+    })
   }
 
   const deleteFood = (value: ICardDietData, itemFood: string) => {
@@ -63,6 +68,17 @@ export function CardDiet({ a }: ICardDietProps) {
     })
 
     setCards(cards.slice())
+    console.log('DELETENADO FOOD', cards)
+
+    cards.filter((element) => {
+      if (element == value && element.foods.length > 0) {
+        sendDataDiet()
+      }
+    })
+  }
+
+  const sendDataDiet = () => {
+    new GetDataUserService().updateDataDietUser(patientID, cards)
   }
 
   return (
@@ -207,7 +223,7 @@ export function CardDiet({ a }: ICardDietProps) {
                       </Text>
                       <IconButton
                         variant="outline"
-                        colorScheme="green"
+                        colorScheme="blue"
                         aria-label="Add feed"
                         icon={<AddIcon />}
                         borderRadius="50%"
@@ -261,6 +277,77 @@ export function CardDiet({ a }: ICardDietProps) {
                     )}
                 </>
               ))}
+              {value.foods?.length == 0 && (
+                <Flex
+                  w="98%"
+                  minH="40px"
+                  alignSelf="center"
+                  borderRadius="4px"
+                  alignItems="center"
+                  px="5%"
+                  my="2%"
+                  justifyContent="space-between"
+                  css={{
+                    background: '#FFFFFF',
+                    'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                    'border-radius': '3px'
+                  }}
+                >
+                  <Text color="#6F6F6F" fontSize="18px">
+                    Adicionar Alimento
+                  </Text>
+                  <IconButton
+                    variant="outline"
+                    colorScheme="blue"
+                    aria-label="Add feed"
+                    icon={<AddIcon />}
+                    borderRadius="50%"
+                    fontSize="10px"
+                    size="xs"
+                    onClick={() => {
+                      setIsNewFood(`${value.nameFeed}`)
+                    }}
+                  />
+                </Flex>
+              )}
+              {isNewFood == value.nameFeed && value.foods?.length == 0 && (
+                <Flex
+                  w="98%"
+                  minH="40px"
+                  bg="blueviolet"
+                  alignSelf="center"
+                  borderRadius="4px"
+                  alignItems="center"
+                  px="5%"
+                  my="2%"
+                  justifyContent="space-between"
+                  css={{
+                    background: '#FFFFFF',
+                    'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                    'border-radius': '3px'
+                  }}
+                >
+                  <Input
+                    textColor="blackAlpha.800"
+                    borderRadius="5px"
+                    type="text"
+                    value={newFood}
+                    onChange={(event) => setNewFood(event.target.value)}
+                  />
+                  <IconButton
+                    variant="outline"
+                    colorScheme="green"
+                    aria-label="Add food"
+                    icon={<CheckIcon />}
+                    borderRadius="50%"
+                    fontSize="10px"
+                    size="xs"
+                    onClick={() => {
+                      handlerNewFood(value)
+                    }}
+                  />
+                </Flex>
+              )}
             </Flex>
           </Flex>
         ))}
@@ -268,9 +355,8 @@ export function CardDiet({ a }: ICardDietProps) {
           flexDir="column"
           justifyContent="center"
           alignItems="center"
-          bg="whatsapp.50"
+          bg="blue.100"
           minW="20%"
-          mb="10px"
         >
           {isNewFeed ? (
             <Flex

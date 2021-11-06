@@ -30,12 +30,16 @@ export interface IMealChartDataDTO {
   category: string[]
   count: number[]
 }
-
+export interface IDietData {
+  nameFeed: string
+  foods: string[]
+}
 export interface IClientDataComplete {
   weightHistoryChart: IWeightHistoryChart
   measure: IMeasure
   patient: IClientData
   mealChartDataDTO: IMealChartDataDTO
+  diet: IDietData[]
 }
 export interface IGetClientsServiceProps {
   getClientsPagination: (

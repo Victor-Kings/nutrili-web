@@ -151,7 +151,10 @@ function Infos({ id }: any) {
               />
             </Box>
             <Box bg="green.300" className={styles.Diet}>
-              <CardDiet />
+              <CardDiet
+                dataDiet={clientData.diet}
+                patientID={query.id as string}
+              />
             </Box>
           </div>
         )}

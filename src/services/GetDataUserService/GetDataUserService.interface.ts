@@ -3,7 +3,10 @@ export interface IUserData {
   profilePicture: string | null
   name: string
 }
-
+export interface ICardDietData {
+  nameFeed?: string
+  foods?: string[]
+}
 export interface IUserDataComplete {
   name: string
   crnType: string
