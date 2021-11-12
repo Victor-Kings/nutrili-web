@@ -7,6 +7,9 @@ export interface ICardDietData {
   nameFeed?: string
   foods?: string[]
 }
+export interface IUpdateProfileServiceProps {
+  updateProfilePick:(ImageData: any) => Promise<void>
+}
 export interface IUserDataComplete {
   name: string
   crnType: string

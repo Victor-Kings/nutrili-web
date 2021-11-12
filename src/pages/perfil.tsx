@@ -37,8 +37,8 @@ const theme = extendTheme({ breakpoints })
 export default function Perfil() {
   const [editField, setEditField] = useState(false)
   const [clientData, setClientData] = useState<IUserDataComplete | null>(null)
+  const [imageProfile, setImageProfile] = useState<any>(null);
 
-  console.log(clientData)
 
   function handleClick() {
     setEditField(true)
@@ -46,8 +46,20 @@ export default function Perfil() {
   const updateData = async () => {
     const response = await new GetDataUserService().updateDataUser(clientData)
     setEditField(false)
-    console.log(response)
+    console.log(imageProfile)
+    if (imageProfile) {
+      try {
+        await new GetDataUserService().updateProfilePick(imageProfile);
+      } catch (e) {
+        console.error("erro ao atualizar imagem", e);
+      }
+    }
   }
+
+  const pickImage = (event) => {
+    setImageProfile(event.target.files[0]);
+  };
+
   const fetchData = useCallback(async () => {
     try {
       const response = await new GetDataUserService().getDataUserComplete()
@@ -143,10 +155,10 @@ export default function Perfil() {
                 <Flex className={styles.editBtn}>
                   <Flex className={styles.descriptionProfile}>
                     <SimpleGrid
-                      maxWidth="200px"
-                      minWidth="200px"
-                      maxHeight="200px"
-                      minHeight="200px"
+                      maxWidth="150px"
+                      minWidth="150px"
+                      maxHeight="250px"
+                      minHeight="150px"
                       ml="30px"
                       mt="10px"
                       mr="40px"
@@ -161,7 +173,7 @@ export default function Perfil() {
                         alt="Dan Abramov"
                       />
                     </SimpleGrid>
-                    <SimpleGrid w="100%" h="200px" mt="20px">
+                    <SimpleGrid w="100%" h="150px" mt="35px">
                       <Text fontWeight="bold" fontSize="2xl" color="gray.200">
                         {clientData.name}
                       </Text>
@@ -195,6 +207,7 @@ export default function Perfil() {
                     {!editField ? (
                       <SimpleGrid>
                         <Text
+                        mt="20px"
                           mb="5px"
                           ml="2%"
                           color="gray.200"
@@ -238,6 +251,20 @@ export default function Perfil() {
                       </SimpleGrid>
                     ) : (
                       <div>
+                        <Flex 
+                        marginTop="15px"
+                        display="flex"
+                        flexDirection="row"
+                        marginBottom="10px">
+                        <Text
+                          color="gray.300"
+                          fontWeight="bold"
+                          fontSize="15px"
+                        >
+                          Alterar imagem:
+                        </Text>
+                        <input type="file" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px"}}/> 
+                        </Flex>
                         <Text
                           mb="15px"
                           ml="2%"
@@ -462,7 +489,7 @@ export default function Perfil() {
                   </SimpleGrid>
                 </Flex>
                 {editField && (
-                  <Flex flexDirection="row" ml={2} mr={2}>
+                  <Flex flexDirection="row"marginTop="60px" ml={2} mr={2}>
                     <Button
                       w={40}
                       h={38}
@@ -498,8 +525,4 @@ export default function Perfil() {
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
-  return {
-    props: {}
-  }
-})
+
