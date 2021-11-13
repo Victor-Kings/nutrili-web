@@ -56,7 +56,8 @@ export default function Perfil() {
   }
 
   const pickImage = (event) => {
-    setImageProfile(event.target.files[0]); 
+    console.log(event.target.files[0])
+    setImageProfile(event.target.files[0]);
   };
 
   const fetchData = useCallback(async () => {
@@ -182,7 +183,7 @@ export default function Perfil() {
                       maxWidth="150px"
                       minWidth="150px"
                       maxHeight="250px"
-                      minHeight="150px"
+                      minHeight="200px"
                       ml="30px"
                       mt="10px"
                       mr="40px"
@@ -192,7 +193,7 @@ export default function Perfil() {
                         boxSize="100%"
                         objectFit="cover"
                         src={
-                          clientData?.profilePic || 'https://bit.ly/dan-abramov'
+                          imageProfile ? URL.createObjectURL(imageProfile) : clientData?.profilePic || 'https://bit.ly/dan-abramov'
                         }
                         alt="Dan Abramov"
                       />
@@ -287,7 +288,7 @@ export default function Perfil() {
                         >
                           Alterar imagem:
                         </Text>
-                        <input type="file" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px"}}/> 
+                        <input type="file" name="profileName" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px"}}/> 
                         </Flex>
                         <Text
                           mb="15px"
