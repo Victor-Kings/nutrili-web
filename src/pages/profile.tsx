@@ -288,7 +288,7 @@ export default function Perfil() {
                         >
                           Alterar imagem:
                         </Text>
-                        <input type="file" name="profileName" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px"}}/> 
+                        <input type="file" name="profileName" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px", color: "black"}}/> 
                         </Flex>
                         <Text
                           mb="15px"
