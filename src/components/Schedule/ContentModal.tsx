@@ -4,23 +4,34 @@ import styles from './Schedule.module.scss'
 import { Icon, InlineIcon } from '@iconify/react'
 import Trash from '@iconify/icons-bx/bxs-trash-alt'
 import X from '@iconify/icons-emojione-monotone/heavy-multiplication-x'
-import DatePicker from '../DatePicker/DatePicker'
 import { IRegisterSchedulerProps } from '../../interfaces/registerScheduler.interface'
 
 interface ContentModalProps {
   closeModal: any
   saveScheduling: (value: IRegisterSchedulerProps) => void
+  removeMeeting: any
+  meetingDetails: any
 }
 
 export default function ContentModal({
   closeModal,
-  saveScheduling
+  saveScheduling,
+  removeMeeting,
+  meetingDetails
 }: ContentModalProps) {
   // const [startDate, setStartDate] = useState(new Date())
-  const [stateForm, setStateForm] = useState<IRegisterSchedulerProps>()
+  const [stateForm, setStateForm] =
+    useState<IRegisterSchedulerProps>(meetingDetails)
   const handleClickToSave = () => {
     closeModal()
     saveScheduling(stateForm)
+  }
+
+  function verifyDate(date: string): string {
+    if (date != null) {
+      return date.split('/').reverse().join('-')
+    }
+    return ''
   }
   // const setDate = (date) => setStartDate(date)
   return (
@@ -39,7 +50,7 @@ export default function ContentModal({
               borderRightColor: '#656565',
               paddingRight: '2px'
             }}
-            onClick={closeModal}
+            onClick={removeMeeting}
           >
             <Icon
               style={{
@@ -87,6 +98,7 @@ export default function ContentModal({
           borderColor="blue.110"
           size="md"
           marginBottom="4%"
+          value={stateForm?.title || ''}
           onChange={(event) =>
             setStateForm({ ...stateForm, title: event.target.value })
           }
@@ -115,6 +127,7 @@ export default function ContentModal({
           size="sm"
           maxH="40px"
           borderRadius="md"
+          value={stateForm?.summary || ''}
           onChange={(event) =>
             setStateForm({ ...stateForm, summary: event.target.value })
           }
@@ -126,13 +139,11 @@ export default function ContentModal({
               <input
                 id="startDate"
                 type="date"
+                value={verifyDate(stateForm?.startingDate)}
                 onChange={(event) => {
                   setStateForm({
                     ...stateForm,
                     startingDate: event.target.value
-                      .split('-')
-                      .reverse()
-                      .join('/')
                   })
                 }}
               />
@@ -143,6 +154,7 @@ export default function ContentModal({
                 min="09:00"
                 max="18:00"
                 required
+                value={stateForm?.startingTime || ''}
                 onChange={(event) => {
                   setStateForm({
                     ...stateForm,
@@ -158,13 +170,11 @@ export default function ContentModal({
               <input
                 id="endDate"
                 type="date"
+                value={verifyDate(stateForm?.endingDate)}
                 onChange={(event) => {
                   setStateForm({
                     ...stateForm,
                     endingDate: event.target.value
-                      .split('-')
-                      .reverse()
-                      .join('/')
                   })
                 }}
               />
@@ -175,6 +185,7 @@ export default function ContentModal({
                 min="09:00"
                 max="18:00"
                 required
+                value={stateForm?.endingTime || ''}
                 onChange={(event) => {
                   setStateForm({
                     ...stateForm,
@@ -197,7 +208,7 @@ export default function ContentModal({
         </div>
         <Checkbox
           color="blue.200"
-          defaultIsChecked
+          defaultChecked={stateForm?.everyWeek}
           onChange={(event) => {
             setStateForm({
               ...stateForm,
