@@ -23,9 +23,11 @@ export default function ListClients({ clients }: IListClientsProps) {
             <Flex alignItems="center" pl={{ base: '20px', lg: '50px' }}>
               <Avatar
                 name="Dan Abrahmov"
-                src="https://bit.ly/dan-abramov"
+                src={values.profileIcon || 'https://bit.ly/dan-abramov'}
                 border="3px solid#EBF5FF"
                 size={values.profileIcon}
+                w="48px"
+                h="48px"
               />
             </Flex>
             <Flex

@@ -3,9 +3,14 @@ export interface IUserData {
   profilePicture: string | null
   name: string
 }
-export interface ICardDietData {
+export interface IDietData {
   nameFeed?: string
   foods?: string[]
+}
+
+export interface ICardDietData {
+  name: string
+  food: string[]
 }
 export interface IUserDataComplete {
   name: string

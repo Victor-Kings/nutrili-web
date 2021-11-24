@@ -31,8 +31,8 @@ export interface IMealChartDataDTO {
   count: number[]
 }
 export interface IDietData {
-  nameFeed: string
-  foods: string[]
+  name: string
+  food: string[]
 }
 export interface IClientDataComplete {
   weightHistoryChart: IWeightHistoryChart
