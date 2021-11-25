@@ -109,7 +109,7 @@ function Infos({ id }: any) {
 
             <Avatar
               name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
+              src={clientData.patient.profileIcon}
               size={avatarSize}
               border="3px solid white"
             />
@@ -122,7 +122,7 @@ function Infos({ id }: any) {
           <div className={styles.mygrid}>
             <Box className={styles.Info}>
               <CardPageInfo
-                image={clientData.patient?.profileIcon}
+                image={clientData.patient.profileIcon}
                 name={clientData.patient.name}
                 age={clientData.patient.age}
                 situation={clientData.patient.status}

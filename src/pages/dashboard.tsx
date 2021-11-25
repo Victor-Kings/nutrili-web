@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useContext } from 'react'
 import {
   Box,
   SimpleGrid,
@@ -11,17 +11,15 @@ import {
 import { Flex, Text } from '@chakra-ui/react'
 import { Sidebar } from '../components/Sidebar'
 import { Counter } from '../components/Counter'
-import { IClients, IClientsData } from '../interfaces/clientes.interface'
+import { IClientsData } from '../interfaces/clientes.interface'
 import SimpleAccordion from '../components/NewClientsList'
 import Schedule from '../components/Schedule/Schedule'
 import styles from '../styles/dashboard.module.scss'
 import { ImMenu } from 'react-icons/im'
 import { useSidebarDrawer } from '../contexts/SidebarDrawerContext'
-import { useContext } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { withSSRAuth } from '../utils/withSSRAuth'
 import { GetNutritionistPendingApproval } from '../services/GetNutritionistPendingApproval/GetNutritionistPendingApproval'
-import { parseCookies } from 'nookies'
 
 export default function Dashboard() {
   const clients: IClientsData = {
@@ -155,7 +153,7 @@ export default function Dashboard() {
 
               <Counter
                 contentText="APROVAÇÕES PENDENTES"
-                imageName="/icons/iconPeoples.svg"
+                imageName="/icons/iconPendingApproves.svg"
                 valueData={clientsToApprove?.numberOfPendingRequest}
               />
             </SimpleGrid>

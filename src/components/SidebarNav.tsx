@@ -11,10 +11,8 @@ import {
 } from '@chakra-ui/react'
 
 import { AiFillHome } from 'react-icons/ai'
+import { BsFillPersonFill, BsFillPeopleFill, BsBellFill } from 'react-icons/bs'
 
-import { BsFillPersonFill, BsFillPeopleFill } from 'react-icons/bs'
-
-import { IoSettingsSharp } from 'react-icons/io5'
 import { useContext } from 'react'
 import AuthContext from '../contexts/AuthContext'
 
@@ -136,7 +134,7 @@ export function SidebarNav() {
               _hover={{ textDecoration: 'none' }}
             >
               <Icon
-                as={AiFillHome}
+                as={BsBellFill}
                 fontSize={28}
                 justifyContent="flex-start"
                 ml="15%"
@@ -174,31 +172,6 @@ export function SidebarNav() {
                 fontSize="1.125rem"
               >
                 Clientes
-              </Text>
-            </Link>
-
-            <Link
-              href="/configuration"
-              display="flex"
-              flex="1"
-              align="center"
-              alignItems="center"
-              _hover={{ textDecoration: 'none' }}
-            >
-              <Icon
-                as={IoSettingsSharp}
-                fontSize={28}
-                justifyContent="flex-start"
-                ml="15%"
-              />
-
-              <Text
-                fontWeight="medium"
-                ml="5%"
-                textDecoration="none"
-                fontSize="1.125rem"
-              >
-                Configuração
               </Text>
             </Link>
           </Stack>
