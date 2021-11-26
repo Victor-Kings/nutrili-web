@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios'
 import { parseCookies } from 'nookies'
 import { IRegisterSchedulerProps } from '../../interfaces/registerScheduler.interface'
 import { apiBackend } from '../apiClient'
@@ -9,11 +10,25 @@ export class InsertNewSchedulingService
   insertScheduling = async (
     appointment: IRegisterSchedulerProps
   ): Promise<void> => {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAA', appointment)
     await apiBackend.post('/schedule/insertAppointment', appointment, {
       headers: {
         Authorization: `Bearer ${parseCookies()['auth-token']}`
       }
     })
+  }
+
+  updateScheduling = async (
+    appointment: IRegisterSchedulerProps
+  ): Promise<AxiosResponse> => {
+    const { data } = await apiBackend.put(
+      '/schedule/updateAppointment',
+      appointment,
+      {
+        headers: {
+          Authorization: `Bearer ${parseCookies()['auth-token']}`
+        }
+      }
+    )
+    return data
   }
 }

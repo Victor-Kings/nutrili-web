@@ -9,13 +9,17 @@ export interface IRegisterSchedulerProps {
 }
 
 export interface IMorning {
-  message: string
-  hour: string
+  title: string
+  summary: string
+  startingDate: string
+  endingDate: string
+  startingTime: string
+  endingTime: string
+  everyWeek: boolean
+  id: string
 }
 
 export interface IGetSchedulers {
-  daily: {
-    morning: IMorning[]
-    afternoon: IMorning[]
-  }
+  morningAppointments: IMorning[]
+  afternoonAppointments: IMorning[]
 }

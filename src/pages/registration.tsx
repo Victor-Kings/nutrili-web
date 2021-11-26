@@ -1,4 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 import { useState } from 'react'
 
@@ -12,7 +13,7 @@ import { DataUser } from '../services/registerUserDataService/registerUserDataSe
 
 export default function Registration() {
   const [show, setShow] = useState(false)
-
+  const router = useRouter()
   const [checkedItems, setCheckedItems] = useState(false)
 
   const [showDetailStep, setShowDetailStep] = useState(false)
@@ -37,7 +38,7 @@ export default function Registration() {
     console.log('VALIE', value)
 
     const a = await registerUser.sendRegisterData({ ...data, ...value })
-
+    router.push('/login')
     console.log('Ret', a)
   }
 

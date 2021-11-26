@@ -55,7 +55,7 @@ export default function DefaultStep({
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             width={['100%', '60%']}
             height={['40px', '60px']}
             {...register('name', {
@@ -74,7 +74,7 @@ export default function DefaultStep({
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             width={['100%', '38%']}
             height={['40px', '60px']}
             {...register('Last_Name', {
@@ -98,7 +98,7 @@ export default function DefaultStep({
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             width="100%"
             height={['40px', '60px']}
             {...register('email', {
@@ -121,7 +121,7 @@ export default function DefaultStep({
             focusBorderColor="blue.110"
             bgColor="blue.110"
             variant="filled"
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             width={['100%', '49%']}
             height={['40px', '60px']}
             {...register('password', {
@@ -142,7 +142,7 @@ export default function DefaultStep({
             bgColor="blue.110"
             variant="filled"
             mt={['15px', '0px']}
-            _hover={{ color: 'blue.110' }}
+            _hover={{ color: 'blue.10' }}
             width={['100%', '49%']}
             height={['40px', '60px']}
             {...register('password_repeat', {
