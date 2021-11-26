@@ -95,7 +95,10 @@ export default function Schedule() {
   }
 
   useEffect(() => {
-    getSchedule()
+    const intervalId = setInterval(() => {
+      getSchedule()
+    }, 300000)
+    return () => clearInterval(intervalId)
   }, [getSchedule, schedule])
 
   const [showModal, SetShowModal] = useState(false)
