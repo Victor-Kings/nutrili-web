@@ -58,18 +58,14 @@ export class GetDataUserService implements IGetDataUserServiceProps {
   ): Promise<AxiosResponse> => {
     console.log('Enviado alimento', dietData)
 
-    const { data } = await apiBackend.put(
-      'diet/updateDiet',
-      mappingDiet(dietData),
-      {
-        headers: {
-          Authorization: `Bearer ${parseCookies()['auth-token']}`
-        },
-        params: {
-          patientID
-        }
+    const { data } = await apiBackend.put('diet/updateDiet', dietData, {
+      headers: {
+        Authorization: `Bearer ${parseCookies()['auth-token']}`
+      },
+      params: {
+        patientID
       }
-    )
+    })
     return data
   }
 
@@ -104,17 +100,3 @@ const mappingFields = (userDate: IUserDataComplete) => {
   }
   return body
 }
-
-const mappingDiet = (dietData: ICardDietData[]) => {
-  const body = []
-
-  dietData.map((element) =>
-    body.push({
-      name: element.nameFeed,
-      food: element.foods
-    })
-  )
-
-  return body
-}
-

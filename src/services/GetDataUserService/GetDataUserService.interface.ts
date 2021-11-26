@@ -3,12 +3,16 @@ export interface IUserData {
   profilePicture: string | null
   name: string
 }
-export interface ICardDietData {
+export interface IDietData {
   nameFeed?: string
   foods?: string[]
 }
 export interface IUpdateProfileServiceProps {
   updateProfilePick:(ImageData: any) => Promise<void>
+}
+export interface ICardDietData {
+  name: string
+  food: string[]
 }
 export interface IUserDataComplete {
   name: string

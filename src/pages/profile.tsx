@@ -177,25 +177,24 @@ export default function Perfil() {
               >
                 <Flex className={styles.editBtn}>
                   <Flex className={styles.descriptionProfile}>
-                    <SimpleGrid
-                      maxWidth="150px"
-                      minWidth="150px"
-                      maxHeight="250px"
-                      minHeight="200px"
+                    <Flex
+                      minW="180px"
+                      w="180px"
+                      minH="180px"
+                      h="180px"
                       ml="30px"
                       mt="10px"
                       mr="40px"
-                      color="black"
+                      color="blackAlpha.900"
                     >
                       <Image
-                        boxSize="100%"
-                        objectFit="cover"
+                        w="100%"
                         src={
                           imageProfile ? URL.createObjectURL(imageProfile) : clientData?.profilePic || 'https://bit.ly/dan-abramov'
                         }
                         alt="Dan Abramov"
                       />
-                    </SimpleGrid>
+                    </Flex>
                     <SimpleGrid w="100%" h="150px" mt="35px">
                       <Text fontWeight="bold" fontSize="2xl" color="gray.200">
                         {clientData.name}

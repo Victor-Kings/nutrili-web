@@ -1,5 +1,5 @@
-import { MyClients } from "../../interfaces/myClients.interface";
+import { MyClients } from '../../interfaces/myClients.interface'
 
 export interface IListClientsProps {
-  clients: MyClients[];
+  clients: MyClients[]
 }

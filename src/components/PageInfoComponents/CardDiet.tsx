@@ -4,8 +4,8 @@ import { AddIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons'
 import { GetDataUserService } from '../../services/GetDataUserService/GetDataUserService'
 
 interface ICardDietData {
-  nameFeed: string
-  foods: string[]
+  name: string
+  food: string[]
 }
 interface ICardDietProps {
   dataDiet: ICardDietData[]
@@ -25,7 +25,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
 
   const handlerNewFeed = () => {
     setCards([...cards, newFeed])
-    setNewFeed({ nameFeed: '', foods: [] })
+    setNewFeed({ name: '', food: [] })
   }
 
   const deleteFeed = (value: ICardDietData) => {
@@ -34,7 +34,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
 
     console.log('DELETANDO FEED', cards)
     cards.filter((element) => {
-      if (element == value && element.foods.length > 0) {
+      if (element == value && element.food.length > 0) {
         sendDataDiet()
       }
     })
@@ -43,7 +43,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
   const handlerNewFood = (value: ICardDietData) => {
     const auxCards = cards
     auxCards.forEach((itemCard, index) => {
-      if (itemCard == value) auxCards[index].foods.push(newFood)
+      if (itemCard == value) auxCards[index].food.push(newFood)
     })
     setCards(auxCards)
     setNewFood('')
@@ -51,7 +51,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
 
     console.log('ADICIONANDO FOOD', cards)
     auxCards.filter((element) => {
-      if (element == value && element.foods.length > 0) {
+      if (element == value && element.food.length > 0) {
         sendDataDiet()
       }
     })
@@ -60,10 +60,10 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
   const deleteFood = (value: ICardDietData, itemFood: string) => {
     cards.filter((itemCard) => {
       if (itemCard == value) {
-        const indexFood = itemCard.foods.findIndex(
+        const indexFood = itemCard.food.findIndex(
           (item: string) => item == itemFood
         )
-        itemCard.foods.splice(indexFood, 1)
+        itemCard.food.splice(indexFood, 1)
       }
     })
 
@@ -71,7 +71,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
     console.log('DELETENADO FOOD', cards)
 
     cards.filter((element) => {
-      if (element == value && element.foods.length > 0) {
+      if (element == value && element.food.length > 0) {
         sendDataDiet()
       }
     })
@@ -119,7 +119,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
       >
         {cards.map((value, index) => (
           <Flex
-            key={`${index}-${value?.nameFeed}`}
+            key={`${index}-${value?.name}`}
             pt="1%"
             flexDir="column"
             alignItems="center"
@@ -137,7 +137,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
           >
             <Flex alignItems="center" justifyContent="space-between" w="90%">
               <Text color="#6F6F6F" fontSize="18px">
-                {value?.nameFeed}
+                {value?.name}
               </Text>
               <IconButton
                 ml="20%"
@@ -167,10 +167,10 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
                 }
               }}
             >
-              {value.foods?.map((valueFoods, index) => (
+              {value.food?.map((valueFoods, index) => (
                 <>
                   <Flex
-                    key={`${valueFoods}-${index}-${value?.nameFeed}`}
+                    key={`${valueFoods}-${index}-${value?.name}`}
                     w="98%"
                     minH="40px"
                     alignSelf="center"
@@ -202,7 +202,7 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
                     />
                   </Flex>
 
-                  {index == value.foods?.length - 1 && (
+                  {index == value.food?.length - 1 && (
                     <Flex
                       w="98%"
                       minH="40px"
@@ -230,54 +230,53 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
                         fontSize="10px"
                         size="xs"
                         onClick={() => {
-                          setIsNewFood(`${value.nameFeed}`)
+                          setIsNewFood(`${value.name}`)
                         }}
                       />
                     </Flex>
                   )}
 
-                  {isNewFood == value.nameFeed &&
-                    index == value.foods?.length - 1 && (
-                      <Flex
-                        w="98%"
-                        minH="40px"
-                        bg="blueviolet"
-                        alignSelf="center"
-                        borderRadius="4px"
-                        alignItems="center"
-                        px="5%"
-                        my="2%"
-                        justifyContent="space-between"
-                        css={{
-                          background: '#FFFFFF',
-                          'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
-                          'border-radius': '3px'
+                  {isNewFood == value.name && index == value.food?.length - 1 && (
+                    <Flex
+                      w="98%"
+                      minH="40px"
+                      bg="blueviolet"
+                      alignSelf="center"
+                      borderRadius="4px"
+                      alignItems="center"
+                      px="5%"
+                      my="2%"
+                      justifyContent="space-between"
+                      css={{
+                        background: '#FFFFFF',
+                        'box-shadow': '1px 1px 4px rgba(0, 0, 0, 0.25)',
+                        'border-radius': '3px'
+                      }}
+                    >
+                      <Input
+                        textColor="blackAlpha.800"
+                        borderRadius="5px"
+                        type="text"
+                        value={newFood}
+                        onChange={(event) => setNewFood(event.target.value)}
+                      />
+                      <IconButton
+                        variant="outline"
+                        colorScheme="green"
+                        aria-label="Add food"
+                        icon={<CheckIcon />}
+                        borderRadius="50%"
+                        fontSize="10px"
+                        size="xs"
+                        onClick={() => {
+                          handlerNewFood(value)
                         }}
-                      >
-                        <Input
-                          textColor="blackAlpha.800"
-                          borderRadius="5px"
-                          type="text"
-                          value={newFood}
-                          onChange={(event) => setNewFood(event.target.value)}
-                        />
-                        <IconButton
-                          variant="outline"
-                          colorScheme="green"
-                          aria-label="Add food"
-                          icon={<CheckIcon />}
-                          borderRadius="50%"
-                          fontSize="10px"
-                          size="xs"
-                          onClick={() => {
-                            handlerNewFood(value)
-                          }}
-                        />
-                      </Flex>
-                    )}
+                      />
+                    </Flex>
+                  )}
                 </>
               ))}
-              {value.foods?.length == 0 && (
+              {value.food?.length == 0 && (
                 <Flex
                   w="98%"
                   minH="40px"
@@ -305,12 +304,12 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
                     fontSize="10px"
                     size="xs"
                     onClick={() => {
-                      setIsNewFood(`${value.nameFeed}`)
+                      setIsNewFood(`${value.name}`)
                     }}
                   />
                 </Flex>
               )}
-              {isNewFood == value.nameFeed && value.foods?.length == 0 && (
+              {isNewFood == value.name && value.food?.length == 0 && (
                 <Flex
                   w="98%"
                   minH="40px"
@@ -374,11 +373,11 @@ export function CardDiet({ dataDiet, patientID }: ICardDietProps) {
                   textColor="blackAlpha.800"
                   borderRadius="5px"
                   type="text"
-                  value={newFeed?.nameFeed}
+                  value={newFeed?.name}
                   onChange={(event) => {
                     setNewFeed({
-                      nameFeed: event.target.value,
-                      foods: ['Exemplo']
+                      name: event.target.value,
+                      food: ['Exemplo']
                     })
                   }}
                 />

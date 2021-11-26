@@ -27,7 +27,7 @@ export function CardPageInfo(props: ICardPageProps) {
         mt="10px"
         size="2xl"
         name="Silvio Santos"
-        src="https://bit.ly/sage-adebayo"
+        src={props.image || 'https://bit.ly/sage-adebayo'}
       />
       <Flex
         mt="10px"
