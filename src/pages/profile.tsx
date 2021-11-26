@@ -212,6 +212,7 @@ export default function Perfil() {
                       h={8}
                       color="gray.500"
                       onClick={() => handleClick()}
+                      cursor="pointer"
                     />
                   </SimpleGrid>
                 </Flex>
