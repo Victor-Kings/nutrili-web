@@ -25,6 +25,7 @@
         "antd": "^4.16.11",
         "apexcharts": "^3.29.0",
         "axios": "^0.21.4",
+        "form-data": "^4.0.0",
         "framer-motion": "^4",
         "framework7-react": "^6.2.0",
         "jwt-decode": "^3.1.2",

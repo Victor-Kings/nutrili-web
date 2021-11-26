@@ -7,7 +7,9 @@ export interface IDietData {
   nameFeed?: string
   foods?: string[]
 }
-
+export interface IUpdateProfileServiceProps {
+  updateProfilePick:(ImageData: any) => Promise<void>
+}
 export interface ICardDietData {
   name: string
   food: string[]

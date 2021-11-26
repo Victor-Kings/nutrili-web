@@ -1,6 +1,7 @@
 import { AxiosAdapter, AxiosResponse } from 'axios'
 import { parseCookies } from 'nookies'
 import { apiBackend } from '../apiClient'
+import FormData from "form-data";
 import {
   IGetDataUserServiceProps,
   IUserData,
@@ -27,12 +28,22 @@ export class GetDataUserService implements IGetDataUserServiceProps {
     return data
   }
 
+  async updateProfilePick(ImageData: any): Promise<void> {
+    var form = new FormData();
+    form.append("profilePic", ImageData);
+    const { data } = await apiBackend.put('user/updateUserProfilePic', form, {
+      headers: {
+        Authorization: `Bearer ${parseCookies()['auth-token']}`,
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    return data
+  }
+
   updateDataUser = async (
     userDate: IUserDataComplete
   ): Promise<IUserDataComplete> => {
     const test = mappingFields(userDate)
-    console.log(test)
-
     const { data } = await apiBackend.put('user/updateUser', test, {
       headers: {
         Authorization: `Bearer ${parseCookies()['auth-token']}`
@@ -57,7 +68,19 @@ export class GetDataUserService implements IGetDataUserServiceProps {
     })
     return data
   }
+
+  private makeid(): string {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < 50; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 }
+
 
 const mappingFields = (userDate: IUserDataComplete) => {
   const body = {

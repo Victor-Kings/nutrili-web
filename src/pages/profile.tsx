@@ -37,17 +37,27 @@ const theme = extendTheme({ breakpoints })
 export default function Perfil() {
   const [editField, setEditField] = useState(false)
   const [clientData, setClientData] = useState<IUserDataComplete | null>(null)
+  const [imageProfile, setImageProfile] = useState<any>(null);
 
-  console.log(clientData)
 
   function handleClick() {
     setEditField(true)
   }
   const updateData = async () => {
-    const response = await new GetDataUserService().updateDataUser(clientData)
     setEditField(false)
-    console.log(response)
+    if (imageProfile) {
+      try {
+        await new GetDataUserService().updateProfilePick(imageProfile);
+      } catch (e) {
+        console.error("erro ao atualizar imagem", e);
+      }
+    }
   }
+
+  const pickImage = (event) => {
+    setImageProfile(event.target.files[0]);
+  };
+
   const fetchData = useCallback(async () => {
     try {
       const response = await new GetDataUserService().getDataUserComplete()
@@ -67,6 +77,31 @@ export default function Perfil() {
     base: true,
     xl: false
   })
+
+  const maskPhone = (value) => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2")
+      .replace(/(-\d{4})(\d+?)$/, "$1");
+  };
+
+  const maskCEP = (value) => {
+    return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
+  };
+
+  const maskDate = value => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{4})(\d)/, "$1");
+  };
+
+  const maskState = (value) => {
+    value = value.toUpperCase();
+    return value.replace(/[0-9!@#¨$%^&*)(+=._-]+/g, "");
+  };
 
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
@@ -155,12 +190,12 @@ export default function Perfil() {
                       <Image
                         w="100%"
                         src={
-                          clientData?.profilePic || 'https://bit.ly/dan-abramov'
+                          imageProfile ? URL.createObjectURL(imageProfile) : clientData?.profilePic || 'https://bit.ly/dan-abramov'
                         }
                         alt="Dan Abramov"
                       />
                     </Flex>
-                    <SimpleGrid w="100%" h="200px" mt="20px">
+                    <SimpleGrid w="100%" h="150px" mt="35px">
                       <Text fontWeight="bold" fontSize="2xl" color="gray.200">
                         {clientData.name}
                       </Text>
@@ -177,6 +212,7 @@ export default function Perfil() {
                       h={8}
                       color="gray.500"
                       onClick={() => handleClick()}
+                      cursor="pointer"
                     />
                   </SimpleGrid>
                 </Flex>
@@ -194,6 +230,7 @@ export default function Perfil() {
                     {!editField ? (
                       <SimpleGrid>
                         <Text
+                        mt="20px"
                           mb="5px"
                           ml="2%"
                           color="gray.200"
@@ -237,6 +274,20 @@ export default function Perfil() {
                       </SimpleGrid>
                     ) : (
                       <div>
+                        <Flex 
+                        marginTop="15px"
+                        display="flex"
+                        flexDirection="row"
+                        marginBottom="10px">
+                        <Text
+                          color="gray.200"
+                          fontWeight="bold"
+                          fontSize="15px"
+                        >
+                          Alterar imagem:
+                        </Text>
+                        <input type="file" name="profileName" onChange={pickImage} style={{fontSize: "15px", height: "50px", marginLeft:"10px", color: "black"}}/> 
+                        </Flex>
                         <Text
                           mb="15px"
                           ml="2%"
@@ -300,9 +351,9 @@ export default function Perfil() {
                             </Text>
                           </Flex>
                           <Input
-                            className={styles.inputData}
-                            value={clientData.office.number}
-                            onChange={(value) =>
+                          value={clientData.office.number}
+                          className={styles.inputData}
+                          onChange={(value) =>
                               setClientData({
                                 ...clientData,
                                 office: {
@@ -356,6 +407,7 @@ export default function Perfil() {
                             </Text>
                           </Flex>
                           <Input
+                          maxLength={2}
                             className={styles.inputData}
                             value={clientData.office.state}
                             onChange={(value) =>
@@ -363,7 +415,7 @@ export default function Perfil() {
                                 ...clientData,
                                 office: {
                                   ...clientData.office,
-                                  state: value.target.value
+                                  state: maskState(value.target.value)
                                 }
                               })
                             }
@@ -383,7 +435,7 @@ export default function Perfil() {
                                 ...clientData,
                                 office: {
                                   ...clientData.office,
-                                  cep: value.target.value
+                                  cep: maskCEP(value.target.value)
                                 }
                               })
                             }
@@ -403,7 +455,7 @@ export default function Perfil() {
                                 ...clientData,
                                 office: {
                                   ...clientData.office,
-                                  officePhone: value.target.value
+                                  officePhone: maskPhone(value.target.value)
                                 }
                               })
                             }
@@ -422,7 +474,7 @@ export default function Perfil() {
                         <Flex flexDirection="row" mb={4}>
                           <Flex flexDirection="row" w="90px">
                             <Text m="0px" color="gray.400">
-                              Nacimento:
+                              Nascimento:
                             </Text>
                           </Flex>
                           <Input
@@ -431,7 +483,7 @@ export default function Perfil() {
                             onChange={(value) =>
                               setClientData({
                                 ...clientData,
-                                birth: value.target.value
+                                birth: maskDate(value.target.value)
                               })
                             }
                           />
@@ -448,7 +500,7 @@ export default function Perfil() {
                             onChange={(value) =>
                               setClientData({
                                 ...clientData,
-                                phone: value.target.value
+                                phone: maskPhone(value.target.value)
                               })
                             }
                           />
@@ -461,7 +513,7 @@ export default function Perfil() {
                   </SimpleGrid>
                 </Flex>
                 {editField && (
-                  <Flex flexDirection="row" ml={2} mr={2}>
+                  <Flex flexDirection="row"marginTop="60px" ml={2} mr={2}>
                     <Button
                       w={40}
                       h={38}
@@ -497,8 +549,4 @@ export default function Perfil() {
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
-  return {
-    props: {}
-  }
-})
+
