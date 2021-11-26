@@ -44,7 +44,6 @@ export default function Perfil() {
     setEditField(true)
   }
   const updateData = async () => {
-    const response = await new GetDataUserService().updateDataUser(clientData)
     setEditField(false)
     if (imageProfile) {
       try {
@@ -56,7 +55,6 @@ export default function Perfil() {
   }
 
   const pickImage = (event) => {
-    console.log(event.target.files[0])
     setImageProfile(event.target.files[0]);
   };
 

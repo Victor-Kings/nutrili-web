@@ -30,11 +30,7 @@ export class GetDataUserService implements IGetDataUserServiceProps {
 
   async updateProfilePick(ImageData: any): Promise<void> {
     var form = new FormData();
-    form.append("profilePic", {
-      type: "image/jpeg",
-      name: `${this.makeid()}.jpg`,
-      uri: ImageData,
-    });
+    form.append("profilePic", ImageData);
     const { data } = await apiBackend.put('user/updateUserProfilePic', form, {
       headers: {
         Authorization: `Bearer ${parseCookies()['auth-token']}`,
