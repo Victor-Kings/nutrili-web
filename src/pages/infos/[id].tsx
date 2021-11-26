@@ -109,7 +109,7 @@ function Infos({ id }: any) {
 
             <Avatar
               name="Dan Abrahmov"
-              src={clientData.patient.profileIcon}
+              src={clientData?.patient.profileIcon}
               size={avatarSize}
               border="3px solid white"
             />
