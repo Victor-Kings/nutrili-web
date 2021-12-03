@@ -53,6 +53,16 @@ function diffTimeTeste(tempo: string): string {
   return diff
 }
 
+const correctionAnswer=(answer:string)=>{
+    if(answer=="yes"){
+      return "sim"
+    }
+    if(answer=="no"){
+      return "não"
+    }
+    return answer
+}
+
 export default function SimpleAccordion(props: IProps) {
   const avatarSize = useBreakpointValue({ base: 'md', sm: 'md' })
 
@@ -97,27 +107,24 @@ export default function SimpleAccordion(props: IProps) {
             <SimpleGrid color="gray.200">
               <Flex flexDirection="column">
                 <Text>Informações: </Text>
+              </Flex>
+              <Flex flexDirection="column" pt="4%">
                 <Text>CPF: {values.cpf} </Text>
                 <Text>Endereço: {values.address} </Text>
               </Flex>
-
-              <Flex pt="4%">
+              <Flex >
                 <Flex flex="1" flexDirection="column">
                   <Text>Altura: {values.measure.height} cm</Text>
                   <Text>Peso: {values.measure.weight} </Text>
-                  <Text>IMC: {values.measure.bmi} </Text>
+                  <Text>IMC: {values.measure.bmi.toFixed(2)} </Text>
 
-                  {/* 
-                  TODO: Não sei como era pra ser 
-                  {values.}
-                  */}
                   {values.answerList.map((value, index) => (
                     <>
                       <Text key={`${value.idQuestion}${index}`}>
                         Pergunta: {value.question}
                       </Text>
                       <Text key={`${value.idQuestion}${value.question}`}>
-                        Resposta: {value.answer}
+                        Resposta: {correctionAnswer(value.answer)}
                       </Text>
                     </>
                   ))}
@@ -125,11 +132,6 @@ export default function SimpleAccordion(props: IProps) {
                   TODO: Não sei como era pra ser 
                   */}
                 </Flex>
-                {/* <Flex flex="1" flexDirection="column">
-                  <Text>Peso: {values.medicao.peso} Kg </Text>
-                  <Text>Medida C: {values.medicao.medida_c}</Text>
-                  <Text>Medida D: {values.medicao.medida_d}x</Text>
-                </Flex> */}
               </Flex>
 
               <Grid

@@ -44,6 +44,7 @@ export default function Perfil() {
     setEditField(true)
   }
   const updateData = async () => {
+    await new GetDataUserService().updateDataUser(clientData)
     setEditField(false)
     if (imageProfile) {
       try {

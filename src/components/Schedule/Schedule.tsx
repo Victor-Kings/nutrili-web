@@ -100,7 +100,10 @@ export default function Schedule() {
     }, 300000)
     return () => clearInterval(intervalId)
   }, [getSchedule, schedule])
-
+  
+  useEffect(() => {
+    getSchedule()
+  },[])
   const [showModal, SetShowModal] = useState(false)
   const closeModal = () => {
     SetShowModal(false)
@@ -113,12 +116,14 @@ export default function Schedule() {
     if (!updateSchedule) {
       try {
         await new InsertNewSchedulingService().insertScheduling(value)
+        getSchedule()
       } catch (err) {
         console.error('ERROR to insert the dates in schedule: ', err)
       }
     } else {
       try {
         await new InsertNewSchedulingService().updateScheduling(value)
+        getSchedule()
       } catch (err) {
         console.error('ERROR to send the dates to update schedule: ', err)
       }

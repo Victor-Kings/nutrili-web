@@ -156,7 +156,7 @@ export function CardInfoEditabled(props: IDataInfos) {
             </Box>
             <Box w="100%" h="10" alignContent="center">
               <Flex height="100%" alignItems="center">
-                <Text color="gray.400">IMC: {dataInfos?.IMC}</Text>
+                <Text color="gray.400">IMC: {dataInfos?.IMC.toFixed(2)}</Text>
               </Flex>
             </Box>
           </Grid>
